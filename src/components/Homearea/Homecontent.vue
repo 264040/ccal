@@ -1,22 +1,10 @@
-
-
 <template>
   <div class="content-container">
     <div class="card-grid">
-      <div
-        v-for="(post, index) in posts"
-        :key="index"
-        class="post-card"
-        :style="{ '--bg-hue': post.bgHue }"
-      >
+      <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
         <div class="card-header">
           <h3 class="post-title">{{ post.title }}</h3>
-          <Avatar
-            :icon="post.avatarIcon"
-            class="post-avatar"
-            size="large"
-            shape="circle"
-          />
+          <Avatar :icon="post.avatarIcon" class="post-avatar" size="large" shape="circle" />
         </div>
 
         <div class="card-content">
@@ -24,44 +12,29 @@
         </div>
 
         <div class="card-footer">
-          <Button
-            icon="pi pi-heart"
-            class="p-button-text p-button-plain reaction-btn"
-            :label="post.likes.toString()"
-          />
-          <Button
-            icon="pi pi-comment"
-            class="p-button-text p-button-plain reaction-btn"
-            :label="post.comments.toString()"
-          />
-          <div class="card flex justify-center">
-            <AvatarGroup>
-              <Avatar
-                image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-                shape="circle"
-                size="normal"
-                class="avateraxer"
-              />
-              <Avatar
-                image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png"
-                shape="circle"
-                class="avateraxer"
-              />
-              <Avatar
-                image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png"
-                shape="circle"
-                class="avateraxer"
-              />
-
-              <Avatar
-                image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png"
-                shape="circle"
-                class="avateraxer"
-              />
-              <Avatar label="···" class="avateraxer" shape="circle" />
-            </AvatarGroup>
+          <div class="card-btns">
+            <Button icon="pi pi-heart" class="p-button-text p-button-plain reaction-btn"
+              :label="post.likes.toString()" />
+            <Button icon="pi pi-comment" class="p-button-text p-button-plain reaction-btn"
+              :label="post.comments.toString()" />
           </div>
-          <div class="post-time itmeacer">{{ post.time }}</div>
+          <div class="card-www">
+            <div class="card flex justify-center card-txl">
+              <AvatarGroup>
+                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle"
+                  size="normal" class="avateraxer" />
+                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" shape="circle"
+                  class="avateraxer" />
+                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle"
+                  class="avateraxer" />
+
+                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" shape="circle"
+                  class="avateraxer" />
+
+              </AvatarGroup>
+            </div>
+            <div class="post-time itmeacer">{{ post.audien }}</div>
+          </div>
           <!--<div class="post-author">{{ post.author }}</div>-->
         </div>
 
@@ -83,6 +56,7 @@ const posts = ref([
     author: "张三",
     avatarIcon: "pi pi-user",
     time: "2小时前",
+    audien: "围观中...",
     title: "Vue 3的新特性",
     content:
       "Vue 3带来了很多令人兴奋的新特性，包括Composition API、性能改进和更好的TypeScript支持。",
@@ -95,6 +69,7 @@ const posts = ref([
     author: "李四",
     avatarIcon: "pi pi-user",
     time: "昨天",
+    audien: "围观中...",
     title: "PrimeVue组件库使用体验",
     content:
       "PrimeVue提供了丰富的UI组件，使用起来非常方便，与Vue 3的兼容性也很好。",
@@ -107,6 +82,7 @@ const posts = ref([
     author: "王五",
     avatarIcon: "pi pi-user",
     time: "3天前",
+    audien: "围观中...",
     title: "前端开发趋势",
     content:
       "近年来，前端开发领域发展迅速，新的框架和工具层出不穷，我们需要保持学习的态度当水喝哈哈哈哈红红给更实用更。",
@@ -119,6 +95,7 @@ const posts = ref([
     author: "fdffdsd",
     avatarIcon: "pi pi-user",
     time: "3天前",
+    audien: "围观中...",
     title: "TFsdwdoSfglkslf",
     content:
       "WDkdlfeosdf,pg;sdfjianfokfojduisudhfuhuhgseranfokfojduisudhfuhuhgseranfokfojduisudhfuhuhgserdtdsesdffserttyhffg",
@@ -134,9 +111,9 @@ const posts = ref([
 .content-container {
   padding: 1rem;
   max-width: 1200px;
-  margin: 0.2rem  auto 0;
+  margin: 0.2rem auto 0;
   position: relative;
-  
+
   transition: all 0.3s ease-out, transform 0.5s ease-in-out, padding 0.5s;
 }
 
@@ -157,6 +134,10 @@ const posts = ref([
     transform 0.3s ease,
     box-shadow 0.3s ease;
   z-index: 1;
+}
+
+.card-txl {
+  transform: translateX(5px);
 }
 
 /* 毛玻璃效果背景 */
@@ -181,11 +162,9 @@ const posts = ref([
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    var(--bg-hue, 200deg),
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );
+  background: linear-gradient(var(--bg-hue, 200deg),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05));
   opacity: 0.6;
   z-index: -1;
   transform: rotate(30deg);
@@ -245,11 +224,13 @@ const posts = ref([
 }
 
 .itmeacer {
-  flex: 1;
   color: rgba(255, 255, 255, 1);
   text-align: right;
+  margin-left: .8rem;
+  font-size: .7rem;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
 }
+
 .card-content {
   margin-bottom: 1.25rem;
   position: relative;
@@ -263,14 +244,16 @@ const posts = ref([
   height: 2rem;
   line-height: 2rem;
   text-overflow: ellipsis;
-  overflow: hidden; /* 将超出容器宽度的部分进行隐藏 */
-  white-space: nowrap; /* 将文字的换行模式设置为 nowrap */
+  overflow: hidden;
+  /* 将超出容器宽度的部分进行隐藏 */
+  white-space: nowrap;
+  /* 将文字的换行模式设置为 nowrap */
   font-size: 1.5rem;
   font-weight: 600;
   margin: auto 0rem;
   color: #fff;
   text-shadow: 0 1px 5px rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease-out, transform 0.5s ease-in-out, padding 0.3s;
+  transition: all 0.3s ease-out, transform 0.5s ease-in-out, padding 0.3s;
 }
 
 .post-text {
@@ -301,9 +284,19 @@ const posts = ref([
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius:2rem;
-  padding: 0.4rem 0.75rem;
+  border-radius: 2rem;
+  padding: 0.4rem 1.5rem;
   transition: all 0.2s ease;
+  transform: scale(0.9);
+  transform-origin: left;
+  width: 85px;
+}
+
+.card-btns {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
 
 .avateraxer {
@@ -320,76 +313,118 @@ const posts = ref([
   transform: translateY(-2px);
 }
 
+.card-www {
+  display: flex;
+  flex: 1;
+  height: 40px;
+  align-items: center;
+  justify-content: flex-end;
+  transform: scale(0.8);
+  transform-origin: right;
+}
+
 /* 响应式设计 */
 /* 小屏 */
 @media (max-width: 768px) {
-  .content-container {
-     
-  }
+  .content-container {}
 
-  .post-card { 
-  }
+  .post-card {}
 
   .card-footer {
-    
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 40px;
   }
 }
 
 /* 中屏*/
 @media (min-width: 769px) and (max-width: 949px) {
-  
 
-  .post-title{
-    font-size:1.8rem; 
+
+  .post-title {
+    font-size: 1.8rem;
   }
-.card-content{
-  font-size:1.2rem;
-}
-  .post-card { 
+
+  .card-content {
+    font-size: 1.2rem;
+  }
+
+  .post-card {
     border-radius: 2rem;
   }
 
-  .card-footer { 
+  .card-footer {
     flex-wrap: nowrap;
+  }
+
+  .reaction-btn {
+    padding: 0.4rem 4.5rem;
   }
 }
 
 
 
 /* 大屏 */
-@media (min-width: 950px) { 
-  .card-grid{
+@media (min-width: 950px) {
+  .card-grid {
     display: flex;
     gap: 1.5rem;
-    padding: 0 0 5rem; 
+    padding: 0 0 5rem;
     flex-flow: wrap;
   }
 
-  .post-title{ 
-    font-size:2rem; 
+  .post-title {
+    font-size: 1.4rem;
   }
-.card-content{
-  font-size:1.4rem;
-}
+
+  .card-content {
+    font-size: 1rem;
+  }
+
   .post-card {
-        flex: 1;
-        display: flex; 
-        border-radius: 2rem;
-        flex-direction: column;
-        justify-content: space-between;
-    
+    flex: 1;
+    display: flex;
+    border-radius: 2rem;
+    flex-direction: column;
+    justify-content: space-between;
+
   }
 
-  .card-footer { 
-    flex-wrap: wrap;
+  .card-footer {
+    display: flex;
+    grid-template-columns: auto;
+    flex-direction: column-reverse;
+    gap: 0rem;
+
+    justify-content: center;
+    align-items: stretch;
   }
 
-.p-tabmenu-tablist{
-  margin: 0 15px;
-}
+  .p-tabmenu-tablist {
+    margin: 0 15px;
+  }
 
-  .reaction-btn{
-    padding: 0.4rem 1.5rem;
+  .reaction-btn {
+    padding: 0.4rem 3.32rem;
+    transform: scale(1);
+    transform-origin: center;
+  }
+
+  .card-btns {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+
+  .card-www {
+    align-items: center;
+    justify-content: flex-start;
+    transform: scale(1);
+    transform-origin: left;
+    margin: 0 0 3px;
+    width: 100%;
   }
 }
 </style>

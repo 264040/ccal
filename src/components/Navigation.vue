@@ -55,9 +55,9 @@ const items = ref([
 :deep(.p-tabmenu) {
   background-color: #fff;
   border: 0px solid #e5e7eb;
-  border-radius: 50px;
-
+  border-radius: 50px; 
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  transition: width 0.3s ease-out, transform 0.5s ease-in-out, padding 0.3s;
 }
 
 :deep(.p-tabmenu-nav) {
@@ -72,4 +72,48 @@ const items = ref([
 :deep(.p-menuitem-icon) {
   margin-bottom: 0.25rem;
 }
+
+
+:deep(.p-tabmenu-tablist){
+  
+  transition: width 0.3s ease-out, transform 0.5s ease-in-out, padding 0.3s;
+}
+
+
+
+
+
+
+
+
+
+/* 响应式设计 */
+/* 小屏 */
+@media (max-width: 768px) { 
+}
+
+/* 中屏*/
+@media (min-width: 769px) and (max-width: 949px) {
+  
+ :deep(.p-tabmenu) { 
+  width:400px ; 
+}
+:deep(.p-tabmenu-tablist){
+  
+    justify-content: space-around;
+}
+ 
+}
+ 
+/* 大屏 */
+@media (min-width: 950px) {  
+ :deep(.p-tabmenu) { 
+  width:600px ; 
+}
+:deep(.p-tabmenu-tablist){
+  
+    justify-content: space-around;
+}
+} 
+  
 </style>
