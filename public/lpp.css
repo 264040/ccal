@@ -24,7 +24,14 @@ body {
 
 
 
-
+/* 引入自定义字体 */
+@font-face {
+  font-family: 'MyFontAcer'; /* 自定义字体名称 */
+  src: url('./typeface/ctfy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  color: blue;
+}
 
 
 
