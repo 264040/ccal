@@ -1,14 +1,15 @@
 <template>
   <div class="page">
     <Hometop />
-    <Homecontent />
+    <PaddleCard />
   </div>
 </template>
 
 <script setup>
 // 可以在这里添加页面逻辑
 import Hometop from "@/components/Homearea/Hometop.vue";
-import Homecontent from "@/components/Homearea/Homecontent.vue";
+import PaddleCard from "@/components/PaddleCard.vue";
+ 
 </script>
 
 <style scoped>

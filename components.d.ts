@@ -9,15 +9,27 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AvatarGroup: typeof import('primevue/avatargroup')['default']
+    BBSView: typeof import('./src/components/BBSView.vue')['default']
     Button: typeof import('primevue/button')['default']
+    ContentView: typeof import('./src/components/ContentView.vue')['default']
     FileUpload: typeof import('primevue/fileupload')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     Homecontent: typeof import('./src/components/Homearea/Homecontent.vue')['default']
     Hometop: typeof import('./src/components/Homearea/Hometop.vue')['default']
     Messages: typeof import('./src/components/Messages.vue')['default']
     Navigation: typeof import('./src/components/Navigation.vue')['default']
+    PaddleCard: typeof import('./src/components/PaddleCard.vue')['default']
+    RankingView: typeof import('./src/components/RankingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Tab: typeof import('primevue/tab')['default']
+    TabList: typeof import('primevue/tablist')['default']
+    TabPanel: typeof import('primevue/tabpanel')['default']
+    TabPanels: typeof import('primevue/tabpanels')['default']
+    Tabs: typeof import('primevue/tabs')['default']
     Toast: typeof import('primevue/toast')['default']
+  }
+  export interface GlobalDirectives {
+    Ripple: typeof import('primevue/ripple')['default']
   }
 }

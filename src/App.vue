@@ -3,15 +3,19 @@ import { useRouter } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
 
 const router = useRouter(); 
+
+
 </script>
 
 <template>
   <div class="crad-acc">
     <div class="crad">
+ 
       <!-- 主要内容区域，使用 router-view -->
       <router-view v-slot="{ Component, route }"> 
           <component :is="Component" :key="route.path" /> 
       </router-view>
+ 
 
       <!-- 底部导航栏组件 -->
       <AppBottomNavigation />
@@ -24,7 +28,8 @@ const router = useRouter();
 <style scoped>
 /* 应用全局样式 */ 
 .crad-acc {
-  background-image: url(./image/cc7.webp);
+  /* background-image: url(./image/cc7.webp); */
+  background-color: rgb(230, 230, 230);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 100vh; 

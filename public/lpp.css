@@ -4,9 +4,11 @@
   box-sizing: border-box !important;
   border: 0px;
 }
+
 li {
   tlist-style: none;
 }
+
 a {
   text-decoration: none;
 }
@@ -14,6 +16,7 @@ a {
 body {
   min-height: 100vh
 }
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -26,13 +29,12 @@ body {
 
 /* 引入自定义字体 */
 @font-face {
-  font-family: 'MyFontAcer'; /* 自定义字体名称 */
+  font-family: 'MyFontAcer';
+  /* 自定义字体名称 */
   src: url('./typeface/ctfy.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   color: blue;
+  letter-spacing: 1px !important;
+  font-weight: 500;
 }
-
-
-
-

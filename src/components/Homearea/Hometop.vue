@@ -52,7 +52,7 @@ const onSearchBlur = () => {
   border-radius: 40px;
   /*position: sticky;
   top: 0;*/
-  margin: 0 1rem;
+  margin:1rem;
 }
 
 .search-container {

@@ -6,9 +6,18 @@ import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura' // 引入 Aura 主题
 import 'primeicons/primeicons.css' // 图标样式仍然需要单独引入
 import '../public/lpp.css';
+
+import { createPinia } from 'pinia'
+import piniaPersist from 'pinia-plugin-persistedstate'
+
+const pinia = createPinia()
 const app = createApp(App)
 
-app.use(router);
+
+pinia.use(piniaPersist)
+app.use(pinia)
+app.use(router); 
+
 // 使用 PrimeVue 并配置主题
 app.use(PrimeVue, {
   theme: {
