@@ -29,7 +29,8 @@ const router = useRouter();
 /* 应用全局样式 */ 
 .crad-acc {
   /* background-image: url(./image/cc7.webp); */
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(241, 241, 241);
+  /* background: linear-gradient(135deg, #752f0a 0%, #2d1c15 17%, #1d130f 34%, #150f0d 60%, #130e0c 100%); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 100vh; 

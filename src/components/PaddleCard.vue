@@ -1,33 +1,48 @@
 <template>
     <div class="card">
-        <Tabs :value="routeKey">
-            <TabList>
-                <Tab  v-for="tab in items" :key="tab.label" :value="tab.route"  >
-                    <router-link  v-if="tab.route" v-slot="{ href, navigate }" :to="tab.route" custom>
-                        <div v-ripple   @click="handleClick(navigate,href)" class="flex items-center gap-2 text-inherit">
-                            <!-- <i :class="tab.icon" /> -->
-                            {{ tab.label }}
-                        </div>
-                    </router-link>
-                </Tab>
-            </TabList> 
-        </Tabs>
-        <router-view />
+ 
+            <Tabs :value="routeKey" v-if="show">
+                <TabList>
+                    <Tab v-for="tab in items" :key="tab.label" :value="tab.route" @click="afn(tab.route)">
+                        <router-link v-if="tab.route" v-slot="{ href, navigate }" :to="tab.route" custom>
+                            <div v-ripple class="flex items-center gap-2 text-inherit">
+                                <!-- <i :class="tab.icon" /> -->
+                                {{ tab.label }}
+                            </div>
+                        </router-link>
+                    </Tab>
+                </TabList>
+            </Tabs> 
+        <router-view/>
+ 
     </div>
 </template>
 
 <script setup>
-import { ref,watch } from "vue";
+import router from "@/router";
+import { ref, watch, onUnmounted, onActivated, onMounted } from "vue";
 import { useRoute } from "vue-router";
-
+const show = ref(false)
 const route = useRoute();
 const routeKey = route.name;
-const activeTab = ref(routeKey); 
+const activeTab = ref(routeKey);
 
-console.log(activeTab,'activeTab');
+onUnmounted(() => {
+    // 调用时机为组件卸载时
+    console.log(`调用时机为组件卸载时`);
+})
+onMounted(() => {
+    // 页面加载时的逻辑 
+    show.value = true
+});
+onActivated(() => {
+    // 调用时机为首次挂载
+    // 以及每次从缓存中被重新插入时
+    // console.log(`我onActivated`, show.value = true);
+})
 
 // 监听路由变化，自动更新选中 tab
-watch(() => route.path, (newPath) => { 
+watch(() => route.path, (newPath) => {
     activeTab.value = newPath;
 });
 
@@ -36,16 +51,17 @@ const items = ref([
     { route: 'BBSView', label: 'Transactions', icon: 'pi pi-chart-line' },
     { route: 'RankingView', label: 'Transactions', icon: 'pi pi-chart-line' },
 ]);
- 
- 
 
-function handleClick(fas,href) {
-    // 这里可以写你想要的逻辑，比如打印、埋点、弹窗等
-    fas(); // 执行路由跳转 
-    
+function afn(e) {
+    router.push({ name: e });
+
 }
+
 </script>
-<style scoped>
+<style scoped> 
+
+
+
 :deep(.p-tablist-tab-list) {
     background: none;
     border-style: none;
@@ -73,12 +89,19 @@ function handleClick(fas,href) {
 
 :deep(.p-tab-active) {
     background: #333030;
+    /* background: #080808; */
     border-bottom-width: 2px;
     transition: transform 0.1s ease-in-out;
 
     :deep(.text-inherit) {
         color: rgb(255, 255, 255);
     }
+}
+
+:deep(.p-tab:not(.p-tab-active):not(.p-disabled):hover) {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgb(255 255 255);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 1, 1);
 }
 
 :deep(.p-tab-active:active) {

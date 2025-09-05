@@ -1,6 +1,8 @@
 <template>
-  <div class="content-container">
+<Transition name="slide-fade" >
+  <div class="content-container" v-show="sawdw">
     <div class="card-grid">
+      <!-- <Transition name="slide-fade"> -->
       <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
         <div class="card-header">
           <h3 class="post-title">{{ post.title }}</h3>
@@ -38,17 +40,27 @@
         </div>
 
         <!-- 背景元素用于毛玻璃效果 -->
-        <div class="card-bg"></div>
+        <div class="card-bg"></div> 
       </div>
+      <!-- </Transition> -->
     </div>
   </div>
+</Transition>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref,onMounted } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
+const sawdw = ref(false);
 
+onMounted(() => {
+  // 页面加载时的逻辑 
+  setTimeout(() => {
+    sawdw.value = true
+  }, 100);
+});
+ 
 // 模拟数据 - 添加了背景色调参数
 const posts = ref([
   {
@@ -106,7 +118,53 @@ const posts = ref([
 ]);
 </script>
 
+
+
+
+
+
+
+
+
+
+
 <style scoped>
+
+
+
+
+/*
+  进入和离开动画可以使用不同
+  持续时间和速度曲线。
+*/
+.slide-fade-enter-active {
+    transition: all 0.1s ease-in-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .content-container {
   padding: 1rem;
   max-width: 1200px;
@@ -149,7 +207,8 @@ const posts = ref([
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(25, 25, 25, 0.2);
+  /* background: rgba(25, 25, 25, 0.2); */
+      background: rgb(51 48 48);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
@@ -297,7 +356,7 @@ const posts = ref([
   transition: all 0.2s ease;
   transform: scale(0.9);
   transform-origin: center;
-  width: 85px;
+  min-width: 80px;
   
 }
 
@@ -416,6 +475,7 @@ transform: scale(0.8);
     padding: 0.4rem 3.32rem;
     transform: scale(1);
     transform-origin: center;
+    width: 110px;
   }
 
   .card-btns {

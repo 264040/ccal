@@ -36,8 +36,7 @@ const items = ref([
         label: "消息",
         icon: "pi pi-comments",
         command: (e) => {
-            router.push('/messages'); 
-            
+            router.push('/messages');  
             store.setindexkey(1)
         },
         activeIndex: 1

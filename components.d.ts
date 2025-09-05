@@ -12,6 +12,7 @@ declare module 'vue' {
     BBSView: typeof import('./src/components/BBSView.vue')['default']
     Button: typeof import('primevue/button')['default']
     ContentView: typeof import('./src/components/ContentView.vue')['default']
+    Fieldset: typeof import('primevue/fieldset')['default']
     FileUpload: typeof import('primevue/fileupload')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     Homecontent: typeof import('./src/components/Homearea/Homecontent.vue')['default']
