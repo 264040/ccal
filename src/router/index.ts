@@ -10,18 +10,18 @@ const routes = [
     redirect: {name: 'ContentView'},
     children: [
       {
-        path: '/ContentView', // 默认子路由  推荐页
+        path: 'ContentView', // 默认子路由  推荐页
         name: 'ContentView',
         component: () => import('@/components/ContentView.vue') // 懒加载
       },
       // 你可以在这里添加更多子路由
       {
-        path: '/BBSView', // 论坛页
+        path: 'BBSView', // 论坛页
         name: 'BBSView',
         component: () => import('@/components/BBSView.vue') // 懒加载
       },
       {
-        path: '/RankingView', // 排行页
+        path: 'RankingView', // 排行页
         name: 'RankingView',
         component: () => import('@/components/RankingView.vue') // 懒加载
       } 

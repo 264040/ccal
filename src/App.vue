@@ -2,61 +2,54 @@
 import { useRouter } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
 import Hometop from "@/components/Homearea/Hometop.vue";
-import {  ref } from "vue";
-import { useScroll } from '@vueuse/core'
+import { ref } from "vue";
+import { useScroll } from "@vueuse/core";
 
 const router = useRouter();
-
-
- 
-
-
 </script>
 
 <template>
-  <div class="crad-acc" >
-    <div class="crad">
-      <Hometop />
-      <!-- 主要内容区域，使用 router-view -->
-      <router-view v-slot="{ Component, route }">
-        <component :is="Component" :key="route.path" />
-      </router-view> 
+    <div class="crad-acc">
+        <div class="crad">
+            <Hometop />
+            <!-- 主要内容区域，使用 router-view -->
+            <router-view v-slot="{ Component, route }">
+                <component :is="Component" :key="route.name" />
+            </router-view>
 
-      <!-- 底部导航栏组件 -->
-      <AppBottomNavigation />
-
+            <!-- 底部导航栏组件 -->
+            <AppBottomNavigation />
+        </div>
     </div>
-
-  </div>
 </template>
 
-<style scoped> 
+<style scoped>
 /* 应用全局样式 */
 .crad-acc {
-  /* background-image: url(./image/cc7.webp); */
-  background-color: rgb(241, 241, 241);
-  /* background-color: rgb(7, 7, 7); */
-  /* background: linear-gradient(135deg, #752f0a 0%, #2d1c15 17%, #1d130f 34%, #150f0d 60%, #130e0c 100%); */
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 100vh;
+    /* background-image: url(./image/cc7.webp); */
+    /*background-color: rgb(241, 241, 241);*/
+    background-color: rgb(7, 7, 7);
+    /* background: linear-gradient(135deg, #752f0a 0%, #2d1c15 17%, #1d130f 34%, #150f0d 60%, #130e0c 100%); */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 .crad {
-  height: 100%;
-  background: linear-gradient(var(--bg-hue, 200deg),
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.05));
+    /*height: 100%; /*一级页面高度满屏*/
+    background: linear-gradient(
+        var(--bg-hue, 200deg),
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-
-  /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */
 }
 
 /* 滑动过渡动画 */
@@ -64,30 +57,30 @@ const router = useRouter();
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-  transition: all 0.3s ease;
-  position: absolute;
-  /* 允许页面重叠 */
-  width: 100%;
-  /* 确保页面宽度 */
+    transition: all 0.3s ease;
+    position: absolute;
+    /* 允许页面重叠 */
+    width: 100%;
+    /* 确保页面宽度 */
 }
 
 .slide-left-enter-from {
-  opacity: 0;
-  transform: translateX(100%);
+    opacity: 0;
+    transform: translateX(100%);
 }
 
 .slide-left-leave-to {
-  opacity: 0;
-  transform: translateX(-100%);
+    opacity: 0;
+    transform: translateX(-100%);
 }
 
 .slide-right-enter-from {
-  opacity: 0;
-  transform: translateX(-100%);
+    opacity: 0;
+    transform: translateX(-100%);
 }
 
 .slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(100%);
+    opacity: 0;
+    transform: translateX(100%);
 }
 </style>
