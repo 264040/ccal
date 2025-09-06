@@ -1,5 +1,4 @@
 <template>
-    <ProductIntroduction />
     <div class="card">
         <Tabs :value="routeKey">
             <TabList>
@@ -17,15 +16,13 @@
             </TabList>
         </Tabs>
     </div>
-    <router-view />
+    
 </template>
 
 <script setup>
 import router from "@/router";
 import { ref, watch, onUnmounted, onActivated, onMounted } from "vue";
 import { useRoute } from "vue-router";
-
-import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
 
 const show = ref(false);
 const route = useRoute();
@@ -63,7 +60,6 @@ const items = ref([
 function afn(e) {
     /* router.push(`/${e}`);*/
     router.push({ name: e });
-    
 }
 </script>
 <style scoped>

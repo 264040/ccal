@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
-import Hometop from "@/components/Homearea/Hometop.vue";
+import Hometop from "@/components/Hometop.vue";
 import { ref } from "vue";
 import { useScroll } from "@vueuse/core";
 

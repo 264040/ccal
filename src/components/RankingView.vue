@@ -1,11 +1,10 @@
 <template>
-  <div>
-    <h1>Ranking View</h1>
-  </div>
+    <div>
+        <h1>Ranking 111View</h1>
+    </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 

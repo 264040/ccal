@@ -1,22 +1,19 @@
 <template>
     <div class="page" ref="page">
-        <KeepAlive>
-            <Suspense>
-                <component :is="PaddleCard" />
-            </Suspense>
-        </KeepAlive>
+        <ProductIntroduction />
+        <PaddleCard />
+        <router-view v-slot="{ Component, route }">
+            <component :is="Component" key="route.name" />
+        </router-view>
     </div>
 </template>
 
 <script setup>
-// 可以在这里添加页面逻辑
-// import PaddleCard from "@/components/PaddleCard.vue";
-
 import { onMounted, defineAsyncComponent, ref, onUnmounted } from "vue";
-// 异步组件
-const PaddleCard = defineAsyncComponent(() =>
-    import("@/components/PaddleCard.vue")
-);
+
+import PaddleCard from "@/components/Homearea/PaddleCard.vue";
+
+import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
 
 const page = ref();
 
@@ -47,11 +44,9 @@ onUnmounted(() => {
 
 <style scoped>
 .page {
-    padding: 0 0 0 0;
-    height: 100%;
-    min-height: 50vh;
     /* 确保页面有高度 */
     box-sizing: border-box;
     overflow: auto;
+    height: 100vh;
 }
 </style>

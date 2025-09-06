@@ -1,8 +1,8 @@
 <template>
-  <div class="page">
-    <h1>个人中心</h1>
-    <p>这里是您的个人信息</p>
-  </div>
+    <div class="page">
+        <h1>个人中心</h1>
+        <p>这里是您的个人信息</p>
+    </div>
 </template>
 
 <script setup>
@@ -11,8 +11,10 @@
 
 <style scoped>
 .page {
-  padding: 20px;
-  min-height: 50vh;
-  box-sizing: border-box;
+    padding: 20px;
+    
+    box-sizing: border-box;
+    background: red;
+    overflow: auto;
 }
 </style>
