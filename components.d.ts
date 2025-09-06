@@ -20,6 +20,7 @@ declare module 'vue' {
     Messages: typeof import('./src/components/Messages.vue')['default']
     Navigation: typeof import('./src/components/Navigation.vue')['default']
     PaddleCard: typeof import('./src/components/PaddleCard.vue')['default']
+    ProductIntroduction: typeof import('./src/components/Homearea/ProductIntroduction.vue')['default']
     RankingView: typeof import('./src/components/RankingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -28,6 +29,7 @@ declare module 'vue' {
     TabPanel: typeof import('primevue/tabpanel')['default']
     TabPanels: typeof import('primevue/tabpanels')['default']
     Tabs: typeof import('primevue/tabs')['default']
+    TieredMenu: typeof import('primevue/tieredmenu')['default']
     Toast: typeof import('primevue/toast')['default']
   }
   export interface GlobalDirectives {

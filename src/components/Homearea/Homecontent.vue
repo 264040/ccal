@@ -1,4 +1,5 @@
 <template>
+  
 <Transition name="slide-fade" >
   <div class="content-container" v-show="sawdw">
     <div class="card-grid">
@@ -6,7 +7,7 @@
       <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
         <div class="card-header">
           <h3 class="post-title">{{ post.title }}</h3>
-          <Avatar :icon="post.avatarIcon" class="post-avatar" size="large" shape="circle" />
+          <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar" size="large" shape="circle" />
         </div>
 
         <div class="card-content">
@@ -65,7 +66,7 @@ onMounted(() => {
 const posts = ref([
   {
     author: "张三",
-    avatarIcon: "pi pi-user",
+    avatarIcon: "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png",
     time: "2小时前",
     audien: "围观中...",
     title: "Vue 3的新特性",
@@ -156,7 +157,10 @@ const posts = ref([
 
 
 
-
+.p-avatar-lg{
+  width: 2rem;
+    height: 2rem;
+}
 
 
 

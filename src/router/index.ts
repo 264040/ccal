@@ -32,12 +32,18 @@ const routes = [
     name: 'Messages',
     component: () => import('@/views/Messages.vue'), // 懒加载
     meta: { index: 1 }
+  }, 
+  {
+    path: '/collect',
+    name: 'Collect',
+    component: () => import('@/views/Collect.vue'), // 懒加载
+    meta: { index: 2 }
   },
   {
     path: '/profile',
     name: 'Profile',
     component: () => import('@/views/Profile.vue'), // 懒加载
-    meta: { index: 2 }
+    meta: { index: 3 }
   }
 ];
 

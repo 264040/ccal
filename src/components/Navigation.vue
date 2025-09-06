@@ -23,7 +23,7 @@ const store = useIndextore()
 const items = ref([
     {
         route: '/',
-        label: "首页",
+        // label: "首页",
         icon: "pi pi-home",
         command: (e) => {
             router.push('/');
@@ -33,7 +33,7 @@ const items = ref([
     },
     {
         route: 'messages',
-        label: "消息",
+        // label: "消息",
         icon: "pi pi-comments",
         command: (e) => {
             router.push('/messages');  
@@ -42,15 +42,26 @@ const items = ref([
         activeIndex: 1
     },
     {
+        route: 'collect',
+        // label: "收藏",
+        icon: "pi pi-bookmark",
+        command: (e, s) => {
+
+            router.push('/collect'); 
+            store.setindexkey(2)
+        },
+        activeIndex: 2
+    },
+    {
         route: 'profile',
-        label: "我的",
+        // label: "我的",
         icon: "pi pi-user",
         command: (e, s) => {
 
             router.push('/profile'); 
-            store.setindexkey(2)
+            store.setindexkey(3)
         },
-        activeIndex: 2
+        activeIndex: 3
     }
 ]);
 </script>
@@ -59,11 +70,15 @@ const items = ref([
 
 
 <style scoped>
+
+:deep(.p-tabmenu-item-icon) {
+    font-size: 1.3rem;
+}
 .bottom-navigation {
     position: fixed;
     display: flex;
     justify-content: center;
-    bottom: 2%;
+    bottom: -15%;
     left: 0;
     right: 0;
     width: 100%;
@@ -71,19 +86,45 @@ const items = ref([
     /* 确保导航栏在最上层 */
     border-radius: 50px;
     background: none;
+    transition:
+         bottom 0.5s ease-out,
+        transform 0.5s ease-in-out,
+        padding 0.5s;
 }
 
 /* 可以覆盖 PrimeVue 的默认样式以更好地适应底部导航 */
 :deep(.p-tabmenu-item-link) {
     border-style: none;
+    gap: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;height: 100%;
 }
 
+
+
+:deep(.p-tabmenu-item) {
+        height: 60px;
+    /* background: red;  */
+    border-radius: 2rem;
+    width: 60px;
+}
+:deep(.p-tabmenu-item-active .p-tabmenu-item-link) {
+    background-color: #333030;
+    border-radius: 2rem;
+}
+
+:deep(.p-tabmenu-active-bar){
+    opacity: 0;
+        width: 0!important;
+    left: 0!important;
+}
 :deep(.p-tabmenu) {
-    background-color: #fff;
-    border: 0px solid #e5e7eb;
+    /* background-color: #fff;
+    border: 0px solid #e5e7eb; */
     border-radius: 50px;
-    min-width: 320px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+    min-width: 310px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transition:
         width 0.3s ease-out,
         transform 0.5s ease-in-out,
@@ -111,13 +152,21 @@ const items = ref([
         transform 0.5s ease-in-out,
         padding 0.3s;
     width: 100%;
-    justify-content: space-evenly;
-    margin: 0 1.2rem
+    justify-content: space-between;
+    /* margin: 0 1.2rem; */
+    margin: 0;
+    background-color: #e2e2e2;
+    padding: .5rem;
+    border-style: none;
 }
 
 /* 响应式设计 */
 /* 小屏 */
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    .bottom-navigation{
+        bottom: 3%;
+    }
+}
 
 /* 中屏*/
 @media (min-width: 769px) and (max-width: 949px) {
@@ -135,5 +184,7 @@ const items = ref([
     }
 
     :deep(.p-tabmenu-tablist) {}
+
+    
 }
 </style>

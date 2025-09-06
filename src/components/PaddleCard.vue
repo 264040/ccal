@@ -1,6 +1,7 @@
 <template>
+    
+    <ProductIntroduction/>
     <div class="card">
- 
             <Tabs :value="routeKey" v-if="show">
                 <TabList>
                     <Tab v-for="tab in items" :key="tab.label" :value="tab.route" @click="afn(tab.route)">
@@ -22,6 +23,10 @@
 import router from "@/router";
 import { ref, watch, onUnmounted, onActivated, onMounted } from "vue";
 import { useRoute } from "vue-router";
+
+import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
+
+
 const show = ref(false)
 const route = useRoute();
 const routeKey = route.name;

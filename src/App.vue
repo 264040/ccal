@@ -1,47 +1,52 @@
-<script setup lang="ts"> 
+<script setup lang="ts">
 import { useRouter } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
+import Hometop from "@/components/Homearea/Hometop.vue";
+import {  ref } from "vue";
+import { useScroll } from '@vueuse/core'
 
-const router = useRouter(); 
+const router = useRouter();
+
+
+ 
 
 
 </script>
 
 <template>
-  <div class="crad-acc">
+  <div class="crad-acc" >
     <div class="crad">
- 
+      <Hometop />
       <!-- 主要内容区域，使用 router-view -->
-      <router-view v-slot="{ Component, route }"> 
-          <component :is="Component" :key="route.path" /> 
-      </router-view>
- 
+      <router-view v-slot="{ Component, route }">
+        <component :is="Component" :key="route.path" />
+      </router-view> 
 
       <!-- 底部导航栏组件 -->
       <AppBottomNavigation />
-      
+
     </div>
-     
+
   </div>
 </template>
 
-<style scoped>
-/* 应用全局样式 */ 
+<style scoped> 
+/* 应用全局样式 */
 .crad-acc {
   /* background-image: url(./image/cc7.webp); */
   background-color: rgb(241, 241, 241);
+  /* background-color: rgb(7, 7, 7); */
   /* background: linear-gradient(135deg, #752f0a 0%, #2d1c15 17%, #1d130f 34%, #150f0d 60%, #130e0c 100%); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 100vh; 
+  height: 100vh;
 }
+
 .crad {
   height: 100%;
-  background: linear-gradient(
-    var(--bg-hue, 200deg),
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );  
+  background: linear-gradient(var(--bg-hue, 200deg),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05));
 }
 
 #app {
@@ -60,8 +65,10 @@ const router = useRouter();
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition: all 0.3s ease;
-  position: absolute; /* 允许页面重叠 */
-  width: 100%; /* 确保页面宽度 */
+  position: absolute;
+  /* 允许页面重叠 */
+  width: 100%;
+  /* 确保页面宽度 */
 }
 
 .slide-left-enter-from {
