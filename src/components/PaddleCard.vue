@@ -8,7 +8,7 @@
                         <router-link v-if="tab.route" v-slot="{ href, navigate }" :to="tab.route" custom>
                             <div v-ripple class="flex items-center gap-2 text-inherit">
                                 <!-- <i :class="tab.icon" /> -->
-                                {{ tab.label }}
+                                {{ tab.label }}111
                             </div>
                         </router-link>
                     </Tab>
