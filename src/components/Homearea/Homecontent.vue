@@ -1,56 +1,57 @@
 <template>
-  
-<Transition name="slide-fade" >
-  <div class="content-container" v-show="sawdw">
-    <div class="card-grid">
-      <!-- <Transition name="slide-fade"> -->
-      <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
-        <div class="card-header">
-          <h3 class="post-title">{{ post.title }}</h3>
-          <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar" size="large" shape="circle" />
-        </div>
 
-        <div class="card-content">
-          <p class="post-text">{{ post.content }}</p>
-        </div>
-
-        <div class="card-footer">
-          <div class="card-btns">
-            <Button icon="pi pi-heart" class="p-button-text p-button-plain reaction-btn"
-              :label="post.likes.toString()" />
-            <Button icon="pi pi-comment" class="p-button-text p-button-plain reaction-btn"
-              :label="post.comments.toString()" />
+  <Transition name="slide-fade">
+    <div class="content-container" v-show="sawdw">
+      <div class="card-grid">
+        <!-- <Transition name="slide-fade"> -->
+        <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
+          <div class="card-header">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar"
+              size="large" shape="circle" />
           </div>
-          <div class="card-www">
-            <div class="card flex justify-center card-txl">
-              <AvatarGroup>
-                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle"
-                  size="normal" class="avateraxer" />
-                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" shape="circle"
-                  class="avateraxer" />
-                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle"
-                  class="avateraxer" />
 
-                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" shape="circle"
-                  class="avateraxer" />
-              </AvatarGroup>
+          <div class="card-content">
+            <p class="post-text">{{ post.content }}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-btns">
+              <Button icon="pi pi-heart" class="p-button-text p-button-plain reaction-btn"
+                :label="post.likes.toString()" />
+              <Button icon="pi pi-comment" class="p-button-text p-button-plain reaction-btn"
+                :label="post.comments.toString()" />
             </div>
-            <div class="post-time itmeacer">{{ post.audien }}</div>
-          </div>
-          <!--<div class="post-author">{{ post.author }}</div>-->
-        </div>
+            <div class="card-www">
+              <div class="card flex justify-center card-txl">
+                <AvatarGroup>
+                  <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle"
+                    size="normal" class="avateraxer" />
+                  <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" shape="circle"
+                    class="avateraxer" />
+                  <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" shape="circle"
+                    class="avateraxer" />
 
-        <!-- 背景元素用于毛玻璃效果 -->
-        <div class="card-bg"></div> 
+                  <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" shape="circle"
+                    class="avateraxer" />
+                </AvatarGroup>
+              </div>
+              <div class="post-time itmeacer">{{ post.audien }}</div>
+            </div>
+            <!--<div class="post-author">{{ post.author }}</div>-->
+          </div>
+
+          <!-- 背景元素用于毛玻璃效果 -->
+          <div class="card-bg"></div>
+        </div>
+        <!-- </Transition> -->
       </div>
-      <!-- </Transition> -->
     </div>
-  </div>
-</Transition>
+  </Transition>
 </template>
 
 <script setup>
-import { ref,onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
 const sawdw = ref(false);
@@ -61,7 +62,7 @@ onMounted(() => {
     sawdw.value = true
   }, 100);
 });
- 
+
 // 模拟数据 - 添加了背景色调参数
 const posts = ref([
   {
@@ -130,26 +131,22 @@ const posts = ref([
 
 
 <style scoped>
-
-
-
-
 /*
   进入和离开动画可以使用不同
   持续时间和速度曲线。
 */
 .slide-fade-enter-active {
-    transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-    transform: translateX(20px);
-    opacity: 0;
+  transform: translateX(20px);
+  opacity: 0;
 }
 
 
@@ -157,9 +154,9 @@ const posts = ref([
 
 
 
-.p-avatar-lg{
+.p-avatar-lg {
   width: 2rem;
-    height: 2rem;
+  height: 2rem;
 }
 
 
@@ -212,7 +209,7 @@ const posts = ref([
   right: 0;
   bottom: 0;
   /* background: rgba(25, 25, 25, 0.2); */
-      background: rgb(51 48 48);
+  background: rgb(51 48 48);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 16px;
@@ -361,12 +358,13 @@ const posts = ref([
   transform: scale(0.9);
   transform-origin: center;
   min-width: 80px;
-  
+
 }
 
 .card-btns {
   flex: 1;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   height: 60px;
 }
@@ -382,11 +380,13 @@ const posts = ref([
 .reaction-btn:hover {
   color: #4361ee;
   background: rgba(22, 22, 22, 0.7) !important;
-  
+
 }
-.reaction-btn:active{
-transform: scale(0.8);
+
+.reaction-btn:active {
+  transform: scale(0.8);
 }
+
 .card-www {
   display: flex;
   flex: 1;
@@ -402,6 +402,10 @@ transform: scale(0.8);
 @media (max-width: 768px) {
   .content-container {}
 
+  .card-btns {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .post-card {}
 
   .card-footer {
@@ -416,6 +420,10 @@ transform: scale(0.8);
 @media (min-width: 769px) and (max-width: 949px) {
   .post-title {
     font-size: 1.8rem;
+  }
+
+  .card-btns {
+    grid-template-columns: 1fr 1fr;
   }
 
   .card-content {
@@ -476,16 +484,16 @@ transform: scale(0.8);
   }
 
   .reaction-btn {
-    padding: 0.4rem 3.32rem;
+    /* padding: 0.4rem 3.32rem; */
     transform: scale(1);
     transform-origin: center;
-    width: 110px;
+    /* width: 110px; */
   }
 
   .card-btns {
     display: grid;
     align-items: center;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     justify-content: space-between;
   }
 
