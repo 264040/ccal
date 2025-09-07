@@ -11,8 +11,13 @@
       </Button>
       <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup :style="SSSaa" />
     </div>
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="user-avatar" size="large"
+    <div class="acername_aAvatar_name">
+      <div class="acername_name">
+        <p class="font-bold p-2">Amy Elsner</p> 
+      </div>
+      <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="user-avatar" size="large"
       shape="circle" />
+    </div>
   </div>
 
 
@@ -120,8 +125,7 @@ const toggle = (event) => {
 
 };
 
-const toggle_acer = (event) => { 
-  alert('1')
+const toggle_acer = (event) => {  
   console.log(event, 22222);
 
 };
@@ -168,7 +172,14 @@ const onSearchBlur = () => {
   left: 0px !important;
   margin-top: 10px;
 }
+.acername_name{
+  margin-right: 1rem;
+}
 
+.acername_aAvatar_name{
+  display: flex;
+  align-items: center;
+}
 .ellipsis-container {
   /* width: 50px;
   height: 50px; */
@@ -217,7 +228,7 @@ const onSearchBlur = () => {
     border-radius: 40px;
     /*position: sticky;
   top: 0;*/
-    margin: 1rem 1rem 0;
+    margin: 0rem 1rem 0;
   }
 
   :deep(.p-button-text) {

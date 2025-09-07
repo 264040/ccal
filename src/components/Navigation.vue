@@ -105,15 +105,19 @@ const items = ref([
 
 :deep(.p-tabmenu-item) {
         height: 60px;
-    /* background: red;  */
+    background: transparent; 
     border-radius: 2rem;
     width: 60px;
+    overflow: hidden;
 }
 :deep(.p-tabmenu-item-active .p-tabmenu-item-link) {
     background-color: #333030;
-    border-radius: 2rem;
+    border-radius: 2rem; 
+    transition: transform  0.2s ease;
 }
-
+:deep(.p-tabmenu-item-link:active) {
+    transform: scale(.9);
+}
 :deep(.p-tabmenu-active-bar){
     opacity: 0;
         width: 0!important;

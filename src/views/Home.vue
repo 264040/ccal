@@ -2,18 +2,19 @@
     <div class="page" ref="page">
         <ProductIntroduction />
         <PaddleCard />
-        <router-view v-slot="{ Component, route }">
-            <component :is="Component" key="route.name" />
+        <router-view v-slot="{ Component, route }" v-if="$route.meta.keepAlive">
+            <component :is="Component" :key="route.name" />
         </router-view>
     </div>
 </template>
 
 <script setup>
-import { onMounted, defineAsyncComponent, ref, onUnmounted } from "vue";
+import { onMounted, defineAsyncComponent, ref, onUnmounted, onBeforeUnmount, watch } from "vue";
 
 import PaddleCard from "@/components/Homearea/PaddleCard.vue";
 
 import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
 
 const page = ref();
 
@@ -29,17 +30,32 @@ const doScroll = event => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
         page.value = event.target.scrollTop;
-        console.log(page.value, "滚动了");
     }, 500);
+
 };
+ 
+
+
+
+
 
 onMounted(() => {
-    page.value.addEventListener("scroll", doScroll);
+    // document.body.scrollTop = doScroll
+    //进入该页面时，用之前保存的滚动位置赋值  
+    // window.addEventListener('scroll', getScrollTop)
 });
 
 onUnmounted(() => {
     // page.value.removeEventListener('scroll', doScroll)
+
+    onBeforeUnmount(() => {
+        // 离开该页面时，保存当前滚动位置
+        // page.value.removeEventListener('scroll', doScroll)
+    });
 });
+
+
+
 </script>
 
 <style scoped>

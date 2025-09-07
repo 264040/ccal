@@ -2,10 +2,17 @@
 import { useRouter } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
 import Hometop from "@/components/Hometop.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useScroll } from "@vueuse/core";
 
 const router = useRouter();
+
+onMounted(() => {
+});
+
+
+
+
 </script>
 
 <template>
@@ -28,7 +35,7 @@ const router = useRouter();
 .crad-acc {
     /* background-image: url(./image/cc7.webp); */
     /*background-color: rgb(241, 241, 241);*/
-    background-color: rgb(7, 7, 7);
+    background-color: rgb(247, 247, 247);
     /* background: linear-gradient(135deg, #752f0a 0%, #2d1c15 17%, #1d130f 34%, #150f0d 60%, #130e0c 100%); */
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -36,11 +43,10 @@ const router = useRouter();
 
 .crad {
     /*height: 100%; /*一级页面高度满屏*/
-    background: linear-gradient(
-        var(--bg-hue, 200deg),
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.05)
-    );
+    background: linear-gradient(var(--bg-hue, 200deg),
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05));
+    padding-top: 1rem;
 }
 
 #app {
@@ -50,6 +56,7 @@ const router = useRouter();
     text-align: center;
     color: #2c3e50;
     /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */
+    width: 100vh;
 }
 
 /* 滑动过渡动画 */
