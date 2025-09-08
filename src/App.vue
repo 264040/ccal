@@ -46,7 +46,7 @@ onMounted(() => {
     background: linear-gradient(var(--bg-hue, 200deg),
             rgba(255, 255, 255, 0.1),
             rgba(255, 255, 255, 0.05));
-    padding-top: 1rem;
+    /* padding-top: 2.5rem; */
 }
 
 #app {

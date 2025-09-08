@@ -1,5 +1,7 @@
 <template>
-  <div class="header">
+  <div class="header xianshi"
+    :style="{ opacity: `${store.GetscrollTopAcer > 0 ? 0 : 1}`, transform: `translateY(-${store.GetscrollTopAcer > 0 ? 100 : 0}px)` }"
+    ref="headerAcer">
     <div class="ellipsis-container">
       <Button type="button" rounded class="p-button-text acer_button_acers_acers " @click="toggle" aria-haspopup="true"
         aria-controls="overlay_tmenu">
@@ -13,10 +15,10 @@
     </div>
     <div class="acername_aAvatar_name">
       <div class="acername_name">
-        <p class="font-bold p-2">Amy Elsner</p> 
+        <p class="font-bold p-2">Amy Elsner{{ store.GetscrollTopAcer }}</p>
       </div>
       <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="user-avatar" size="large"
-      shape="circle" />
+        shape="circle" />
     </div>
   </div>
 
@@ -25,15 +27,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import Button from "primevue/button";
 import Avatar from "primevue/avatar";
 import { useIndextore } from '@/store/index'
 
 const router = useRouter();
-const store = useIndextore()
-
+const store = useIndextore();
+const headerAcer = ref()
+const translateY = ref(0)
+const ad = store.GetscrollTopAcer
 
 const SSSaa = ref({
   'top': '20px !important',
@@ -41,8 +45,26 @@ const SSSaa = ref({
   'margin-top': '10px'
 });
 
+const menu = ref();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 定义导航项
+
 const items = ref([
   {
     route: '/',
@@ -90,34 +112,6 @@ const items = ref([
 
 
 
-const menu = ref();
-const itemss = ref([
-  {
-    label: 'File',
-    icon: 'pi pi-file'
-  },
-  {
-    label: 'Edit',
-    icon: 'pi pi-file-edit',
-    items: [
-      {
-        label: 'Copy',
-        icon: 'pi pi-copy'
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-times'
-      }
-    ]
-  },
-  {
-    label: 'Search',
-    icon: 'pi pi-search'
-  },
-  {
-    separator: true
-  }
-]);
 
 const toggle = (event) => {
   menu.value.toggle(event);
@@ -125,11 +119,16 @@ const toggle = (event) => {
 
 };
 
-const toggle_acer = (event) => {  
+const toggle_acer = (event) => {
   console.log(event, 22222);
 
 };
 
+ 
+onMounted(() => {
+ 
+
+})
 
 
 
@@ -140,21 +139,6 @@ const toggle_acer = (event) => {
 
 
 
-
-
-
-const searchExpanded = ref(false);
-const searchQuery = ref("");
-
-const toggleSearch = () => {
-  searchExpanded.value = !searchExpanded.value;
-};
-
-const onSearchBlur = () => {
-  if (!searchQuery.value) {
-    searchExpanded.value = false;
-  }
-};
 </script>
 
 
@@ -167,19 +151,52 @@ const onSearchBlur = () => {
 
 
 <style scoped>
+@keyframes headerKeyframesAcer {
+
+  /* 隐藏 */
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+}
+
+
+
+.headerKeyframesAcercss {
+  /* transition: all 1ms linear;
+  animation: headerKeyframesAcer 1ms linear;
+  -webkit-animation: headerKeyframesAcer 1s linear forwards; */
+
+  transform: translateY(-100px);
+}
+
+.xianshi {
+  transition: all 500ms linear;
+  /* transform: translateY(0px) !important; */
+
+}
+
 :deep(#overlay_tmenu) {
   top: 15px !important;
   left: 0px !important;
   margin-top: 10px;
 }
-.acername_name{
+
+.acername_name {
   margin-right: 1rem;
 }
 
-.acername_aAvatar_name{
+.acername_aAvatar_name {
   display: flex;
   align-items: center;
 }
+
 .ellipsis-container {
   /* width: 50px;
   height: 50px; */
@@ -188,123 +205,132 @@ const onSearchBlur = () => {
 
 /* 导航按钮 */
 :deep(.acer_button_acers_acers) {
-    display: none;
-    transition: display 0.8s ease;
-  }
+  display: none;
+  transition: display 0.8s ease;
+}
 
-  /* 官网通知按钮 */
-  :deep(.acer_button_acers) {
-    display: none;
-    transition: display 0.8s ease;
-  }
+/* 官网通知按钮 */
+:deep(.acer_button_acers) {
+  display: none;
+  transition: display 0.8s ease;
+}
+
 /* 大屏 */
 @media (min-width: 769px) {
 
   :deep(.acer_button_acers_acers) {
-    display: inline-block;
+
+    display: flex;
   }
 }
 
 /* 小屏 */
 @media (max-width: 768px) {
   :deep(.acer_button_acers) {
-    display: inline-block;
+
+    display: flex;
   }
 
-  
+
 
 }
 
 
 
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 0;
-    /* background-color: #ffffff; */
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
-    border-radius: 40px;
-    /*position: sticky;
+.header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  min-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background-color: #ffffff;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  /* border-radius: 40px; */
+  /*position: sticky;
   top: 0;*/
-    margin: 0rem 1rem 0;
-  }
+  margin: 0;
+  z-index: 12500;
+}
 
-  :deep(.p-button-text) {
-    background: #333030;
-    color: #ffffff;
-    border-radius: 2rem;
-    width: 50px;
-    height: 50px;
-  }
+:deep(.p-button-text) {
+  background: #333030;
+  color: #ffffff;
+  border-radius: 2rem;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+}
 
-  :deep(.p-button-text:not(:disabled):hover) {
-    background: #262927;
-    color: #ffffff;
-    box-shadow: 0 0 10px #35b981;
-  }
+:deep(.p-button-text:not(:disabled):hover) {
+  background: #262927;
+  color: #ffffff;
+  box-shadow: 0 0 10px #35b981;
+}
 
-  .pi-ellipsis-v:before {
-    font-size: 1.3rem;
-  }
+.pi-ellipsis-v:before {
+  font-size: 1.3rem;
+}
 
 
 
-  :deep(.p-button-text:not(:active)) {
-    transform: scale(1.05);
-  }
+:deep(.p-button-text:not(:active)) {
+  transform: scale(1.05);
+}
 
-  .search-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    background: red;
-    border-radius: 2rem;
-    width: 48px;
-    height: 48px;
-  }
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: red;
+  border-radius: 2rem;
+  width: 48px;
+  height: 48px;
+}
 
-  .search-icon {
-    font-size: 1.5rem;
-    color: #6c757d;
-    transition: all 0.3s ease;
-    margin-right: 0.2rem;
-  }
+.search-icon {
+  font-size: 1.5rem;
+  color: #6c757d;
+  transition: all 0.3s ease;
+  margin-right: 0.2rem;
+}
 
-  .search-icon:hover {
-    color: #4361ee;
-  }
+.search-icon:hover {
+  color: #4361ee;
+}
 
-  .search-input {
-    width: 0;
-    transition: all 0.3s ease;
-    opacity: 0;
-    margin-right: 0.2rem;
-  }
+.search-input {
+  width: 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  margin-right: 0.2rem;
+}
 
-  .search-expand-enter-active,
-  .search-expand-leave-active {
-    transition: all 0.3s ease;
-  }
+.search-expand-enter-active,
+.search-expand-leave-active {
+  transition: all 0.3s ease;
+}
 
-  .search-expand-enter-from,
-  .search-expand-leave-to {
-    width: 0;
-    opacity: 0;
-    margin-right: 0;
-  }
+.search-expand-enter-from,
+.search-expand-leave-to {
+  width: 0;
+  opacity: 0;
+  margin-right: 0;
+}
 
-  .search-expand-enter-to,
-  .search-expand-leave-from {
-    width: 250px;
-    opacity: 1;
-    margin-right: 0.2rem;
-  }
+.search-expand-enter-to,
+.search-expand-leave-from {
+  width: 250px;
+  opacity: 1;
+  margin-right: 0.2rem;
+}
 
-  .user-avatar {
-    background-color: #4361ee;
-    color: white;
-    width: 50px;
-    height: 50px;
-  }</style>
+.user-avatar {
+  background-color: #4361ee;
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+</style>

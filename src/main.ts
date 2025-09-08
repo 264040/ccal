@@ -9,14 +9,20 @@ import '../public/lpp.css';
 
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persistedstate'
+import axios from 'axios';
+
+
 
 const pinia = createPinia()
 const app = createApp(App)
 
 
+app.config.globalProperties.$axios = axios;
+
 pinia.use(piniaPersist)
 app.use(pinia)
 app.use(router); 
+
 
 // 使用 PrimeVue 并配置主题
 app.use(PrimeVue, {

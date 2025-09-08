@@ -8,9 +8,10 @@ import { PrimeVueResolver } from '@primevue/auto-import-resolver'
 
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
+  plugins: [ 
     vue(),
     vueDevTools(),
     // 配置自动导入

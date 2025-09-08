@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'; 
+
 const Home = () => import('@/views/Home.vue');
 const ContentView = () => import('@/components/ContentView.vue');
 const BBSView = () => import('@/components/BBSView.vue');
@@ -26,7 +27,12 @@ const routes = [
         meta: {
           keepAlive: true // 需要缓存 
         },
-        component: ContentView
+        component: ContentView,
+        // 单个路由守卫写在路由的配置对象中，只能对当前路由起效,是对象中函数
+        beforeEnter: (to, from, next) => { 
+          
+          next()
+        }
       },
       // 你可以在这里添加更多子路由
       {
@@ -66,10 +72,10 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置 
-    console.log(savedPosition,'滚动位置');
-    ;
+    console.log(savedPosition, '滚动位置路由监听');
+    
     return {
-      top: 0,
+      top:savedPosition?.top,
       behavior: 'smooth',
     }
   }

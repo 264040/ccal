@@ -1,7 +1,7 @@
 <template>
 
   <Transition name="slide-fade">
-    <div class="content-container" v-show="sawdw">
+    <div class="content-container" v-show="sawdw" ref="acer_data_scroll">
       <div class="card-grid">
         <!-- <Transition name="slide-fade"> -->
         <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
@@ -18,9 +18,9 @@
           <div class="card-footer">
             <div class="card-btns">
               <Button icon="pi pi-heart" class="p-button-text p-button-plain reaction-btn"
-                :label="post.likes.toString()" />
+                :label="post.likes?.toString()" />
               <Button icon="pi pi-comment" class="p-button-text p-button-plain reaction-btn"
-                :label="post.comments.toString()" />
+                :label="post.comments?.toString()" />
             </div>
             <div class="card-www">
               <div class="card flex justify-center card-txl">
@@ -51,73 +51,49 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, getCurrentInstance, reactive } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
-const sawdw = ref(false);
+const { $axios } = getCurrentInstance().appContext.config.globalProperties
 
-onMounted(() => {
+
+const sawdw = ref(false);
+const acer_data_scroll = ref(null);
+const posts = ref([])
+const isLoading = ref(false)
+
+
+
+const fetchData = async () => {
+  // 模拟从服务器获取数据 
+
+  try {
+    const dates = await $axios.get('/json/kp.json')// 新数据
+    if (dates.status === 200) {
+      posts.value = dates.data
+    }
+  } catch (error) {
+    console.log(error, 100);
+
+  }
+
+};
+
+
+
+onMounted(async () => {
+  
+  const asss = acer_data_scroll.value.target;
+  console.log(asss, 'lsssp');
   // 页面加载时的逻辑 
   setTimeout(() => {
+    fetchData()
     sawdw.value = true
+
   }, 100);
+
 });
 
-// 模拟数据 - 添加了背景色调参数
-const posts = ref([
-  {
-    author: "张三",
-    avatarIcon: "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png",
-    time: "2小时前",
-    audien: "围观中...",
-    title: "Vue 3的新特性",
-    content:
-      "Vue 3带来了很多令人兴奋的新特性，包括Composition API、性能改进和更好的TypeScript支持。",
-    likes: 24,
-    comments: 8,
-    forward: 700,
-    bgHue: "200deg" // 蓝色调
-  },
-  {
-    author: "李四",
-    avatarIcon: "pi pi-user",
-    time: "昨天",
-    audien: "围观中...",
-    title: "PrimeVue组件库使用体验",
-    content:
-      "PrimeVue提供了丰富的UI组件，使用起来非常方便，与Vue 3的兼容性也很好。",
-    likes: 42,
-    comments: 12,
-    forward: 9,
-    bgHue: "280deg" // 紫色调
-  },
-  {
-    author: "王五",
-    avatarIcon: "pi pi-user",
-    time: "3天前",
-    audien: "围观中...",
-    title: "前端开发趋势",
-    content:
-      "近年来，前端开发领域发展迅速，新的框架和工具层出不穷，我们需要保持学习的态度当水喝哈哈哈哈红红给更实用更。",
-    likes: 37,
-    comments: 5,
-    forward: 18,
-    bgHue: "340deg" // 粉红色调
-  },
-  {
-    author: "fdffdsd",
-    avatarIcon: "pi pi-user",
-    time: "3天前",
-    audien: "围观中...",
-    title: "TFsdwdoSfglkslf",
-    content:
-      "WDkdlfeosdf,pg;sdfjianfokfojduisudhfuhuhgseranfokfojduisudhfuhuhgseranfokfojduisudhfuhuhgserdtdsesdffserttyhffg",
-    likes: 37,
-    comments: 5,
-    forward: 18,
-    bgHue: "340deg" // 粉红色调
-  }
-]);
 </script>
 
 
@@ -495,6 +471,7 @@ const posts = ref([
     align-items: center;
     grid-template-columns: 1fr 1fr;
     justify-content: space-between;
+    gap: .3rem;
   }
 
   .card-www {

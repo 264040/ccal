@@ -1,6 +1,6 @@
 <template>
     <div class="bottom-navigation">
-        <TabMenu :model="items" v-model:activeIndex="store.indexkey"/>
+        <TabMenu :model="items" :activeIndex="store.indexkey"/>
     </div>
 </template>
 

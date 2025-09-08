@@ -1,5 +1,5 @@
 <template>
-    <div class="page" ref="page">
+    <div class="page" ref="page" @scroll="handleScroll">
         <ProductIntroduction />
         <PaddleCard />
         <router-view v-slot="{ Component, route }" v-if="$route.meta.keepAlive">
@@ -9,49 +9,48 @@
 </template>
 
 <script setup>
-import { onMounted, defineAsyncComponent, ref, onUnmounted, onBeforeUnmount, watch } from "vue";
+import { onMounted, ref, onUnmounted, watch } from "vue";
 
 import PaddleCard from "@/components/Homearea/PaddleCard.vue";
 
 import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
-import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
 
-const page = ref();
+import { useIndextore } from '@/store/index'
+
+
+
+const store = useIndextore()
+const page = ref(null);
+const scrollTopas = ref(0) // 记录上次滚动位置
 
 // 使用防抖优化滚动事件
 let debounceTimer = null;
-const doScroll = event => {
-    // const scrollHeight = event?.target.scrollHeight
-    // const clientHeight = event?.target.clientHeight
-    //  if (scrollTop + clientHeight >= scrollHeight) {
-    //    console.log('到底了!')
-    //  }
-
+const handleScroll = (event) => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-        page.value = event.target.scrollTop;
-    }, 500);
+        let windowSCC = window.scrollY || event.target.scrollTop;
+
+        store.setScrollTopAcer(windowSCC)
+    }, 100);
 
 };
- 
+
+
+
+
+// watch(scrollTopas, (b, j) => {
+//     store.setScrollTopAcer(b < j ? false : true)
+// })
 
 
 
 
 
 onMounted(() => {
-    // document.body.scrollTop = doScroll
-    //进入该页面时，用之前保存的滚动位置赋值  
-    // window.addEventListener('scroll', getScrollTop)
+    store.setScrollTopAcer(0)
 });
 
 onUnmounted(() => {
-    // page.value.removeEventListener('scroll', doScroll)
-
-    onBeforeUnmount(() => {
-        // 离开该页面时，保存当前滚动位置
-        // page.value.removeEventListener('scroll', doScroll)
-    });
 });
 
 

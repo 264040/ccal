@@ -18,6 +18,7 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+    padding-top: 3rem;
 }
 
 :deep(.m-0) {

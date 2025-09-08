@@ -1,0 +1,51 @@
+[
+  {
+    "author": "张三",
+    "avatarIcon": "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png",
+    "time": "2小时前",
+    "audien": "围观中...",
+    "title": "Vue 3的新特性",
+    "content": "Vue 3带来了很多令人兴奋的新特性，包括Composition API、性能改进和更好的TypeScript支持。",
+    "likes": 24,
+    "comments": 8,
+    "forward": 700,
+    "bgHue": "200deg"
+  },
+  {
+    "author": "李四",
+    "avatarIcon": "pi pi-user",
+    "time": "昨天",
+    "audien": "围观中...",
+    "title": "PrimeVue组件库使用体验",
+    "content": "PrimeVue提供了丰富的UI组件，使用起来非常方便，与Vue 3的兼容性也很好。",
+    "likes": 42,
+    "comments": 12,
+    "forward": 9,
+    "bgHue": "280deg"
+  },
+  {
+    "author": "王五",
+    "avatarIcon": "pi pi-user",
+    "time": "3天前",
+    "audien": "围观中...",
+    "title": "前端开发趋势",
+    "content": "近年来，前端开发领域发展迅速，新的框架和工具层出不穷，我们需要保持学习的态度当水喝哈哈哈哈红红给更实用更。",
+    "likes": 37,
+    "comments": 5,
+    "forward": 18,
+    "bgHue": "340deg"
+  },
+  {
+    "author": "fdffdsd",
+    "avatarIcon": "pi pi-user",
+    "time": "3天前",
+    "audien": "围观中...",
+    "title": "TFsdwdoSfglkslf",
+    "content": "WDkdlfeosdf,pg;sdfjianfokfojduisudhfuhuhgseranfokfojduisudhfuhuhgseranfokfojduisudhfuhuhgserdtdsesdffserttyhffg",
+    "likes": 37,
+    "comments": 5,
+    "forward": 18,
+    "bgHue": "340deg"
+  }
+]
+
