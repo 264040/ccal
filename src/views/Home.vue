@@ -15,46 +15,31 @@ import PaddleCard from "@/components/Homearea/PaddleCard.vue";
 
 import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
 
-import { useIndextore } from '@/store/index'
+import { useIndextore } from "@/store/index";
 
-
-
-const store = useIndextore()
+const store = useIndextore();
 const page = ref(null);
-const scrollTopas = ref(0) // 记录上次滚动位置
+const scrollTopas = ref(0); // 记录上次滚动位置
 
 // 使用防抖优化滚动事件
 let debounceTimer = null;
-const handleScroll = (event) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        let windowSCC = window.scrollY || event.target.scrollTop;
+const handleScroll = event => {
+    
+        let windowSCC =  event.target.scrollTop;
 
-        store.setScrollTopAcer(windowSCC)
-    }, 100);
+        store.setScrollTopAcer(windowSCC);
 
 };
-
-
-
 
 // watch(scrollTopas, (b, j) => {
 //     store.setScrollTopAcer(b < j ? false : true)
 // })
 
-
-
-
-
 onMounted(() => {
-    store.setScrollTopAcer(0)
+    store.setScrollTopAcer(0);
 });
 
-onUnmounted(() => {
-});
-
-
-
+onUnmounted(() => {});
 </script>
 
 <style scoped>

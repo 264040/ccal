@@ -104,7 +104,7 @@ const items = ref([
 
 
 :deep(.p-tabmenu-item) {
-        height: 60px;
+    height: 60px;
     background: transparent; 
     border-radius: 2rem;
     width: 60px;
@@ -113,7 +113,7 @@ const items = ref([
 :deep(.p-tabmenu-item-active .p-tabmenu-item-link) {
     background-color: #333030;
     border-radius: 2rem; 
-    transition: transform  0.2s ease;
+    transition: transform  0.5s ease;
 }
 :deep(.p-tabmenu-item-link:active) {
     transform: scale(.9);
