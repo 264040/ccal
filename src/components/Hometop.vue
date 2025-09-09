@@ -204,17 +204,14 @@ onMounted(() => {});
 .header {
     display: flex;
     position: fixed;
+    left: 0;
+    right: 0;
     top: 0;
     min-width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 0.8rem;
-    background-color: #ffffff;
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
-    /* border-radius: 40px; */
-    /*position: sticky;
-  top: 0;*/
-    margin: 0;
+    background-color: #ffffff; 
     z-index: 12500;
     transition:
         transform 0.3s linear,

@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import { useRouter,useRoute } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
 import Hometop from "@/components/Hometop.vue";
-import { ref, onMounted } from "vue";
-import { useScroll } from "@vueuse/core";
+import { ref, onMounted, computed } from "vue"; 
 
-const router = useRouter();
+const router = useRoute();
+
+const showTop = computed(()=> router.meta.showTop === true)
 
 onMounted(() => {
+    console.log(showTop,11);
+    
 });
 
 
@@ -18,7 +21,7 @@ onMounted(() => {
 <template>
     <div class="crad-acc">
         <div class="crad">
-            <Hometop />
+            <Hometop v-if="showTop"/>
             <!-- 主要内容区域，使用 router-view -->
             <router-view v-slot="{ Component, route }">
                 <component :is="Component" :key="route.name" />
@@ -55,8 +58,9 @@ onMounted(() => {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */
-    width: 100vh;
+    /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */ 
+
+ 
 }
 
 /* 滑动过渡动画 */

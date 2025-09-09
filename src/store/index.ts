@@ -6,17 +6,26 @@ import { defineStore } from 'pinia'
 // (比如 `useUserStore`，`useCartStore`，`useProductStore`)
 // 第一个参数是你的应用中 Store 的唯一 ID。
 export const useIndextore = defineStore('navgate', {
-    state: () => ({ index: 0, scrollTopAcer: 0 }),
+    state: () => ({
+        index: 0,
+        scrollTopAcer: 0,
+        pageClientHeight: 0, //屏幕高度
+    }),
     getters: {
-        indexkey: (state) => state.index,
-        GetscrollTopAcer: state => state.scrollTopAcer
+        indexkey: state => state.index,
+        GetscrollTopAcer: state => state.scrollTopAcer,
+        GetPageClientHeight: state => state.pageClientHeight,
+        GetScrollTopAcer: state => state.scrollTopAcer
     },
     actions: {
         setindexkey(i: number) {
             this.index = i;
         },
-        setScrollTopAcer(i: number) { 
+        setScrollTopAcer(i: number) {
             this.scrollTopAcer = i;
+        },
+        setPageClientHeight(i:number){
+            this.pageClientHeight = i
         }
     },
     persist: true

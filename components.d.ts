@@ -25,6 +25,7 @@ declare module 'vue' {
     RankingView: typeof import('./src/components/RankingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Skeleton: typeof import('primevue/skeleton')['default']
     Tab: typeof import('primevue/tab')['default']
     TabList: typeof import('primevue/tablist')['default']
     TabPanel: typeof import('primevue/tabpanel')['default']
@@ -32,6 +33,7 @@ declare module 'vue' {
     Tabs: typeof import('primevue/tabs')['default']
     TieredMenu: typeof import('primevue/tieredmenu')['default']
     Toast: typeof import('primevue/toast')['default']
+    VirtualScroller: typeof import('primevue/virtualscroller')['default']
   }
   export interface GlobalDirectives {
     Ripple: typeof import('primevue/ripple')['default']

@@ -1,9 +1,8 @@
 <template>
-
   <Transition name="slide-fade">
     <div class="content-container" v-show="sawdw" ref="acer_data_scroll">
+      <!-- 内容区 -->
       <div class="card-grid">
-        <!-- <Transition name="slide-fade"> -->
         <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
           <div class="card-header">
             <h3 class="post-title">{{ post.title }}</h3>
@@ -40,20 +39,40 @@
             </div>
             <!--<div class="post-author">{{ post.author }}</div>-->
           </div>
-
           <!-- 背景元素用于毛玻璃效果 -->
           <div class="card-bg"></div>
         </div>
-        <!-- </Transition> -->
+      </div>
+      <!-- 底部占位 -->
+      <div ref="target" :style="{ height: paddingBottom + 'px' }"></div>
+      <div class="rounded border border-surface-200 dark:border-surface-700 p-6 bg-surface-0 dark:bg-surface-900">
+        <ul class="m-0 p-0 list-none">
+          <li class="mb-4">
+            <div class="flex">
+              <Skeleton shape="circle" size="4rem" class="mr-2"></Skeleton>
+              <div class="self-center" style="flex: 1">
+                <Skeleton width="100%" class="mb-2"></Skeleton>
+                <Skeleton width="75%"></Skeleton>
+                <Skeleton width="70%"></Skeleton>
+                <Skeleton width="65%"></Skeleton>
+                <Skeleton width="60%"></Skeleton>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </Transition>
 </template>
 
 <script setup>
-import { ref, onMounted, getCurrentInstance, reactive } from "vue";
+import { ref, onMounted, getCurrentInstance, computed } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
+import { useIndextore } from "@/store/index";
+
+const store = useIndextore();
+
 const { $axios } = getCurrentInstance().appContext.config.globalProperties
 
 
@@ -79,12 +98,38 @@ const fetchData = async () => {
 
 };
 
+//  props.overscan>展示数量
+const total = computed(() => posts.value.length)
+console.log(total, '数据长度');
+
+const visibleCount = computed(() => Math.ceil(store.GetPageClientHeight / 50) + 6)
+console.log(visibleCount, '容器高度');
+
+const start = computed(() => Math.max(0, Math.floor(store.GetScrollTopAcer / store.GetPageClientHeight) - 6))
+
+const end = computed(() => Math.min(total.value, start.value + visibleCount.value))
+
+const visibleData = computed(() => posts.value.slice(0, 5))
+console.log("处理后的数据：", visibleData);
+
+const paddingTop = computed(() => start.value * store.GetPageClientHeight / 6)
+
+const paddingBottom = computed(() => (total.value - end.value) * store.GetPageClientHeight / 6)
+
+console.log(paddingTop, paddingBottom, '12');
 
 
+
+
+
+
+
+
+const target = ref(null)
+let observer
 onMounted(async () => {
-  
-  const asss = acer_data_scroll.value.target;
-  console.log(asss, 'lsssp');
+
+
   // 页面加载时的逻辑 
   setTimeout(() => {
     fetchData()
@@ -92,6 +137,26 @@ onMounted(async () => {
 
   }, 100);
 
+
+
+
+
+
+
+
+  observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      console.log(entries[0], '元素进入可视区域 ✅')
+    } else {
+      console.log(entries[0], '元素离开可视区域 ❌')
+    }
+  }, {
+    root: null, // 观察相对整个视口
+    threshold: 0.1 // 可见 10% 就算进入
+  })
+  console.log(observer, 'observer');
+
+  if (target.value) observer.observe(target.value)
 });
 
 </script>
@@ -148,10 +213,10 @@ onMounted(async () => {
   margin: 0.2rem auto 0;
   position: relative;
 
-  transition:
+  /* transition:
     all 0.3s ease-out,
     transform 0.5s ease-in-out,
-    padding 0.5s;
+    padding 0.5s; */
 }
 
 .card-grid {
@@ -159,6 +224,10 @@ onMounted(async () => {
   flex-direction: column;
   gap: 0.8rem;
   padding: 0 0 5rem;
+  
+  content-visibility: auto;  
+  contain-intrinsic-size: 190px;
+  
 }
 
 .post-card {
@@ -186,28 +255,14 @@ onMounted(async () => {
   bottom: 0;
   /* background: rgba(25, 25, 25, 0.2); */
   background: rgb(51 48 48);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
   border-radius: 16px;
   z-index: -1;
 }
 
 /* 为每个卡片添加不同的色调效果 */
-.post-card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(var(--bg-hue, 200deg),
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.05));
-  opacity: 0.6;
-  z-index: -1;
-  transform: rotate(30deg);
-  transition: opacity 0.3s ease;
-}
+.post-card::before {}
 
 .post-card:hover {
   transform: translateY(-5px);
@@ -382,7 +437,9 @@ onMounted(async () => {
     grid-template-columns: 1fr 1fr;
   }
 
-  .post-card {}
+  .post-card {
+    height: 190px;
+  }
 
   .card-footer {
     display: grid;
@@ -408,6 +465,7 @@ onMounted(async () => {
 
   .post-card {
     border-radius: 2rem;
+    height: 220px;
   }
 
   .card-footer {
@@ -423,10 +481,9 @@ onMounted(async () => {
 /* 大屏 */
 @media (min-width: 950px) {
   .card-grid {
-    display: flex;
-    gap: 1.5rem;
-    padding: 0 0 5rem;
-    flex-flow: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: .8rem;
   }
 
   .post-title {
@@ -443,6 +500,7 @@ onMounted(async () => {
     border-radius: 2rem;
     flex-direction: column;
     justify-content: space-between;
+    height: 225px;
   }
 
   .card-footer {

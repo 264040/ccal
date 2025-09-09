@@ -21,25 +21,21 @@ const store = useIndextore();
 const page = ref(null);
 const scrollTopas = ref(0); // 记录上次滚动位置
 
-// 使用防抖优化滚动事件
-let debounceTimer = null;
-const handleScroll = event => {
-    
-        let windowSCC =  event.target.scrollTop;
 
-        store.setScrollTopAcer(windowSCC);
+const handleScroll = event => {
+    let windowSCC = event.target.scrollTop;
+    store.setScrollTopAcer(windowSCC);
 
 };
 
-// watch(scrollTopas, (b, j) => {
-//     store.setScrollTopAcer(b < j ? false : true)
-// })
 
 onMounted(() => {
     store.setScrollTopAcer(0);
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    store.setPageClientHeight(page.value.clientHeight) 
 });
 
-onUnmounted(() => {});
+onUnmounted(() => { });
 </script>
 
 <style scoped>

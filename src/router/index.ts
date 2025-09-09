@@ -17,6 +17,7 @@ const routes = [
     component: Home, // 懒加载
     meta: {
       index: 0,
+      showTop:true, // 显示顶部导航栏
       keepAlive: true // 需要缓存 
     }, // 添加索引，用于判断当前路由
     redirect: { name: 'ContentView' },

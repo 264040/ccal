@@ -2,12 +2,7 @@
     <div class="card">
         <Tabs :value="routeKey">
             <TabList>
-                <Tab
-                    v-for="tab in items"
-                    :key="tab.label"
-                    :value="tab.route"
-                    @click="afn(tab.route)"
-                >
+                <Tab v-for="tab in items" :key="tab.label" :value="tab.route" @click="afn(tab.route)">
                     <div v-ripple class="flex items-center gap-2 text-inherit">
                         <!-- <i :class="tab.icon" /> -->
                         {{ tab.label }}
@@ -16,7 +11,7 @@
             </TabList>
         </Tabs>
     </div>
-    
+
 </template>
 
 <script setup>
@@ -69,8 +64,7 @@ function afn(e) {
     padding: 1rem;
 }
 
-:deep(.p-tablist-content) {
-}
+:deep(.p-tablist-content) {}
 
 :deep(.p-tablist-active-bar) {
     background: none;

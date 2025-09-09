@@ -5,12 +5,10 @@ import router from './router';
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura' // 引入 Aura 主题
 import 'primeicons/primeicons.css' // 图标样式仍然需要单独引入
-import '../public/lpp.css';
-
+import '../public/lpp.css'; 
 import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persistedstate'
-import axios from 'axios';
-
+import axios from 'axios'; 
 
 
 const pinia = createPinia()
@@ -21,8 +19,7 @@ app.config.globalProperties.$axios = axios;
 
 pinia.use(piniaPersist)
 app.use(pinia)
-app.use(router); 
-
+app.use(router);  
 
 // 使用 PrimeVue 并配置主题
 app.use(PrimeVue, {
