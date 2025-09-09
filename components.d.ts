@@ -25,7 +25,7 @@ declare module 'vue' {
     RankingView: typeof import('./src/components/RankingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Skeleton: typeof import('primevue/skeleton')['default']
+    Skeleton: typeof import('./src/components/SkeletonComponent/Skeleton.vue')['default']
     Tab: typeof import('primevue/tab')['default']
     TabList: typeof import('primevue/tablist')['default']
     TabPanel: typeof import('primevue/tabpanel')['default']

@@ -5,6 +5,7 @@
         <router-view v-slot="{ Component, route }" v-if="$route.meta.keepAlive">
             <component :is="Component" :key="route.name" />
         </router-view>
+        <Skeleton />
     </div>
 </template>
 
@@ -17,25 +18,24 @@ import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
 
 import { useIndextore } from "@/store/index";
 
+import Skeleton from "@/components/SkeletonComponent/Skeleton.vue";
+
 const store = useIndextore();
 const page = ref(null);
 const scrollTopas = ref(0); // 记录上次滚动位置
 
-
 const handleScroll = event => {
     let windowSCC = event.target.scrollTop;
     store.setScrollTopAcer(windowSCC);
-
 };
-
 
 onMounted(() => {
     store.setScrollTopAcer(0);
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    store.setPageClientHeight(page.value.clientHeight) 
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    store.setPageClientHeight(page.value.clientHeight);
 });
 
-onUnmounted(() => { });
+onUnmounted(() => {});
 </script>
 
 <style scoped>

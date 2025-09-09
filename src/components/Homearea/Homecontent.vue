@@ -225,8 +225,7 @@ onMounted(async () => {
   gap: 0.8rem;
   padding: 0 0 5rem;
   
-  content-visibility: auto;  
-  contain-intrinsic-size: 190px;
+  
   
 }
 
