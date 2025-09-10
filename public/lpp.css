@@ -1,30 +1,30 @@
 * {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box !important;
-  border: 0px;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box !important;
+    border: 0px;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 body {
-  -webkit-tap-highlight-color: transparent; /* Chrome移动设备上的按钮点击时的蓝色高亮:此代码可以取消        借鉴网址：https://blog.csdn.net/weixin_45406850/article/details/124303385#:~:text=%E6%9C%AC%E6%96%87%E4%BB%8B%E7%BB%8D%E4%BA%86%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%85%83%E7%B4%A0%E7%82%B9%E5%87%BB%E5%90%8E%E5%87%BA%E7%8E%B0%E8%93%9D%E8%89%B2%EF%BC%88%E6%88%96%E9%BB%84%E8%89%B2%EF%BC%89%E9%AB%98%E4%BA%AE%E6%A1%86%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E8%AE%BE%E7%BD%AECSS%E6%A0%B7%E5%BC%8F%E6%9D%A5%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%80%E9%97%AE%E9%A2%98%E3%80%82,%E5%85%B3%E9%94%AE%E5%9C%A8%E4%BA%8E%E4%BD%BF%E7%94%A8%60-webkit-tap-highlight-color%60%E5%B0%86%E9%AB%98%E4%BA%AE%E9%A2%9C%E8%89%B2%E8%AE%BE%E4%B8%BA%E9%80%8F%E6%98%8E%EF%BC%8C%E5%B9%B6%E7%BB%93%E5%90%88%60outline%3Anone%60%E5%8E%BB%E9%99%A4%E5%85%83%E7%B4%A0%E8%81%9A%E7%84%A6%E6%97%B6%E7%9A%84%E8%BE%B9%E6%A1%86%E3%80%82%20%E6%AD%A4%E5%A4%96%EF%BC%8C%E8%BF%98%E6%8F%90%E4%BE%9B%E4%BA%86%E9%92%88%E5%AF%B9%E4%B8%8D%E5%90%8C%E6%A0%87%E7%AD%BE%E5%A6%82a%E6%A0%87%E7%AD%BE%E3%80%81img%E6%A0%87%E7%AD%BE%E7%9A%84%E9%92%88%E5%AF%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%8C%E7%A1%AE%E4%BF%9D%E5%90%84%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E7%82%B9%E5%87%BB%E9%AB%98%E4%BA%AE%E9%83%BD%E8%83%BD%E8%A2%AB%E6%AD%A3%E7%A1%AE%E5%A4%84%E7%90%86%E3%80%82*/
+    -webkit-tap-highlight-color: transparent;
+    /* Chrome移动设备上的按钮点击时的蓝色高亮:此代码可以取消        借鉴网址：https://blog.csdn.net/weixin_45406850/article/details/124303385#:~:text=%E6%9C%AC%E6%96%87%E4%BB%8B%E7%BB%8D%E4%BA%86%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%85%83%E7%B4%A0%E7%82%B9%E5%87%BB%E5%90%8E%E5%87%BA%E7%8E%B0%E8%93%9D%E8%89%B2%EF%BC%88%E6%88%96%E9%BB%84%E8%89%B2%EF%BC%89%E9%AB%98%E4%BA%AE%E6%A1%86%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E8%AE%BE%E7%BD%AECSS%E6%A0%B7%E5%BC%8F%E6%9D%A5%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%80%E9%97%AE%E9%A2%98%E3%80%82,%E5%85%B3%E9%94%AE%E5%9C%A8%E4%BA%8E%E4%BD%BF%E7%94%A8%60-webkit-tap-highlight-color%60%E5%B0%86%E9%AB%98%E4%BA%AE%E9%A2%9C%E8%89%B2%E8%AE%BE%E4%B8%BA%E9%80%8F%E6%98%8E%EF%BC%8C%E5%B9%B6%E7%BB%93%E5%90%88%60outline%3Anone%60%E5%8E%BB%E9%99%A4%E5%85%83%E7%B4%A0%E8%81%9A%E7%84%A6%E6%97%B6%E7%9A%84%E8%BE%B9%E6%A1%86%E3%80%82%20%E6%AD%A4%E5%A4%96%EF%BC%8C%E8%BF%98%E6%8F%90%E4%BE%9B%E4%BA%86%E9%92%88%E5%AF%B9%E4%B8%8D%E5%90%8C%E6%A0%87%E7%AD%BE%E5%A6%82a%E6%A0%87%E7%AD%BE%E3%80%81img%E6%A0%87%E7%AD%BE%E7%9A%84%E9%92%88%E5%AF%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%8C%E7%A1%AE%E4%BF%9D%E5%90%84%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E7%82%B9%E5%87%BB%E9%AB%98%E4%BA%AE%E9%83%BD%E8%83%BD%E8%A2%AB%E6%AD%A3%E7%A1%AE%E5%A4%84%E7%90%86%E3%80%82*/
 }
 
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+    width: 0;
+    height: 0;
 }
 
 
-#app {  
-    border: 5px solid red;
+#app { 
     height: 100vh;
     overflow: auto;
 }
@@ -33,12 +33,122 @@ body {
 
 /* 引入自定义字体 */
 @font-face {
-  font-family: 'MyFontAcer';
-  /* 自定义字体名称 */
-  src: url('./typeface/ctfy.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  color: blue;
-  letter-spacing: 1px !important;
-  font-weight: 500;
+    font-family: 'MyFontAcer';
+    /* 自定义字体名称 */
+    src: url('./typeface/ctfy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    color: blue;
+    letter-spacing: 1px !important;
+    font-weight: 500;
 }
+
+
+
+
+
+
+
+
+
+/* skeleton组件样式 */
+.skeleton_acer_title {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    align-items: center;
+}
+
+.skeleton-wrapper {
+    padding: 20px;
+    display: grid;
+    gap: .5rem;
+    border-radius: 2rem;
+    background: #e1e1e1;
+
+    /* box-shadow: 2px 3px 5px rgba(33, 23, 2, 0.5); */
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+    /* background: linear-gradient(90deg, #523b3b 25%, #e0b2b2 37%, #eee 63%); */
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+    border-radius: 1rem;
+}
+
+
+.skeleton-title {
+    width: 60%;
+    height: 25px;
+}
+
+.skeleton_title_avit {
+
+    background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+
+    background-size: 600% 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2rem;
+    animation: shimmer 3.4s ease infinite;
+}
+
+.skeleton-text {
+    width: 100%;
+    height: 14px;
+}
+
+.skeleton-text:nth-child(4) {
+    width: 80%;
+}
+
+.skeleton-btn {
+    width: 100px;
+    height: 36px;
+
+    border-radius: 2rem;
+}
+
+.skeleton_acer {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+
+    align-items: center;
+    gap: 0.7rem;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.skeletons_acer_acer {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+
+}
+
+/* 大屏 */
+@media (min-width: 950px) {
+
+    .skeletons_acer_acer { 
+        grid-template-columns: auto auto auto auto;
+        gap: 1rem;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0.2rem auto 0;
+    }
+
+    .skeleton_acer {
+        justify-content: space-between
+    }
+}
+
+/* skeleton组件样式 */

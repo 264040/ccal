@@ -1,54 +1,27 @@
 <template>
-    <div
-        class="header xianshi"
-        :style="{
-            transform: `translateY(${translateY}%)`,
-            opacity: opacity,
-            filter: `blur(${blur}px)`
-        }"
-        ref="headerAcer"
-    >
+    <div class="header xianshi" :style="{
+        transform: `translateY(${translateY}%)`,
+        opacity: opacity
+    }" ref="headerAcer">
         <div class="ellipsis-container">
-            <Button
-                type="button"
-                rounded
-                class="p-button-text acer_button_acers_acers"
-                @click="toggle"
-                aria-haspopup="true"
-                aria-controls="overlay_tmenu"
-            >
+            <Button type="button" rounded class="p-button-text acer_button_acers_acers" @click="toggle"
+                aria-haspopup="true" aria-controls="overlay_tmenu">
                 <i class="pi pi-ellipsis-v"></i>
             </Button>
-            <Button
-                type="button"
-                rounded
-                class="p-button-text acer_button_acers"
-                @click="toggle_acer"
-                aria-haspopup="true"
-                aria-controls="overlay_tmenu"
-            >
+            <Button type="button" rounded class="p-button-text acer_button_acers" @click="toggle_acer"
+                aria-haspopup="true" aria-controls="overlay_tmenu">
                 <i class="pi pi-bell"></i>
             </Button>
-            <TieredMenu
-                ref="menu"
-                id="overlay_tmenu"
-                :model="items"
-                popup
-                :style="SSSaa"
-            />
         </div>
         <div class="acername_aAvatar_name">
             <div class="acername_name">
                 <p class="font-bold p-2">Amy Elsner</p>
             </div>
-            <Avatar
-                image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-                class="user-avatar"
-                size="large"
-                shape="circle"
-            />
+            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="user-avatar"
+                size="large" shape="circle" />
         </div>
     </div>
+    <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup :style="SSSaa" />
 </template>
 
 <script setup>
@@ -84,14 +57,12 @@ watch(
 // 隐藏过程：translateY 从 0 → -100
 const translateY = computed(() => -200 * progress.value);
 // 透明度从 1 → 0
-const opacity = computed(() => 1 - progress.value);
-// 模糊度从 0 → 6px
-const blur = computed(() => 5 * progress.value);
+const opacity = computed(() => 1 - progress.value); 
 
 const SSSaa = ref({
-    top: "20px !important",
-    left: "70px !important",
-    "margin-top": "10px"
+    top: "65px !important",
+    left: ".8rem !important",
+    'z-index': '20000'
 });
 
 const menu = ref();
@@ -150,29 +121,33 @@ const toggle_acer = event => {
     console.log(event, 22222);
 };
 
-onMounted(() => {});
+onMounted(() => { });
 </script>
 
 <style scoped>
 :deep(#overlay_tmenu) {
-    top: 15px !important;
-    left: 0px !important;
     margin-top: 10px;
 }
 
 .acername_name {
     margin-right: 1rem;
+    margin-left: 1rem;
+    font-size: 1.1rem;
 }
 
 .acername_aAvatar_name {
+
     display: flex;
     align-items: center;
+    box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 2rem;
+    padding: .3rem;
 }
 
 .ellipsis-container {
     /* width: 50px;
   height: 50px; */
-    /* background-color: red; */
+    /* background-color: red; */ 
 }
 
 /* 导航按钮 */
@@ -210,8 +185,8 @@ onMounted(() => {});
     min-width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem;
-    background-color: #ffffff; 
+    padding: 0.8rem 1rem;
+    background-color: #ffffff;
     z-index: 12500;
     transition:
         transform 0.3s linear,
@@ -226,6 +201,8 @@ onMounted(() => {});
     width: 50px;
     height: 50px;
     align-items: center;
+    
+    box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
 }
 
 :deep(.p-button-text:not(:disabled):hover) {
@@ -238,8 +215,8 @@ onMounted(() => {});
     font-size: 1.3rem;
 }
 
-:deep(.p-button-text:not(:active)) {
-    transform: scale(1.05);
+:deep(.p-button-text:not(:disabled):active) {
+    transform: scale(.95);
 }
 
 .search-container {

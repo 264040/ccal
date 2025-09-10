@@ -3,7 +3,7 @@
     <div class="content-container" v-show="sawdw" ref="acer_data_scroll">
       <!-- 内容区 -->
       <div class="card-grid">
-        <div v-for="(post, index) in posts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
+        <div v-for="(post, index) in visibleData" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
           <div class="card-header">
             <h3 class="post-title">{{ post.title }}</h3>
             <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar"
@@ -45,22 +45,6 @@
       </div>
       <!-- 底部占位 -->
       <div ref="target" :style="{ height: paddingBottom + 'px' }"></div>
-      <div class="rounded border border-surface-200 dark:border-surface-700 p-6 bg-surface-0 dark:bg-surface-900">
-        <ul class="m-0 p-0 list-none">
-          <li class="mb-4">
-            <div class="flex">
-              <Skeleton shape="circle" size="4rem" class="mr-2"></Skeleton>
-              <div class="self-center" style="flex: 1">
-                <Skeleton width="100%" class="mb-2"></Skeleton>
-                <Skeleton width="75%"></Skeleton>
-                <Skeleton width="70%"></Skeleton>
-                <Skeleton width="65%"></Skeleton>
-                <Skeleton width="60%"></Skeleton>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
     </div>
   </Transition>
 </template>
@@ -100,23 +84,23 @@ const fetchData = async () => {
 
 //  props.overscan>展示数量
 const total = computed(() => posts.value.length)
-console.log(total, '数据长度');
+// console.log(total, '数据长度');
 
 const visibleCount = computed(() => Math.ceil(store.GetPageClientHeight / 50) + 6)
-console.log(visibleCount, '容器高度');
+// console.log(visibleCount, '容器高度');
 
 const start = computed(() => Math.max(0, Math.floor(store.GetScrollTopAcer / store.GetPageClientHeight) - 6))
 
 const end = computed(() => Math.min(total.value, start.value + visibleCount.value))
 
-const visibleData = computed(() => posts.value.slice(0, 5))
-console.log("处理后的数据：", visibleData);
+const visibleData = computed(() => posts.value.slice(0, 6))
+// console.log("处理后的数据：", visibleData);
 
 const paddingTop = computed(() => start.value * store.GetPageClientHeight / 6)
 
 const paddingBottom = computed(() => (total.value - end.value) * store.GetPageClientHeight / 6)
 
-console.log(paddingTop, paddingBottom, '12');
+// console.log(paddingTop, paddingBottom, '12');
 
 
 
@@ -154,7 +138,6 @@ onMounted(async () => {
     root: null, // 观察相对整个视口
     threshold: 0.1 // 可见 10% 就算进入
   })
-  console.log(observer, 'observer');
 
   if (target.value) observer.observe(target.value)
 });
@@ -224,9 +207,9 @@ onMounted(async () => {
   flex-direction: column;
   gap: 0.8rem;
   padding: 0 0 5rem;
-  
-  
-  
+
+
+
 }
 
 .post-card {

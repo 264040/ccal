@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'; 
-
+import { createRouter, createWebHistory } from 'vue-router';
+import { useIndextore } from '@/store/index'
+import { nextTick } from 'vue';
 const Home = () => import('@/views/Home.vue');
 const ContentView = () => import('@/components/ContentView.vue');
 const BBSView = () => import('@/components/BBSView.vue');
@@ -10,6 +11,8 @@ const RankingView = () => import('@/components/RankingView.vue');
 const Messages = () => import('@/views/Messages.vue');
 const Collect = () => import('@/views/Collect.vue');
 const Profile = () => import('@/views/Profile.vue');
+
+
 const routes = [
   {
     path: '/',
@@ -17,7 +20,7 @@ const routes = [
     component: Home, // 懒加载
     meta: {
       index: 0,
-      showTop:true, // 显示顶部导航栏
+      showTop: true, // 显示顶部导航栏
       keepAlive: true // 需要缓存 
     }, // 添加索引，用于判断当前路由
     redirect: { name: 'ContentView' },
@@ -30,8 +33,8 @@ const routes = [
         },
         component: ContentView,
         // 单个路由守卫写在路由的配置对象中，只能对当前路由起效,是对象中函数
-        beforeEnter: (to, from, next) => { 
-          
+        beforeEnter: (to, from, next) => {
+
           next()
         }
       },
@@ -73,13 +76,24 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置 
-    console.log(savedPosition, '滚动位置路由监听');
-    
+    const store = useIndextore();
+
     return {
-      top:savedPosition?.top,
+      top: store.GetScrollTopAcer,
       behavior: 'smooth',
     }
   }
 });
 
+router.beforeEach((to, from, next) => {
+  const store = useIndextore();
+  store.setScrollTopAcer(window.scrollY)
+  store.setIsloading(true)
+  next()
+
+})
+router.afterEach((to, from, failure) => {
+  const store = useIndextore();  
+  setTimeout(() => store.setIsloading(false), 3000) 
+})
 export default router;

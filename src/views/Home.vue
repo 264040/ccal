@@ -2,10 +2,12 @@
     <div class="page" ref="page" @scroll="handleScroll">
         <ProductIntroduction />
         <PaddleCard />
-        <router-view v-slot="{ Component, route }" v-if="$route.meta.keepAlive">
+        <router-view v-slot="{ Component, route }" v-if="!store.GetisLoading">
             <component :is="Component" :key="route.name" />
         </router-view>
-        <Skeleton />
+        <div v-if="store.GetisLoading" class="skeletons_acer_acer">
+            <Skeletons v-for="n in 6" />
+        </div>
     </div>
 </template>
 
@@ -18,7 +20,7 @@ import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
 
 import { useIndextore } from "@/store/index";
 
-import Skeleton from "@/components/SkeletonComponent/Skeleton.vue";
+import Skeletons from "@/components/SkeletonComponent/Skeleton.vue";
 
 const store = useIndextore();
 const page = ref(null);
@@ -35,7 +37,7 @@ onMounted(() => {
     store.setPageClientHeight(page.value.clientHeight);
 });
 
-onUnmounted(() => {});
+onUnmounted(() => { });
 </script>
 
 <style scoped>
