@@ -63,13 +63,13 @@ body {
     display: grid;
     gap: .5rem;
     border-radius: 2rem;
-    background: #e1e1e1;
+    background: var(--acer-kp-dround);
 
     /* box-shadow: 2px 3px 5px rgba(33, 23, 2, 0.5); */
 }
 
 .skeleton {
-    background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+    background: var(--acer-kp-text);
     /* background: linear-gradient(90deg, #523b3b 25%, #e0b2b2 37%, #eee 63%); */
     background-size: 400% 100%;
     animation: shimmer 1.4s ease infinite;
@@ -84,7 +84,7 @@ body {
 
 .skeleton_title_avit {
 
-    background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+    background: var(--acer-kp-text);
 
     background-size: 600% 100%;
     width: 2.5rem;

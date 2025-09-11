@@ -73,6 +73,7 @@ const items = ref([
 
 :deep(.p-tabmenu-item-icon) {
     font-size: 1.3rem;
+    color: var(--acer-nav-ground-icon-style);
 }
 .bottom-navigation {
     position: fixed;
@@ -127,7 +128,7 @@ const items = ref([
     /* background-color: #fff;
     border: 0px solid #e5e7eb; */
     border-radius: 50px;
-    min-width: 310px;
+    min-width: 280px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transition:
         width 0.3s ease-out,
@@ -159,7 +160,7 @@ const items = ref([
     justify-content: space-between;
     /* margin: 0 1.2rem; */
     margin: 0;
-    background-color: #e2e2e2;
+    background-color: var(--acer-nav-ground-style);
     padding: .5rem;
     border-style: none;
 }

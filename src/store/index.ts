@@ -11,13 +11,15 @@ export const useIndextore = defineStore('navgate', {
         scrollTopAcer: 0,
         pageClientHeight: 0, //屏幕高度
         isLoading: false,
+        acerDark: false, // 设置主题
     }),
     getters: {
         indexkey: state => state.index,
         GetscrollTopAcer: state => state.scrollTopAcer,
         GetPageClientHeight: state => state.pageClientHeight,
         GetScrollTopAcer: state => state.scrollTopAcer,
-        GetisLoading: state => state.isLoading
+        GetisLoading: state => state.isLoading,
+        GetacerDark: stare => stare.acerDark
     },
     actions: {
         setindexkey(i: number) {
@@ -31,6 +33,25 @@ export const useIndextore = defineStore('navgate', {
         },
         setIsloading(i: boolean) {
             this.isLoading = i
+        },
+        setAcerDark(i: boolean) {
+            this.acerDark = i
+            document.body.classList.toggle('acerDark', i)
+        },
+        setAcerDarkDD(){
+            this.setAcerDark(!this.acerDark)
+        },
+        setAcerDarkas() {
+
+            // 默认跟随系统
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+            this.setAcerDark(prefersDark.matches)
+            //监听系统主题变化 
+            if(prefersDark.addEventListener){
+                prefersDark.addEventListener('change', e => this.setAcerDark(e.matches))
+            }else if (prefersDark?.addListener) {
+                prefersDark.addListene('change', e => this.setAcerDark(e.matches))
+            }
         }
     },
     persist: true

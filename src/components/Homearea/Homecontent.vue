@@ -236,7 +236,7 @@ onMounted(async () => {
   right: 0;
   bottom: 0;
   /* background: rgba(25, 25, 25, 0.2); */
-  background: rgb(51 48 48);
+  background: var(--acer-btnground);
   /* backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); */
   border-radius: 16px;
@@ -323,7 +323,7 @@ onMounted(async () => {
   /* 将超出容器宽度的部分进行隐藏 */
   white-space: nowrap;
   /* 将文字的换行模式设置为 nowrap */
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin: auto 0rem;
   color: #fff;

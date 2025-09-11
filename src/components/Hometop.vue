@@ -13,14 +13,17 @@
                 <i class="pi pi-bell"></i>
             </Button>
         </div>
+
         <div class="acername_aAvatar_name">
             <div class="acername_name">
-                <p class="font-bold p-2">Amy Elsner</p>
+                <toggleswitch />
             </div>
             <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="user-avatar"
                 size="large" shape="circle" />
         </div>
     </div>
+
+
     <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup :style="SSSaa" />
 </template>
 
@@ -30,6 +33,7 @@ import { useRouter } from "vue-router";
 import Button from "primevue/button";
 import Avatar from "primevue/avatar";
 import { useIndextore } from "@/store/index";
+import toggleswitch from '@/components/toggleswitch.vue'
 
 const router = useRouter();
 const store = useIndextore();
@@ -57,7 +61,7 @@ watch(
 // 隐藏过程：translateY 从 0 → -100
 const translateY = computed(() => -200 * progress.value);
 // 透明度从 1 → 0
-const opacity = computed(() => 1 - progress.value); 
+const opacity = computed(() => 1 - progress.value);
 
 const SSSaa = ref({
     top: "65px !important",
@@ -130,8 +134,6 @@ onMounted(() => { });
 }
 
 .acername_name {
-    margin-right: 1rem;
-    margin-left: 1rem;
     font-size: 1.1rem;
 }
 
@@ -139,15 +141,17 @@ onMounted(() => { });
 
     display: flex;
     align-items: center;
-    box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
     border-radius: 2rem;
     padding: .3rem;
+    background: var(--acer-navavt-box-ground);
+    color: white;
+    box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
 }
 
 .ellipsis-container {
     /* width: 50px;
   height: 50px; */
-    /* background-color: red; */ 
+    /* background-color: red; */
 }
 
 /* 导航按钮 */
@@ -186,7 +190,7 @@ onMounted(() => { });
     justify-content: space-between;
     align-items: center;
     padding: 0.8rem 1rem;
-    background-color: #ffffff;
+    background-color: var(--acer-topnav-box);
     z-index: 12500;
     transition:
         transform 0.3s linear,
@@ -201,7 +205,7 @@ onMounted(() => { });
     width: 50px;
     height: 50px;
     align-items: center;
-    
+
     box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -269,7 +273,7 @@ onMounted(() => { });
 .user-avatar {
     background-color: #4361ee;
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 </style>

@@ -46,5 +46,6 @@ onUnmounted(() => { });
     box-sizing: border-box;
     overflow: auto;
     height: 100vh;
+    background: var(--acer-ground);
 }
 </style>

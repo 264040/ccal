@@ -3,11 +3,8 @@
         <!-- Header -->
         <header class="header">
             <div class="header-left">
-                <Avatar
-                    image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png"
-                    size="large"
-                    shape="circle"
-                />
+                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png" size="large"
+                    shape="circle" />
                 <div class="user-info">
                     <h3>Hello Alex</h3>
                     <ProgressBar :value="60" style="height: 8px" />
@@ -15,14 +12,8 @@
             </div>
 
             <div class="header-actions">
-                <Button
-                    icon="pi pi-bell"
-                    class="p-button-rounded p-button-text"
-                />
-                <Button
-                    icon="pi pi-search"
-                    class="p-button-rounded p-button-text"
-                />
+                <Button icon="pi pi-bell" class="p-button-rounded p-button-text" />
+                <Button icon="pi pi-search" class="p-button-rounded p-button-text" />
             </div>
         </header>
 
@@ -31,12 +22,7 @@
 
         <!-- Cards Grid -->
         <div class="cards-grid">
-            <Card
-                v-for="(c, index) in cards"
-                :key="index"
-                class="progress-card"
-                :style="{ background: c.bg }"
-            >
+            <Card v-for="(c, index) in cards" :key="index" class="progress-card" :style="{ background: c.bg }">
                 <template #title>
                     <div class="card-header">
                         <i :class="c.icon"></i>
@@ -51,19 +37,10 @@
                     <h4 class="desc">{{ c.title }}</h4>
                     <div class="card-footer">
                         <div class="avatars">
-                            <Avatar
-                                v-for="(a, i) in c.avatars"
-                                :key="i"
-                                :image="a"
-                                size="normal"
-                                shape="circle"
-                            />
+                            <Avatar v-for="(a, i) in c.avatars" :key="i" :image="a" size="normal" shape="circle" />
                             <span class="more">+5</span>
                         </div>
-                        <Button
-                            icon="pi pi-arrow-right"
-                            class="p-button-rounded p-button-outlined"
-                        />
+                        <Button icon="pi pi-arrow-right" class="p-button-rounded p-button-outlined" />
                     </div>
                 </template>
             </Card>
@@ -99,7 +76,7 @@ const cards = ref([
             "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
         ]
     },
-        {
+    {
         category: "Data Analysis",
         title: "Effective Analytics Software Solutions",
         rating: 3.2,
@@ -110,7 +87,7 @@ const cards = ref([
             "https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png",
             "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
         ]
-    },    {
+    }, {
         category: "Data Analysis",
         title: "Effective Analytics Software Solutions",
         rating: 3.2,
@@ -121,7 +98,7 @@ const cards = ref([
             "https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png",
             "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
         ]
-    },    {
+    }, {
         category: "Data Analysis",
         title: "Effective Analytics Software Solutions",
         rating: 3.2,
@@ -161,6 +138,7 @@ const cards = ref([
     margin: 0 0 6px;
     font-size: 16px;
     font-weight: 600;
+    color: var(--acer-user-name-style);
 }
 
 .header-actions {
@@ -173,6 +151,7 @@ const cards = ref([
     font-size: 22px;
     font-weight: 700;
     margin: 0;
+    color: var(--acer-user-name-style);
 }
 
 /* Cards Grid */

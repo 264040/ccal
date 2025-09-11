@@ -3,8 +3,8 @@
         <!-- Header 卡片 -->
 
         <div class="header-top">
-            <Button icon="pi pi-arrow-left" class="p-button-rounded p-button-text" @click="goBack" />
-            <Button icon="pi pi-cog" class="p-button-rounded p-button-text" />
+            <Button icon="pi pi-arrow-left" class="p-button-rounded p-button-text goacer" @click="goBack" />
+            <Button icon="pi pi-cog" class="p-button-rounded p-button-text goacer" />
         </div>
 
         <header class="header-hero">
@@ -85,7 +85,7 @@ const store = useIndextore()
 
 const router = useRouter()
 function goBack() {
-    router.push('/') 
+    router.push('/')
     store.setindexkey(0)
 }
 
@@ -225,23 +225,36 @@ function onPointerUp(ev: PointerEvent) {
 
 <style scoped>
 :deep(.p-button-text) {
-    color: #fff;
+    color: var(--acer-color);
 }
 
 :deep(.p-button-text:not(:disabled):hover) {
 
+    color: rgb(255, 255, 255);
     background: #333030;
 }
 
 :deep(.p-button) {
     border: none;
-    background: #333030;
+    background: var(--acer-btnground); 
     width: 50px;
     height: 50px !important;
 }
 
-:deep(.p-button:not(:disabled):hover) {
+.goacer {
 
+    color: var(--acer-color);
+    background: var(--acer-icon-ground); 
+}
+.like-title{
+    color: var(--acer-color);
+}
+.p-card{
+    color: var(--acer-min-font);
+}
+
+
+:deep(.p-button:not(:disabled):hover) { 
     border: none;
 }
 
@@ -255,7 +268,7 @@ function onPointerUp(ev: PointerEvent) {
     max-width: 920px;
     margin: 0 auto;
     padding: 16px;
-    background: #f3f6fa;
+    background: var(--acer-ground);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -287,8 +300,7 @@ function onPointerUp(ev: PointerEvent) {
 
 .profile-avatar {
     width: 96px !important;
-    height: 96px !important;
-    border: 2px solid #fff;
+    height: 96px !important; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -296,11 +308,13 @@ function onPointerUp(ev: PointerEvent) {
     margin: 12px 0 4px;
     font-size: 22px;
     font-weight: 600;
+    color: var(--acer-user-name-style);
 }
 
 .user-role {
     font-size: 14px;
     opacity: 0.9;
+    color: var(--acer-user-name-style);
 }
 
 /* Header 卡片 */
@@ -411,7 +425,8 @@ function onPointerUp(ev: PointerEvent) {
 .article-card {
     border-radius: 12px;
     overflow: hidden;
-    background: #fff;
+    background: var(--acer-box-ground);
+    color: var(--acer-color);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -423,7 +438,7 @@ function onPointerUp(ev: PointerEvent) {
 
 .article-card .desc {
     margin: 6px 0;
-    color: #444;
+    color: var(--acer-min-font);
     font-size: 13px;
 }
 
@@ -440,7 +455,7 @@ function onPointerUp(ev: PointerEvent) {
 }
 
 .like-card {
-    background: #fff;
+    background: var(--acer-btnground);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     padding: 12px;

@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { useRouter,useRoute } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import AppBottomNavigation from "@/components/Navigation.vue";
 import Hometop from "@/components/Hometop.vue";
-import { ref, onMounted, computed } from "vue"; 
+import { ref, onMounted, computed } from "vue";
+import { useIndextore } from '@/store/index'
+const store = useIndextore()
 
 const router = useRoute();
 
-const showTop = computed(()=> router.meta.showTop === true)
-
+const showTop = computed(() => router.meta.showTop === true)
 onMounted(() => {
-    console.log(showTop,11);
-    
+    store.setAcerDarkas()
+
 });
 
 
@@ -21,7 +22,7 @@ onMounted(() => {
 <template>
     <div class="crad-acc">
         <div class="crad">
-            <Hometop v-if="showTop"/>
+            <Hometop v-if="showTop" />
             <!-- 主要内容区域，使用 router-view -->
             <router-view v-slot="{ Component, route }">
                 <component :is="Component" :key="route.name" />
@@ -46,9 +47,7 @@ onMounted(() => {
 
 .crad {
     /*height: 100%; /*一级页面高度满屏*/
-    background: linear-gradient(var(--bg-hue, 200deg),
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.05));
+    background: var(--acer-ground);
     /* padding-top: 2.5rem; */
 }
 
@@ -58,9 +57,10 @@ onMounted(() => {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */ 
+    /* padding-bottom: 1px; /* 为底部导航留出空间，防止内容被遮挡 */
+    background: var(--acer-ground);
 
- 
+
 }
 
 /* 滑动过渡动画 */

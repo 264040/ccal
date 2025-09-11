@@ -11,6 +11,7 @@
             </TabList>
         </Tabs>
     </div>
+    
 
 </template>
 
@@ -81,6 +82,8 @@ function afn(e) {
     font-family: MyFontAcer;
     font-weight: 500;
     letter-spacing: 1.5px;
+    
+    border-style: none;
 }
 
 :deep(.p-tab-active) {
@@ -88,7 +91,7 @@ function afn(e) {
     /* background: #080808; */
     border-bottom-width: 2px;
     transition: transform 0.1s ease-in-out;
-
+    border-style: solid;
     :deep(.text-inherit) {
         color: rgb(255, 255, 255);
     }

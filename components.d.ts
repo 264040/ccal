@@ -19,6 +19,7 @@ declare module 'vue' {
     Home: typeof import('./src/components/Home.vue')['default']
     Homecontent: typeof import('./src/components/Homearea/Homecontent.vue')['default']
     Hometop: typeof import('./src/components/Hometop.vue')['default']
+    InputSwitch: typeof import('primevue/inputswitch')['default']
     Messages: typeof import('./src/components/Messages.vue')['default']
     Navigation: typeof import('./src/components/Navigation.vue')['default']
     PaddleCard: typeof import('./src/components/Homearea/PaddleCard.vue')['default']
@@ -35,6 +36,8 @@ declare module 'vue' {
     Tabs: typeof import('primevue/tabs')['default']
     TieredMenu: typeof import('primevue/tieredmenu')['default']
     Toast: typeof import('primevue/toast')['default']
+    Toggleswitch: typeof import('./src/components/toggleswitch.vue')['default']
+    ToggleSwitch: typeof import('primevue/toggleswitch')['default']
     VirtualScroller: typeof import('primevue/virtualscroller')['default']
   }
   export interface GlobalDirectives {
