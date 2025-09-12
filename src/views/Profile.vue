@@ -236,7 +236,7 @@ function onPointerUp(ev: PointerEvent) {
 
 :deep(.p-button) {
     border: none;
-    background: var(--acer-btnground); 
+    background: var(--acer-btnground);
     width: 50px;
     height: 50px !important;
 }
@@ -244,17 +244,19 @@ function onPointerUp(ev: PointerEvent) {
 .goacer {
 
     color: var(--acer-color);
-    background: var(--acer-icon-ground); 
+    background: var(--acer-icon-ground);
 }
-.like-title{
+
+.like-title {
     color: var(--acer-color);
 }
-.p-card{
+
+.p-card {
     color: var(--acer-min-font);
 }
 
 
-:deep(.p-button:not(:disabled):hover) { 
+:deep(.p-button:not(:disabled):hover) {
     border: none;
 }
 
@@ -300,7 +302,7 @@ function onPointerUp(ev: PointerEvent) {
 
 .profile-avatar {
     width: 96px !important;
-    height: 96px !important; 
+    height: 96px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 

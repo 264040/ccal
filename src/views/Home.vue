@@ -1,5 +1,6 @@
 <template>
     <div class="page" ref="page" @scroll="handleScroll">
+
         <ProductIntroduction />
         <PaddleCard />
         <router-view v-slot="{ Component, route }" v-if="!store.GetisLoading">
@@ -11,7 +12,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref, onUnmounted, watch } from "vue";
 
 import PaddleCard from "@/components/Homearea/PaddleCard.vue";
@@ -22,11 +23,16 @@ import { useIndextore } from "@/store/index";
 
 import Skeletons from "@/components/SkeletonComponent/Skeleton.vue";
 
-const store = useIndextore();
-const page = ref(null);
-const scrollTopas = ref(0); // 记录上次滚动位置
 
-const handleScroll = event => {
+const store = useIndextore();
+const page = ref<any>(null);
+
+
+
+
+
+
+const handleScroll = (event:any) => {
     let windowSCC = event.target.scrollTop;
     store.setScrollTopAcer(windowSCC);
 };
