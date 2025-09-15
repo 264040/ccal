@@ -51,7 +51,7 @@
 <script setup>
 import { ref } from "vue";
 
-const cards = ref([
+const cards = ref<Array>([
     {
         category: "Tech & Software",
         title: "Designing Seamless User Experiences",

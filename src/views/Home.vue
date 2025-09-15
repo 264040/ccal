@@ -32,7 +32,7 @@ const page = ref<any>(null);
 
 
 
-const handleScroll = (event:any) => {
+const handleScroll = (event: any) => {
     let windowSCC = event.target.scrollTop;
     store.setScrollTopAcer(windowSCC);
 };

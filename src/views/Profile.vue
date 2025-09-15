@@ -75,7 +75,7 @@
  * - 实时跟随手指位移，边界阻尼，松手后判断切换 or 回弹
  */
 
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Button from 'primevue/button'
 import Avatar from 'primevue/avatar'
@@ -84,7 +84,7 @@ import { useIndextore } from '@/store'
 const store = useIndextore()
 
 const router = useRouter()
-function goBack() {
+function goBack(): void {
     router.push('/')
     store.setindexkey(0)
 }
@@ -97,34 +97,55 @@ const lessons = ref([
     { id: 4, title: "Math", date: "16 Aug", time: "09:00 PM", icon: "pi pi-calculator" },
 ])
 
-/* tab content */
-const articles = ref([
+interface articlesTYPE {
+    id: number,
+    title: string,
+    desc: string,
+    date: string,
+    img: string
+}
+
+interface likesTYPE {
+    id: number,
+    title: string,
+    date: string,
+}
+
+
+/* tab content 
+ ref<articlesTYPE[]>  等同于  ref<Array<articlesTYPE>>,前者是后者的简化写法
+
+*/
+const articles = ref<articlesTYPE[]>([
     { id: 1, title: "Vue3 Composition API 深度解析", desc: "掌握 setup 和响应式原理", date: "2025-09-01", img: "https://picsum.photos/400/260?1" },
     { id: 2, title: "Pinia 状态管理实践", desc: "替代 Vuex 的轻量解决方案", date: "2025-09-05", img: "https://picsum.photos/400/260?2" },
     { id: 3, title: "前端性能优化指南", desc: "首屏优化与懒加载技巧", date: "2025-09-09", img: "https://picsum.photos/400/260?3" },
     { id: 4, title: "Vite 构建优化技巧", desc: "让你的构建速度飞起来", date: "2025-09-10", img: "https://picsum.photos/400/260?4" },
 ])
-const likes = ref([
+// const likes = ref<Array<likesTYPE>>([
+//     { id: 1, title: "React vs Vue 对比分析", date: "2025-08-25" },
+//     { id: 2, title: "设计系统最佳实践", date: "2025-08-30" },
+// ])
+const likes = ref<Array<likesTYPE>>([
     { id: 1, title: "React vs Vue 对比分析", date: "2025-08-25" },
     { id: 2, title: "设计系统最佳实践", date: "2025-08-30" },
 ])
-
 /* swipe state */
-const tabContainer = ref<HTMLElement | null>(null)
-const containerWidth = ref(0)
-const currentIndex = ref(0) // 0 articles, 1 likes
-const offsetX = ref(0)
-const transitioning = ref(false)
+const tabContainer = ref<HTMLDivElement | null>(null)
+const containerWidth = ref<number>(0)
+const currentIndex = ref<number>(0) // 0 articles, 1 likes
+const offsetX = ref<number>(0)
+const transitioning = ref<boolean>(false)
 
 let pointerId: number | null = null
-let startX = 0
-let startY = 0
-let dragging = false
-let lastDeltaX = 0
-const THRESHOLD = 60
-const MAX_INDEX = 1
+let startX: number = 0
+let startY: number = 0
+let dragging: boolean = false
+let lastDeltaX: number = 0
+const THRESHOLD: number = 60
+const MAX_INDEX: number = 1
 
-function updateContainerWidth() {
+function updateContainerWidth(): void {
     if (!tabContainer.value) return
     // use clientWidth (inner content width)
     containerWidth.value = tabContainer.value.clientWidth
@@ -141,7 +162,7 @@ onBeforeUnmount(() => {
 })
 
 /* programmatic switch (button) */
-function goToIndex(index: number) {
+function goToIndex(index: number): void {
     currentIndex.value = Math.max(0, Math.min(MAX_INDEX, index))
     transitioning.value = true
     offsetX.value = -currentIndex.value * containerWidth.value
@@ -149,7 +170,7 @@ function goToIndex(index: number) {
 }
 
 /* POINTER event handlers - unified for touch & mouse */
-function onPointerDown(ev: PointerEvent) {
+function onPointerDown(ev: PointerEvent):void {
     if (!tabContainer.value) return
     // only left-button for mouse, pointerdown for touch is fine
     if (ev.pointerType === 'mouse' && ev.button !== 0) return
@@ -165,7 +186,7 @@ function onPointerDown(ev: PointerEvent) {
     updateContainerWidth()
 }
 
-function onPointerMove(ev: PointerEvent) {
+function onPointerMove(ev: PointerEvent):void {
     if (pointerId === null || ev.pointerId !== pointerId || !tabContainer.value) return
 
     const x = ev.clientX
@@ -198,7 +219,7 @@ function onPointerMove(ev: PointerEvent) {
     lastDeltaX = dx
 }
 
-function onPointerUp(ev: PointerEvent) {
+function onPointerUp(ev: PointerEvent):void {
     if (pointerId === null || !tabContainer.value) return
     try { tabContainer.value.releasePointerCapture(pointerId) } catch (e) { }
     pointerId = null

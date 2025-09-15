@@ -38,19 +38,19 @@ export const useIndextore = defineStore('navgate', {
             this.acerDark = i
             document.body.classList.toggle('acerDark', i)
         },
-        setAcerDarkDD(){
+        setAcerDarkDD() {
             this.setAcerDark(!this.acerDark)
         },
         setAcerDarkas() {
 
             // 默认跟随系统
-            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+            const prefersDark: boolean | any = window.matchMedia("(prefers-color-scheme: dark)");
             this.setAcerDark(prefersDark.matches)
             //监听系统主题变化 
-            if(prefersDark.addEventListener){
-                prefersDark.addEventListener('change', e => this.setAcerDark(e.matches))
-            }else if (prefersDark?.addListener) {
-                prefersDark.addListene('change', e => this.setAcerDark(e.matches))
+            if (prefersDark.addEventListener) {
+                prefersDark.addEventListener('change', (e: MediaQueryListEvent) => <void>this.setAcerDark(e.matches))
+            } else if (prefersDark?.addListener) {
+                prefersDark.addListene('change', (e: MediaQueryListEvent) => <void>this.setAcerDark(e.matches))
             }
         }
     },

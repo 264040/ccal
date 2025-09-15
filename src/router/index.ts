@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router';
 import { useIndextore } from '@/store/index'
 import { nextTick } from 'vue';
 const Home = () => import('@/views/Home.vue');
@@ -33,8 +33,7 @@ const routes = [
         },
         component: ContentView,
         // 单个路由守卫写在路由的配置对象中，只能对当前路由起效,是对象中函数
-        beforeEnter: (to, from, next) => {
-
+        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: any) => {
           next()
         }
       },
@@ -93,7 +92,7 @@ router.beforeEach((to, from, next) => {
 
 })
 router.afterEach((to, from, failure) => {
-  const store = useIndextore();  
-  setTimeout(() => store.setIsloading(false), 3000) 
+  const store = useIndextore();
+  setTimeout(() => store.setIsloading(false), 3000)
 })
 export default router;
