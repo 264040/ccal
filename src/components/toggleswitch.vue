@@ -8,7 +8,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useIndextore } from '@/store'
 const store = useIndextore()
 
@@ -22,7 +22,7 @@ const toggleTheme = () => {
 <style scoped>
 /* 外层开关 */
 .toggle-switch {
-    width: 50px;
+    width: 48px;
     height: 28px;
     background: var(--bg-toggle, #e0e0e0);
     border-radius: 50px;
@@ -56,7 +56,7 @@ const toggleTheme = () => {
 
 /* Dark 模式 */
 .toggle-switch.dark {
-    background: #27272a;
+    background: #333030;
 }
 
 .toggle-switch.dark .toggle-thumb {

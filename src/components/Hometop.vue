@@ -143,9 +143,9 @@ onMounted(() => { });
     align-items: center;
     border-radius: 2rem;
     padding: .3rem;
-    background: var(--acer-navavt-box-ground);
+    /* background: var(--acer-navavt-box-ground); */
     color: white;
-    box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3); */
 }
 
 .ellipsis-container {
@@ -271,9 +271,10 @@ onMounted(() => { });
 }
 
 .user-avatar {
-    background-color: #4361ee;
+    /* background-color: #4361ee; */
     color: white;
     width: 40px;
     height: 40px;
+        box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
 }
 </style>

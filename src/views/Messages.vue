@@ -48,10 +48,17 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
-
-const cards = ref<Array>([
+interface cardsTYPE {
+    category:string,
+    title:string,
+    rating:Number,
+    icon:String,
+    bg:string,
+    avatars:string[]
+}
+const cards = ref<cardsTYPE[]>([
     {
         category: "Tech & Software",
         title: "Designing Seamless User Experiences",

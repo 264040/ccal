@@ -11,7 +11,8 @@ export const useIndextore = defineStore('navgate', {
         scrollTopAcer: 0,
         pageClientHeight: 0, //屏幕高度
         isLoading: false,
-        acerDark: false, // 设置主题
+        acerDark: false, // 设置主题,
+        scrollTAPLIST: 0, // 设置x坐标
     }),
     getters: {
         indexkey: state => state.index,
@@ -19,7 +20,9 @@ export const useIndextore = defineStore('navgate', {
         GetPageClientHeight: state => state.pageClientHeight,
         GetScrollTopAcer: state => state.scrollTopAcer,
         GetisLoading: state => state.isLoading,
-        GetacerDark: stare => stare.acerDark
+        GetacerDark: stare => stare.acerDark,
+        GetscrollTAPLIST: stare => stare.scrollTAPLIST
+
     },
     actions: {
         setindexkey(i: number) {
@@ -52,6 +55,9 @@ export const useIndextore = defineStore('navgate', {
             } else if (prefersDark?.addListener) {
                 prefersDark.addListene('change', (e: MediaQueryListEvent) => <void>this.setAcerDark(e.matches))
             }
+        },
+        setscrollTAPLIST(i: number) {
+            this.scrollTAPLIST = i
         }
     },
     persist: true

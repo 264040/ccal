@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, onUnmounted, watch } from "vue";
+import { onMounted, ref, onUnmounted, watch, KeepAlive } from "vue";
 
 import PaddleCard from "@/components/Homearea/PaddleCard.vue";
 

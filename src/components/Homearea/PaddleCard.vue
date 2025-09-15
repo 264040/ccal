@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <Tabs :value="routeKey">
-            <TabList>
+            <TabList ref="tabListRef" class="aws">
                 <Tab v-for="tab in items" :key="tab.label" :value="tab.route" @click="afn(tab.route)">
                     <div v-ripple class="flex items-center gap-2 text-inherit">
                         <!-- <i :class="tab.icon" /> -->
@@ -11,27 +11,40 @@
             </TabList>
         </Tabs>
     </div>
-    
+
 
 </template>
 
-<script setup>
+<script setup lang="ts">
 import router from "@/router";
-import { ref, watch, onUnmounted, onActivated, onMounted } from "vue";
+import { ref, onUnmounted, onActivated, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { useIndextore } from '@/store'
 
-const show = ref(false);
+const store = useIndextore()
 const route = useRoute();
-const routeKey = route.name;
-const activeTab = ref(routeKey);
+const routeKey: string | any = route.name;
 
+const tabListRef = ref<HTMLElement | null>(null)
+
+
+
+
+ 
 onUnmounted(() => {
     // 调用时机为组件卸载时
     console.log(`调用时机为组件卸载时`);
 });
 onMounted(() => {
-    // 页面加载时的逻辑
-    show.value = true;
+    // 页面加载时的逻辑 
+    let ElmentBOX = tabListRef.value as HTMLElement | any;
+    let el = ElmentBOX.$el.querySelector('.p-tablist-content')?.querySelector('.p-tablist-tab-list') as HTMLElement | undefined;
+    if (el) {
+        el.scrollLeft = store.GetscrollTAPLIST
+        el.addEventListener("scroll", (e: HTMLElement | any) => {
+            store.setscrollTAPLIST(e.target.scrollLeft)
+        })
+    }
 });
 onActivated(() => {
     // 调用时机为首次挂载
@@ -39,13 +52,6 @@ onActivated(() => {
     // console.log(`我onActivated`, show.value = true);
 });
 
-// 监听路由变化，自动更新选中 tab
-watch(
-    () => route.path,
-    newPath => {
-        activeTab.value = newPath;
-    }
-);
 
 const items = ref([
     { route: "ContentView", label: "推荐", icon: "pi pi-home" },
@@ -53,7 +59,7 @@ const items = ref([
     { route: "RankingView", label: "Transactions", icon: "pi pi-chart-line" }
 ]);
 
-function afn(e) {
+function afn(e: any) {
     /* router.push(`/${e}`);*/
     router.push({ name: e });
 }
@@ -63,6 +69,8 @@ function afn(e) {
     background: none;
     border-style: none;
     padding: 1rem;
+    gap: 1rem;
+    overflow-x: auto;
 }
 
 :deep(.p-tablist-content) {}
@@ -74,7 +82,6 @@ function afn(e) {
 :deep(.p-tab) {
     border-radius: 2rem;
     background: #fff;
-    margin: 0 1rem 0 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-size: 1.2rem;
     min-width: 118px;
@@ -82,7 +89,7 @@ function afn(e) {
     font-family: MyFontAcer;
     font-weight: 500;
     letter-spacing: 1.5px;
-    
+
     border-style: none;
 }
 
@@ -92,6 +99,7 @@ function afn(e) {
     border-bottom-width: 2px;
     transition: transform 0.1s ease-in-out;
     border-style: solid;
+
     :deep(.text-inherit) {
         color: rgb(255, 255, 255);
     }

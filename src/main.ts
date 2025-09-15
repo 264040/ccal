@@ -26,13 +26,7 @@ app.use(router);
 // 使用 PrimeVue 并配置主题
 app.use(PrimeVue, {
   theme: {
-    preset: Aura,
-    options: {
-      prefix: 'p', 
-      cssLayer: false,
-      darkModeSelector: '.my-app-dark',
-      dark: true // 可选，明/暗模式
-    }
+    preset: Aura
     // 可以直接定义覆盖的 CSS 变量
     // rules: {...}
   }

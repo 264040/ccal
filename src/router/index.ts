@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router';
-import { useIndextore } from '@/store/index'
-import { nextTick } from 'vue';
+import { useIndextore } from '@/store/index' 
 const Home = () => import('@/views/Home.vue');
 const ContentView = () => import('@/components/ContentView.vue');
 const BBSView = () => import('@/components/BBSView.vue');
@@ -93,6 +92,6 @@ router.beforeEach((to, from, next) => {
 })
 router.afterEach((to, from, failure) => {
   const store = useIndextore();
-  setTimeout(() => store.setIsloading(false), 3000)
+  setTimeout(() => store.setIsloading(false), 300)
 })
 export default router;

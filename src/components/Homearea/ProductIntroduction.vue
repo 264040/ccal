@@ -22,10 +22,14 @@
 }
 
 :deep(.m-0) {
+    color: var(--acer-topnav-box);
     letter-spacing: 4px;
     line-height: 1.5;
     padding: .9rem 0.75rem 1.5rem;
     font-size: 1.5rem;
+    background: -webkit-linear-gradient(180deg, #42d392 25%, #647eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .p-fieldset {

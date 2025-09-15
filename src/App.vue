@@ -20,18 +20,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="crad-acc">
-        <div class="crad">
-            <Hometop v-if="showTop" />
-            <!-- 主要内容区域，使用 router-view -->
-            <router-view v-slot="{ Component, route }">
-                <component :is="Component" :key="route.name" />
-            </router-view>
+    <KeepAlive>
+        <div class="crad-acc">
+            <div class="crad">
+                <Hometop v-if="showTop" />
+                <!-- 主要内容区域，使用 router-view -->
+                <router-view v-slot="{ Component, route }">
+                    <component :is="Component" :key="route.name" />
+                </router-view>
 
-            <!-- 底部导航栏组件 -->
-            <AppBottomNavigation />
+                <!-- 底部导航栏组件 -->
+                <AppBottomNavigation />
+            </div>
         </div>
-    </div>
+    </KeepAlive>
 </template>
 
 <style scoped>

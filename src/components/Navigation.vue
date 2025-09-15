@@ -1,26 +1,32 @@
 <template>
     <div class="bottom-navigation">
-        <TabMenu :model="items" :activeIndex="store.indexkey"/>
+        <TabMenu :model="items" :activeIndex="store.indexkey" />
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import TabMenu from "primevue/tabmenu";
-import { useIndextore } from '@/store/index' 
+import { useIndextore } from '@/store/index'
 
- 
 
-const router = useRouter();  
+
+const router = useRouter();
 
 // 在组件内部的任何地方均可以访问变量 `store` ✨
-const store = useIndextore() 
+const store = useIndextore()
 
+interface itemsTYPE {
+    route: string;
+    label?: string; // 可选属性
+    icon: string; 
+    command: (e: any ) => void;
+    activeIndex: number;
+}
 
- 
 // 定义导航项
-const items = ref([
+const items = ref<itemsTYPE[]>([
     {
         route: '/',
         // label: "首页",
@@ -36,7 +42,7 @@ const items = ref([
         // label: "消息",
         icon: "pi pi-comments",
         command: (e) => {
-            router.push('/messages');  
+            router.push('/messages');
             store.setindexkey(1)
         },
         activeIndex: 1
@@ -45,9 +51,9 @@ const items = ref([
         route: 'collect',
         // label: "收藏",
         icon: "pi pi-bookmark",
-        command: (e, s) => {
+        command: (e) => {
 
-            router.push('/collect'); 
+            router.push('/collect');
             store.setindexkey(2)
         },
         activeIndex: 2
@@ -56,9 +62,9 @@ const items = ref([
         route: 'profile',
         // label: "我的",
         icon: "pi pi-user",
-        command: (e, s) => {
+        command: (e) => {
 
-            router.push('/profile'); 
+            router.push('/profile');
             store.setindexkey(3)
         },
         activeIndex: 3
@@ -70,11 +76,11 @@ const items = ref([
 
 
 <style scoped>
-
 :deep(.p-tabmenu-item-icon) {
     font-size: 1.3rem;
     color: var(--acer-nav-ground-icon-style);
 }
+
 .bottom-navigation {
     position: fixed;
     display: flex;
@@ -88,7 +94,7 @@ const items = ref([
     border-radius: 50px;
     background: none;
     transition:
-         bottom 0.5s ease-out,
+        bottom 0.5s ease-out,
         transform 0.5s ease-in-out,
         padding 0.5s;
 }
@@ -99,31 +105,36 @@ const items = ref([
     gap: 0;
     display: flex;
     justify-content: center;
-    align-items: center;height: 100%;
+    align-items: center;
+    height: 100%;
 }
 
 
 
 :deep(.p-tabmenu-item) {
     height: 60px;
-    background: transparent; 
+    background: transparent;
     border-radius: 2rem;
     width: 60px;
     overflow: hidden;
 }
+
 :deep(.p-tabmenu-item-active .p-tabmenu-item-link) {
     background-color: #333030;
-    border-radius: 2rem; 
-    transition: transform  0.5s ease; 
+    border-radius: 2rem;
+    transition: transform 0.5s ease;
 }
+
 :deep(.p-tabmenu-item-link:active) {
     transform: scale(.9);
 }
-:deep(.p-tabmenu-active-bar){
+
+:deep(.p-tabmenu-active-bar) {
     opacity: 0;
-        width: 0!important;
-    left: 0!important;
+    width: 0 !important;
+    left: 0 !important;
 }
+
 :deep(.p-tabmenu) {
     /* background-color: #fff;
     border: 0px solid #e5e7eb; */
@@ -168,7 +179,7 @@ const items = ref([
 /* 响应式设计 */
 /* 小屏 */
 @media (max-width: 768px) {
-    .bottom-navigation{
+    .bottom-navigation {
         bottom: 3%;
     }
 }
@@ -190,6 +201,6 @@ const items = ref([
 
     :deep(.p-tabmenu-tablist) {}
 
-    
+
 }
 </style>
