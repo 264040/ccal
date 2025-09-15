@@ -1,0 +1,1 @@
+import{C as e,F as t,Q as n,f as r}from"./index-qVpZt7F3.js";const i={};function a(r,i){return n(),t(`div`,null,[...i[0]||=[e(`h1`,null,`Ranking 111View`,-1)]])}var o=r(i,[[`render`,a]]);export{o as default};
