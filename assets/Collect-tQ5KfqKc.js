@@ -1,1 +1,0 @@
-import{C as e,F as t,Q as n,f as r}from"./index-qVpZt7F3.js";const i={},a={class:`page`};function o(r,i){return n(),t(`div`,a,[...i[0]||=[e(`h1`,null,`收藏页`,-1),e(`p`,null,`这里是收藏列表`,-1)]])}var s=r(i,[[`render`,o],[`__scopeId`,`data-v-fc270f14`]]);export{s as default};
