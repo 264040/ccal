@@ -246,7 +246,7 @@ function onPointerUp(ev: PointerEvent):void {
 
 <style scoped>
 :deep(.p-button-text) {
-    color: var(--acer-color);
+    
 }
 
 :deep(.p-button-text:not(:disabled):hover) {
@@ -257,6 +257,7 @@ function onPointerUp(ev: PointerEvent):void {
 
 :deep(.p-button) {
     border: none;
+    color: var(--acer-color);
     background: var(--acer-btnground);
     width: 50px;
     height: 50px !important;
