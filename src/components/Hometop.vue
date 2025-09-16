@@ -206,13 +206,14 @@ onMounted(() => { });
     height: 50px;
     align-items: center;
 
+    transition: box-shadow 0.3s, color 0.3s cubic-bezier(0.4, 0, 1, 1);
     box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
 }
 
 :deep(.p-button-text:not(:disabled):hover) {
-    background: #262927;
-    color: #ffffff;
-    box-shadow: 0 0 10px #35b981;
+    /* background: #262927; */
+    /* color: #ffffff;  */
+    box-shadow: 0 0 10px rgb(255 255 255);
 }
 
 .pi-ellipsis-v:before {
@@ -275,6 +276,6 @@ onMounted(() => { });
     color: white;
     width: 40px;
     height: 40px;
-        box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 5px 20px 2px rgba(0, 0, 0, 0.3);
 }
 </style>

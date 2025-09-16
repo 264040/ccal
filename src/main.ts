@@ -11,17 +11,16 @@ import 'primeicons/primeicons.css' // 图标样式仍然需要单独引入
 // import './thenes_acer/drak_acer.css'
 
 import piniaPersist from 'pinia-plugin-persistedstate'
-import axios from 'axios';
-
+// 创建 Pinia 实例
 const pinia = createPinia()
+// 创建应用
 const app = createApp(App)
 
 
-app.config.globalProperties.$axios = axios;
-
-pinia.use(piniaPersist)
+// 先安装 Pinia
 app.use(pinia)
-app.use(router);
+pinia.use(piniaPersist)
+app.use(router)
 
 // 使用 PrimeVue 并配置主题
 app.use(PrimeVue, {
@@ -32,4 +31,5 @@ app.use(PrimeVue, {
   }
 })
 
+// 然后再挂载应用
 app.mount('#app')

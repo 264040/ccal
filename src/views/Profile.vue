@@ -85,7 +85,7 @@ const store = useIndextore()
 
 const router = useRouter()
 function goBack(): void {
-    router.push('/')
+    router.push({name:store.GetchildPath})
     store.setindexkey(0)
 }
 

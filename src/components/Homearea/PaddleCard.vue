@@ -1,8 +1,8 @@
 <template>
     <div class="card">
-        <Tabs :value="routeKey">
+        <Tabs :value="route.name as string">
             <TabList ref="tabListRef" class="aws">
-                <Tab v-for="tab in items" :key="tab.label" :value="tab.route" @click="afn(tab.route)">
+                <Tab v-for="tab in items" :key="tab.label" :value="tab.route" @click="routeBack(tab.route)">
                     <div v-ripple class="flex items-center gap-2 text-inherit">
                         <!-- <i :class="tab.icon" /> -->
                         {{ tab.label }}
@@ -30,21 +30,18 @@ const tabListRef = ref<HTMLElement | null>(null)
 
 
 
- 
+
 onUnmounted(() => {
     // 调用时机为组件卸载时
-    console.log(`调用时机为组件卸载时`);
+    // console.log(`调用时机为组件卸载时`);
 });
 onMounted(() => {
     // 页面加载时的逻辑 
     let ElmentBOX = tabListRef.value as HTMLElement | any;
-    let el = ElmentBOX.$el.querySelector('.p-tablist-content')?.querySelector('.p-tablist-tab-list') as HTMLElement | undefined;
-    if (el) {
-        el.scrollLeft = store.GetscrollTAPLIST
-        el.addEventListener("scroll", (e: HTMLElement | any) => {
-            store.setscrollTAPLIST(e.target.scrollLeft)
-        })
-    }
+    let elChild = ElmentBOX.$el.querySelector('.p-tablist-content')?.querySelector('.p-tablist-tab-list') as HTMLElement | undefined;
+
+    elChild && elChild.addEventListener("scroll", (e: HTMLElement | any) => store.setscrollTAPLIST(e.target.scrollLeft))
+    elChild && (elChild.scrollLeft = store.GetscrollTAPLIST)
 });
 onActivated(() => {
     // 调用时机为首次挂载
@@ -59,8 +56,7 @@ const items = ref([
     { route: "RankingView", label: "Transactions", icon: "pi pi-chart-line" }
 ]);
 
-function afn(e: any) {
-    /* router.push(`/${e}`);*/
+function routeBack(e: any) {
     router.push({ name: e });
 }
 </script>

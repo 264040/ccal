@@ -1,9 +1,13 @@
 <template>
-  <Transition name="slide-fade">
-    <div class="content-container" v-show="sawdw" ref="acer_data_scroll">
+
+  <div v-if="store.GetisLoading" class="skeletons_acer_acer">
+    <Skeletons v-for="n in 6" />
+  </div>
+  <Transition v-else name="slide-fade">
+    <div class="content-container" ref="acer_data_scroll">
       <!-- 内容区 -->
       <div class="card-grid">
-        <div v-for="(post, index) in visibleData" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
+        <div v-for="(post, index) in store.GetPosts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
           <div class="card-header">
             <h3 class="post-title">{{ post.title }}</h3>
             <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar"
@@ -44,61 +48,43 @@
         </div>
       </div>
       <!-- 底部占位 -->
-      <div ref="target" :style="{ height: paddingBottom + 'px' }"></div>
+      <!-- <div ref="target" :style="{ height: paddingBottom + 'px' }"></div> -->
     </div>
-  </Transition>
+  </Transition> 
 </template>
 
-<script setup>
-import { ref, onMounted, getCurrentInstance, computed } from "vue";
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
 import { useIndextore } from "@/store/index";
+import Skeletons from '@/components/SkeletonComponent/Skeleton.vue'
 
 const store = useIndextore();
 
-const { $axios } = getCurrentInstance().appContext.config.globalProperties
 
-
-const sawdw = ref(false);
 const acer_data_scroll = ref(null);
-const posts = ref([])
-const isLoading = ref(false)
 
 
 
-const fetchData = async () => {
-  // 模拟从服务器获取数据 
-
-  try {
-    const dates = await $axios.get('/json/kp.json')// 新数据
-    if (dates.status === 200) {
-      posts.value = dates.data
-    }
-  } catch (error) {
-    console.log(error, 100);
-
-  }
-
-};
 
 //  props.overscan>展示数量
-const total = computed(() => posts.value.length)
+// const total = computed(() => posts.value.length)
 // console.log(total, '数据长度');
 
-const visibleCount = computed(() => Math.ceil(store.GetPageClientHeight / 50) + 6)
+// const visibleCount = computed(() => Math.ceil(store.GetPageClientHeight / 50) + 6)
 // console.log(visibleCount, '容器高度');
 
-const start = computed(() => Math.max(0, Math.floor(store.GetScrollTopAcer / store.GetPageClientHeight) - 6))
+// const start = computed(() => Math.max(0, Math.floor(store.GetScrollTopAcer / store.GetPageClientHeight) - 6))
 
-const end = computed(() => Math.min(total.value, start.value + visibleCount.value))
+// const end = computed(() => Math.min(total.value, start.value + visibleCount.value))
 
-const visibleData = computed(() => posts.value.slice(0, 6))
+// const visibleData = computed(() => posts.value.slice(0, 6))
 // console.log("处理后的数据：", visibleData);
 
-const paddingTop = computed(() => start.value * store.GetPageClientHeight / 6)
+// const paddingTop = computed(() => start.value * store.GetPageClientHeight / 6)
 
-const paddingBottom = computed(() => (total.value - end.value) * store.GetPageClientHeight / 6)
+// const paddingBottom = computed(() => (total.value - end.value) * store.GetPageClientHeight / 6)
 
 // console.log(paddingTop, paddingBottom, '12');
 
@@ -111,16 +97,10 @@ const paddingBottom = computed(() => (total.value - end.value) * store.GetPageCl
 
 const target = ref(null)
 let observer
-onMounted(async () => {
+onMounted(async() => {
+  await store.setPosts()
 
-
-  // 页面加载时的逻辑 
-  setTimeout(() => {
-    fetchData()
-    sawdw.value = true
-
-  }, 100);
-
+  // 页面加载时的逻辑   
 
 
 

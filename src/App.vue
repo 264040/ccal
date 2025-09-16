@@ -10,8 +10,8 @@ const router = useRoute();
 
 const showTop = computed(() => router.meta.showTop === true)
 onMounted(() => {
-    store.setAcerDarkas()
-
+    store.setAcerDarkas() 
+    
 });
 
 

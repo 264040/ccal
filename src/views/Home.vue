@@ -3,17 +3,16 @@
 
         <ProductIntroduction />
         <PaddleCard />
-        <router-view v-slot="{ Component, route }" v-if="!store.GetisLoading">
-            <component :is="Component" :key="route.name" />
+        <router-view v-slot="{ Component, route }">
+            <KeepAlive>
+                <component :is="Component" :key="route.name" />
+            </KeepAlive>
         </router-view>
-        <div v-if="store.GetisLoading" class="skeletons_acer_acer">
-            <Skeletons v-for="n in 6" />
-        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, onUnmounted, watch, KeepAlive } from "vue";
+import { onMounted, ref, onUnmounted, watchEffect, nextTick } from "vue";
 
 import PaddleCard from "@/components/Homearea/PaddleCard.vue";
 
@@ -21,11 +20,14 @@ import ProductIntroduction from "@/components/Homearea/ProductIntroduction.vue";
 
 import { useIndextore } from "@/store/index";
 
-import Skeletons from "@/components/SkeletonComponent/Skeleton.vue";
+import { useRoute, useRouter } from "vue-router";
+const router = useRouter()
+const route = useRoute()
+
 
 
 const store = useIndextore();
-const page = ref<any>(null);
+const page = ref<HTMLDivElement | null>(null);
 
 
 
@@ -37,11 +39,22 @@ const handleScroll = (event: any) => {
     store.setScrollTopAcer(windowSCC);
 };
 
-onMounted(() => {
-    store.setScrollTopAcer(0);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    store.setPageClientHeight(page.value.clientHeight);
+onMounted(async () => { 
+ 
+    route.name === 'Home' && router.replace({ name: 'ContentView' });
+    //  router.push(store.GetchildPath)
+    nextTick(() => {
+        // 恢复上次滚动位置
+        page.value && (page.value.scrollTop = store.scrollTopAcer);
+    })
+
+
 });
+
+watchEffect(() => {
+    // 保存最新的子路由
+    store.setChildPath(route.name)
+})
 
 onUnmounted(() => { });
 </script>

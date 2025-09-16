@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router';
-import { useIndextore } from '@/store/index' 
+import { createRouter, createWebHistory } from 'vue-router';
+ 
 const Home = () => import('@/views/Home.vue');
 const ContentView = () => import('@/components/ContentView.vue');
 const BBSView = () => import('@/components/BBSView.vue');
@@ -21,8 +21,7 @@ const routes = [
       index: 0,
       showTop: true, // 显示顶部导航栏
       keepAlive: true // 需要缓存 
-    }, // 添加索引，用于判断当前路由
-    redirect: { name: 'ContentView' },
+    }, // 添加索引，用于判断当前路由 
     children: [
       {
         path: 'ContentView', // 默认子路由  推荐页
@@ -30,11 +29,7 @@ const routes = [
         meta: {
           keepAlive: true // 需要缓存 
         },
-        component: ContentView,
-        // 单个路由守卫写在路由的配置对象中，只能对当前路由起效,是对象中函数
-        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized, next: any) => {
-          next()
-        }
+        component: ContentView
       },
       // 你可以在这里添加更多子路由
       {
@@ -72,26 +67,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    // return 期望滚动到哪个的位置 
-    const store = useIndextore();
-
-    return {
-      top: store.GetScrollTopAcer,
-      behavior: 'smooth',
+  scrollBehavior(to,from,savedPosition){
+    if (savedPosition) {
+      console.log(savedPosition,'ssss');
+      
+      return savedPosition
     }
+    return {top:0}
   }
 });
 
-router.beforeEach((to, from, next) => {
-  const store = useIndextore();
-  store.setScrollTopAcer(window.scrollY)
-  store.setIsloading(true)
-  next()
-
-})
-router.afterEach((to, from, failure) => {
-  const store = useIndextore();
-  setTimeout(() => store.setIsloading(false), 300)
-})
 export default router;

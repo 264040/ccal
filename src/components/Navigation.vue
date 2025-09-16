@@ -32,7 +32,7 @@ const items = ref<itemsTYPE[]>([
         // label: "首页",
         icon: "pi pi-home",
         command: (e) => {
-            router.push('/');
+            router.push({name:store.GetchildPath});
             store.setindexkey(0)
         },
         activeIndex: 0
