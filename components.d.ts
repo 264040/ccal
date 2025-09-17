@@ -30,6 +30,7 @@ declare module 'vue' {
     Tabs: typeof import('primevue/tabs')['default']
     TieredMenu: typeof import('primevue/tieredmenu')['default']
     Toggleswitch: typeof import('./src/components/toggleswitch.vue')['default']
+    VirtualScroller: typeof import('primevue/virtualscroller')['default']
   }
   export interface GlobalDirectives {
     Ripple: typeof import('primevue/ripple')['default']

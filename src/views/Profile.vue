@@ -85,7 +85,7 @@ const store = useIndextore()
 
 const router = useRouter()
 function goBack(): void {
-    router.push({name:store.GetchildPath})
+    router.push({ name: store.GetchildPath })
     store.setindexkey(0)
 }
 
@@ -170,7 +170,7 @@ function goToIndex(index: number): void {
 }
 
 /* POINTER event handlers - unified for touch & mouse */
-function onPointerDown(ev: PointerEvent):void {
+function onPointerDown(ev: PointerEvent): void {
     if (!tabContainer.value) return
     // only left-button for mouse, pointerdown for touch is fine
     if (ev.pointerType === 'mouse' && ev.button !== 0) return
@@ -186,7 +186,7 @@ function onPointerDown(ev: PointerEvent):void {
     updateContainerWidth()
 }
 
-function onPointerMove(ev: PointerEvent):void {
+function onPointerMove(ev: PointerEvent): void {
     if (pointerId === null || ev.pointerId !== pointerId || !tabContainer.value) return
 
     const x = ev.clientX
@@ -219,7 +219,7 @@ function onPointerMove(ev: PointerEvent):void {
     lastDeltaX = dx
 }
 
-function onPointerUp(ev: PointerEvent):void {
+function onPointerUp(ev: PointerEvent): void {
     if (pointerId === null || !tabContainer.value) return
     try { tabContainer.value.releasePointerCapture(pointerId) } catch (e) { }
     pointerId = null
@@ -244,10 +244,16 @@ function onPointerUp(ev: PointerEvent):void {
 }
 </script>
 
+
+
+
+
+
+
+
+
 <style scoped>
-:deep(.p-button-text) {
-    
-}
+:deep(.p-button-text) {}
 
 :deep(.p-button-text:not(:disabled):hover) {
 
@@ -260,13 +266,19 @@ function onPointerUp(ev: PointerEvent):void {
     color: var(--acer-color);
     background: var(--acer-btnground);
     width: 50px;
-    height: 50px !important;
+    height: 50px;
 }
 
 .goacer {
-
+    width: 40px;
+    height: 40px;
     color: var(--acer-color);
     background: var(--acer-icon-ground);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.goacer:not(:disabled):hover {
+    box-shadow: 0 0 10px rgb(255 255 255);
 }
 
 .like-title {
@@ -483,6 +495,10 @@ function onPointerUp(ev: PointerEvent):void {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     padding: 12px;
+}
+
+.goacer> :deep(.pi) {
+    font-size: .8rem;
 }
 
 /* responsive */

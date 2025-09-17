@@ -24,7 +24,7 @@
     </div>
 
 
-    <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup :style="SSSaa" />
+    <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup :style="SSSaa"  />
 </template>
 
 <script setup>
@@ -37,8 +37,7 @@ import toggleswitch from '@/components/toggleswitch.vue'
 
 const router = useRouter();
 const store = useIndextore();
-const headerAcer = ref();
-const ad = store.GetscrollTopAcer;
+const headerAcer = ref(); 
 // 滚动 100px 完全隐藏
 const HIDE_THRESHOLD = 100;
 // 根据滚动值计算比例 (0 ~ 1)
@@ -66,7 +65,7 @@ const opacity = computed(() => 1 - progress.value);
 const SSSaa = ref({
     top: "65px !important",
     left: ".8rem !important",
-    'z-index': '20000'
+    'z-index': '20000',
 });
 
 const menu = ref();
@@ -102,7 +101,7 @@ const items = ref([
             router.push("/collect");
             store.setindexkey(2);
         },
-        activeIndex: 2
+        activeIndex: 2,
     },
     {
         route: "profile",
@@ -211,7 +210,7 @@ onMounted(() => { });
 }
 
 :deep(.p-button-text:not(:disabled):hover) {
-    /* background: #262927; */
+    background: #262927;
     /* color: #ffffff;  */
     box-shadow: 0 0 10px rgb(255 255 255);
 }

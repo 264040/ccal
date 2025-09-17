@@ -18,7 +18,7 @@ const routes = [
     name: 'Home',
     component: Home, // 懒加载
     meta: {
-      index: 0,
+      index: 0 as number | unknown,
       showTop: true, // 显示顶部导航栏
       keepAlive: true // 需要缓存 
     }, // 添加索引，用于判断当前路由 
@@ -48,19 +48,19 @@ const routes = [
     path: '/messages',
     name: 'Messages',
     component: Messages,
-    meta: { index: 1 }
+    meta: { index: 1 as number | unknown }
   },
   {
     path: '/collect',
     name: 'Collect',
     component: Collect,
-    meta: { index: 2 }
+    meta: { index: 2 as number | unknown }
   },
   {
     path: '/profile',
     name: 'Profile',
     component: Profile,
-    meta: { index: 3 }
+    meta: { index: 3 as number | unknown }
   }
 ];
 

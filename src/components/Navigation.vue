@@ -1,73 +1,72 @@
 <template>
     <div class="bottom-navigation">
-        <TabMenu :model="items" :activeIndex="store.indexkey" />
+        <TabMenu :model="items" :activeIndex="(store.Getindexkey as number)" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import TabMenu from "primevue/tabmenu";
 import { useIndextore } from '@/store/index'
 
 
-
 const router = useRouter();
-
-// 在组件内部的任何地方均可以访问变量 `store` ✨
+const route = useRoute()
+ 
 const store = useIndextore()
 
 interface itemsTYPE {
     route: string;
     label?: string; // 可选属性
-    icon: string; 
-    command: (e: any ) => void;
-    activeIndex: number;
+    icon: string;
+    command: (e: any) => void;
+    activeIndex?: number | unknown;
 }
+
+watch(() => route.meta.index, (n) => { 
+    // 监听路由meta.index变化来修改导航栏选定状态
+    store.setindexkey(n) 
+})
+
 
 // 定义导航项
 const items = ref<itemsTYPE[]>([
     {
-        route: '/',
+        route: '/Home',
         // label: "首页",
         icon: "pi pi-home",
         command: (e) => {
-            router.push({name:store.GetchildPath});
-            store.setindexkey(0)
-        },
-        activeIndex: 0
+            router.replace({ name: store.GetchildPath });
+            // store.setindexkey(0)
+        }
     },
     {
         route: 'messages',
         // label: "消息",
         icon: "pi pi-comments",
         command: (e) => {
-            router.push('/messages');
-            store.setindexkey(1)
-        },
-        activeIndex: 1
+            router.replace('/messages');
+            // store.setindexkey(1)
+        }
     },
     {
         route: 'collect',
         // label: "收藏",
         icon: "pi pi-bookmark",
-        command: (e) => {
-
-            router.push('/collect');
-            store.setindexkey(2)
-        },
-        activeIndex: 2
+        command: (e) => { 
+            router.replace('/collect');
+            // store.setindexkey(2)
+        }
     },
     {
         route: 'profile',
         // label: "我的",
         icon: "pi pi-user",
-        command: (e) => {
-
-            router.push('/profile');
-            store.setindexkey(3)
-        },
-        activeIndex: 3
+        command: (e) => { 
+            router.replace('/profile');
+            // store.setindexkey(3)
+        }
     }
 ]);
 </script>
@@ -122,7 +121,7 @@ const items = ref<itemsTYPE[]>([
 :deep(.p-tabmenu-item-active .p-tabmenu-item-link) {
     background-color: #333030;
     border-radius: 2rem;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
 }
 
 :deep(.p-tabmenu-item-link:active) {

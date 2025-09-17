@@ -22,7 +22,7 @@ interface TYPEposts {
 
 export const useIndextore = defineStore('navgate', {
     state: () => ({
-        index: 0,  // 底部导航栏需要
+        index: 0 as number | unknown,  // 底部导航栏需要
         scrollTopAcer: 0,
         pageClientHeight: 0, //屏幕高度
         isLoading: true,
@@ -32,7 +32,7 @@ export const useIndextore = defineStore('navgate', {
         HomeChildPathName: '' as any, // 记录Home页的最后一个子路由路径
     }),
     getters: {
-        indexkey: state => state.index,
+        Getindexkey: state => state.index,
         GetscrollTopAcer: state => state.scrollTopAcer,
         GetPageClientHeight: state => state.pageClientHeight,
         GetScrollTopAcer: state => state.scrollTopAcer,
@@ -44,7 +44,7 @@ export const useIndextore = defineStore('navgate', {
 
     },
     actions: {
-        setindexkey(i: number) {
+        setindexkey(i: number|unknown) {
             this.index = i;
         },
         setScrollTopAcer(i: number) {
@@ -99,7 +99,7 @@ export const useIndextore = defineStore('navgate', {
             }
 
         },
-        setChildPath(i: string | undefined | any) {
+        setChildPath(i: string | unknown) {
             this.HomeChildPathName = i
         }
     },
