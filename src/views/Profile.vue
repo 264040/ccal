@@ -498,7 +498,7 @@ function onPointerUp(ev: PointerEvent): void {
 }
 
 .goacer> :deep(.pi) {
-    font-size: .8rem;
+    font-size: .9rem;
 }
 
 /* responsive */

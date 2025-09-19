@@ -201,8 +201,8 @@ onMounted(() => { });
     background: #333030;
     color: #ffffff;
     border-radius: 2rem;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     align-items: center;
 
     transition: box-shadow 0.3s, color 0.3s cubic-bezier(0.4, 0, 1, 1);
@@ -216,9 +216,11 @@ onMounted(() => { });
 }
 
 .pi-ellipsis-v:before {
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
-
+.pi-bell:before{
+    font-size: 1rem;
+} 
 :deep(.p-button-text:not(:disabled):active) {
     transform: scale(.95);
 }

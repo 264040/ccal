@@ -50,7 +50,7 @@
       <!-- 底部占位 -->
       <!-- <div ref="target" :style="{ height: paddingBottom + 'px' }"></div> -->
     </div>
-  </Transition> 
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -97,7 +97,7 @@ const acer_data_scroll = ref(null);
 
 const target = ref(null)
 let observer
-onMounted(async() => {
+onMounted(async () => {
   await store.setPosts()
 
   // 页面加载时的逻辑   
@@ -287,7 +287,8 @@ onMounted(async() => {
 }
 
 .card-content {
-  margin-bottom: 1.25rem;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
   position: relative;
   z-index: 3;
   max-width: 80%;
@@ -401,6 +402,9 @@ onMounted(async() => {
 
   .post-card {
     height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .card-footer {
@@ -427,7 +431,10 @@ onMounted(async() => {
 
   .post-card {
     border-radius: 2rem;
+    display: flex;
     height: 220px;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .card-footer {
