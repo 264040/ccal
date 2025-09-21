@@ -44,7 +44,7 @@
             <!--<div class="post-author">{{ post.author }}</div>-->
           </div>
           <!-- 背景元素用于毛玻璃效果 -->
-          <div class="card-bg"></div>
+          <!-- <div class="card-bg"></div> -->
         </div>
       </div>
       <!-- 底部占位 -->
@@ -189,7 +189,6 @@ onMounted(async () => {
   padding: 0 0 5rem;
 
 
-
 }
 
 .post-card {
@@ -202,6 +201,8 @@ onMounted(async () => {
     transform 0.3s ease,
     box-shadow 0.3s ease;
   z-index: 1;
+  background: var(--acer-crad-back);
+  backdrop-filter: blur(10px);
 }
 
 .card-txl {
@@ -307,7 +308,7 @@ onMounted(async () => {
   font-size: 1.25rem;
   font-weight: 600;
   margin: auto 0rem;
-  color: #fff;
+  color: var(--acer-crad-text-color);
   text-shadow: 0 1px 5px rgba(255, 255, 255, 0.3);
   transition:
     all 0.3s ease-out,
@@ -316,7 +317,7 @@ onMounted(async () => {
 }
 
 .post-text {
-  color: rgba(255, 255, 255);
+  color: var(--acer-crad-text-color);
   line-height: 1.6;
   text-shadow: 0 1px 5px rgba(255, 255, 255, 0.3);
   overflow: hidden;
@@ -342,7 +343,7 @@ onMounted(async () => {
 
 .reaction-btn {
   color: rgb(255, 255, 255) !important;
-  background: rgba(2, 2, 2, 0.7) !important;
+  background: rgb(51 199 145) !important;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2) !important;

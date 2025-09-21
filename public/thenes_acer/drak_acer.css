@@ -12,7 +12,8 @@
     --acer-topnav-box:#ffffff;
     --acer-kp-dround:#cecece;/*懒加载卡片背景*/
     --acer-kp-text:linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);/*懒加载卡片内容*/
-
+    --acer-crad-text-color:#27272a;
+    --acer-crad-back:#ffffffc7;
 
 }
 
@@ -31,6 +32,9 @@ body.acerDark{
     --acer-navavt-box-ground:#333030;
     --acer-kp-dround:#222224; /*懒加载卡片背景*/
     --acer-kp-text:linear-gradient(90deg, #3e3e40 25%, #444445 37%, #3e3e40 63%);/*懒加载卡片内容*/
+    
+    --acer-crad-text-color:#ffffff;
+    --acer-crad-back:#27272ac7;
 }
 body{
     background: var(--acer-ground);
