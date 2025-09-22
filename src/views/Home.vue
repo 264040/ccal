@@ -4,7 +4,7 @@
         <ProductIntroduction />
         <PaddleCard />
         <router-view v-slot="{ Component, route }">
-            <KeepAlive>
+            <KeepAlive include="ContentView">
                 <component :is="Component" :key="route.name" />
             </KeepAlive>
         </router-view>
@@ -39,8 +39,8 @@ const handleScroll = (event: any) => {
     store.setScrollTopAcer(windowSCC);
 };
 
-onMounted(async () => { 
- 
+onMounted(async () => {
+
     route.name === 'Home' && router.replace({ name: 'ContentView' });
     //  router.push(store.GetchildPath)
     nextTick(() => {
@@ -67,5 +67,4 @@ onUnmounted(() => { });
     height: 100vh;
     /* background: var(--acer-ground); */
 }
-
 </style>

@@ -1,9 +1,9 @@
 <template>
 
-  <div v-if="store.GetisLoading" class="skeletons_acer_acer">
+  <!-- <div v-if="store.GetisLoading" class="skeletons_acer_acer">
     <Skeletons v-for="n in 6" />
-  </div>
-  <Transition v-else name="slide-fade">
+  </div> -->
+  <Transition name="slide-fade">
     <div class="content-container" ref="acer_data_scroll">
       <!-- 内容区 -->
       <div class="card-grid">
@@ -46,9 +46,11 @@
           <!-- 背景元素用于毛玻璃效果 -->
           <!-- <div class="card-bg"></div> -->
         </div>
+
+        <Skeletons v-if="store.GetisLoading" v-for="n in 6" />
       </div>
       <!-- 底部占位 -->
-      <!-- <div ref="target" :style="{ height: paddingBottom + 'px' }"></div> -->
+      <div ref="target" :style="{ height: '190px' }"></div>
     </div>
   </Transition>
 </template>
@@ -64,7 +66,8 @@ const store = useIndextore();
 
 
 const acer_data_scroll = ref(null);
-
+const loodingacer = ref<boolean>(false)
+const pageindex = ref<number>(1)
 
 
 
@@ -97,9 +100,11 @@ const acer_data_scroll = ref(null);
 
 const target = ref(null)
 let observer
-onMounted(async () => {
-  await store.setPosts()
+onMounted( () => {
+  // await store.setPosts()
 
+   
+   !store.GetPosts.length && store.setPosts(pageindex.value); 
   // 页面加载时的逻辑   
 
 
@@ -108,15 +113,24 @@ onMounted(async () => {
 
 
 
-  observer = new IntersectionObserver((entries) => {
+  observer = new IntersectionObserver(async (entries) => {
+    // 页面首次进来没数据就会触发该if
     if (entries[0].isIntersecting) {
-      console.log(entries[0], '元素进入可视区域 ✅')
+      store.setIsloading(true)
+      setTimeout(async () => {
+        await store.setPosts(pageindex.value)
+        pageindex.value += 1
+        store.setIsloading(false)
+      }, 2000)
+
     } else {
-      console.log(entries[0], '元素离开可视区域 ❌')
+      // console.log(entries[0], '元素离开可视区域 ❌')
+
+      // loodingacer.value = false
     }
   }, {
     root: null, // 观察相对整个视口
-    threshold: 0.1 // 可见 10% 就算进入
+    threshold: 1 // 可见 100% 就算进入（0~1）
   })
 
   if (target.value) observer.observe(target.value)

@@ -21,6 +21,7 @@ declare module 'vue' {
     PaddleCard: typeof import('./src/components/Homearea/PaddleCard.vue')['default']
     ProductIntroduction: typeof import('./src/components/Homearea/ProductIntroduction.vue')['default']
     ProgressBar: typeof import('primevue/progressbar')['default']
+    ProgressSpinner: typeof import('primevue/progressspinner')['default']
     RankingView: typeof import('./src/components/RankingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

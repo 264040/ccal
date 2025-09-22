@@ -8,8 +8,10 @@ const service = axios.create({
 
 service.interceptors.response.use(
     res => {
-        if (Array.isArray(res.data)) {
+        if (Array.isArray(res.data)) { 
+            
             return res
+            // return []
         } 
 
         return '不是数组' as any

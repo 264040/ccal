@@ -25,10 +25,11 @@ export const useIndextore = defineStore('navgate', {
         index: 0 as number | unknown,  // 底部导航栏需要
         scrollTopAcer: 0,
         pageClientHeight: 0, //屏幕高度
-        isLoading: true,
+        isLoading: false,
         acerDark: false, // 设置主题,
         scrollTAPLIST: 0, // 设置x坐标
         posts: [] as TYPEposts[], //首屏数据加载
+        pages: 0 as number, // 请求页数
         HomeChildPathName: '' as any, // 记录Home页的最后一个子路由路径
     }),
     getters: {
@@ -40,11 +41,12 @@ export const useIndextore = defineStore('navgate', {
         GetacerDark: stare => stare.acerDark,
         GetscrollTAPLIST: stare => stare.scrollTAPLIST,
         GetPosts: stare => stare.posts,
-        GetchildPath: stare => stare.HomeChildPathName
+        GetchildPath: stare => stare.HomeChildPathName,
+        GetPages: stare => stare.pages
 
     },
     actions: {
-        setindexkey(i: number|unknown) {
+        setindexkey(i: number | unknown) {
             this.index = i;
         },
         setScrollTopAcer(i: number) {
@@ -78,24 +80,36 @@ export const useIndextore = defineStore('navgate', {
         setscrollTAPLIST(i: number) {
             this.scrollTAPLIST = i
         },
-        async setPosts() {
+        async setPosts(page: number) {
 
-            if (this.posts.length) return
+            // if (this.posts.length) return
 
-            this.isLoading = true
             try {
-                const dates: any = await getArticles()// 新数据  
-                if (Array.isArray(dates.data)) {
-                    this.posts = dates.data
-                    this.isLoading = false
-                } else {
-                    this.isLoading = true
+                if (!this.posts.length) {
+                    const dates: any = await getArticles()// 首屏加载数据  
+                    if (Array.isArray(dates.data)) {
+                        this.posts = dates.data.slice(0, 8)
+                        console.log('首屏加载');
+                    }
 
+                    this.setIsloading(false)
+                    // this.pages = page;
+                } else {
+
+                    const dates: any = await getArticles()// 滚动加载新数据  
+                    if (Array.isArray(dates.data)) {
+                        this.posts.push(...dates.data.slice(0, 5))
+                        console.log('滚动加载');
+                    }
+                    this.pages = page;
                 }
             } catch (error) {
                 this.isLoading = true
+                this.posts = []
                 console.error(error, 'getArticles');
 
+            } finally {
+                // console.log('我来了');
             }
 
         },
