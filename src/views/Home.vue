@@ -5,7 +5,7 @@
         <PaddleCard />
         <router-view v-slot="{ Component, route }">
             <KeepAlive include="ContentView">
-                <component :is="Component" :key="route.name" />
+                <component  :is="Component" :key="route.name" />
             </KeepAlive>
         </router-view>
     </div>
@@ -39,6 +39,7 @@ const handleScroll = (event: any) => {
     store.setScrollTopAcer(windowSCC);
 };
 
+  
 onMounted(async () => {
 
     route.name === 'Home' && router.replace({ name: 'ContentView' });
@@ -48,7 +49,7 @@ onMounted(async () => {
         page.value && (page.value.scrollTop = store.scrollTopAcer);
     })
 
-
+     
 });
 
 watchEffect(() => {

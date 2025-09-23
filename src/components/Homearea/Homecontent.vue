@@ -1,13 +1,10 @@
 <template>
 
-  <!-- <div v-if="store.GetisLoading" class="skeletons_acer_acer">
-    <Skeletons v-for="n in 6" />
-  </div> -->
   <Transition name="slide-fade">
     <div class="content-container" ref="acer_data_scroll">
       <!-- 内容区 -->
       <div class="card-grid">
-        <div v-for="(post, index) in store.GetPosts" :key="index" class="post-card" :style="{ '--bg-hue': post.bgHue }">
+        <div v-for="(post, index) in store.GetPosts" :key="index" class="post-card">
           <div class="card-header">
             <h3 class="post-title">{{ post.title }}</h3>
             <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar"
@@ -41,13 +38,10 @@
               </div>
               <div class="post-time itmeacer">{{ post.audien }}</div>
             </div>
-            <!--<div class="post-author">{{ post.author }}</div>-->
           </div>
-          <!-- 背景元素用于毛玻璃效果 -->
-          <!-- <div class="card-bg"></div> -->
         </div>
 
-        <Skeletons v-if="store.GetisLoading" v-for="n in 6" />
+        <Skeletons v-if="store.GetisLoading" v-for="n in 5" />
       </div>
       <!-- 底部占位 -->
       <div ref="target" :style="{ height: '190px' }"></div>
@@ -71,40 +65,17 @@ const pageindex = ref<number>(1)
 
 
 
-//  props.overscan>展示数量
-// const total = computed(() => posts.value.length)
-// console.log(total, '数据长度');
-
-// const visibleCount = computed(() => Math.ceil(store.GetPageClientHeight / 50) + 6)
-// console.log(visibleCount, '容器高度');
-
-// const start = computed(() => Math.max(0, Math.floor(store.GetScrollTopAcer / store.GetPageClientHeight) - 6))
-
-// const end = computed(() => Math.min(total.value, start.value + visibleCount.value))
-
-// const visibleData = computed(() => posts.value.slice(0, 6))
-// console.log("处理后的数据：", visibleData);
-
-// const paddingTop = computed(() => start.value * store.GetPageClientHeight / 6)
-
-// const paddingBottom = computed(() => (total.value - end.value) * store.GetPageClientHeight / 6)
-
-// console.log(paddingTop, paddingBottom, '12');
-
-
-
-
 
 
 
 
 const target = ref(null)
+const targeta = ref<HTMLElement|null>(null)
 let observer
-onMounted( () => {
-  // await store.setPosts()
+let observerss
+onMounted(() => {
 
-   
-   !store.GetPosts.length && store.setPosts(pageindex.value); 
+  !store.GetPosts.length && store.setPosts(pageindex.value);
   // 页面加载时的逻辑   
 
 
@@ -130,10 +101,55 @@ onMounted( () => {
     }
   }, {
     root: null, // 观察相对整个视口
-    threshold: 1 // 可见 100% 就算进入（0~1）
+    threshold: 1, // 可见 100% 就算进入（0~1）
   })
 
   if (target.value) observer.observe(target.value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  observerss = new IntersectionObserver(async (entries) => {
+    // 页面首次进来没数据就会触发该if
+    console.log(entries, '555');
+
+    if (entries[0].isIntersecting) {
+
+    } else {
+      // console.log(entries[0], '元素离开可视区域 ❌')
+
+      // loodingacer.value = false
+    }
+  }, {
+    root: null, // 观察相对整个视口
+    threshold: 1 // 可见 100% 就算进入（0~1）
+  })
+
+
+
+  if (targeta.value) observerss.observe(targeta.value)
+
+
+
+
+
+
+
 });
 
 </script>
