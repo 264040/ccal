@@ -1,14 +1,10 @@
 <template>
 
   <Transition name="slide-fade">
-    <div class="content-container" ref="acer_data_scroll" @scroll="scrollfun"
-      :style="{ overflowY: store.GetScrollTopAcer <= 360 ? 'hidden' : 'auto' }">
+    <div class="content-container" ref="acer_data_scroll">
       <!-- 内容区 -->
-      <!-- 虚拟高度 -->
-      <div class="xunigaodu" :style="{ height: `${xuniHeight}px` }"></div>
-      <div class="card-grid" :style="{ transform: `translateY(${topACER}px)` }">
-        <div v-for="(post, index) in newdatas" :key="index" class="post-card"
-          :ref="(el) => { if (el && index === 0) itemlistH = el }">
+      <div class="card-grid">
+        <div v-for="(post, index) in store.GetPosts" :key="index" class="post-card">
           <div class="card-header">
             <h3 class="post-title">{{ post.title }}</h3>
             <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" class="post-avatar"
@@ -45,7 +41,7 @@
           </div>
         </div>
 
-        <Skeletons v-if="store.GetisLoading" v-for="(n, i) in 5" :key="i" />
+        <Skeletons v-if="store.GetisLoading" v-for="n in 5" />
       </div>
       <!-- 底部占位 -->
       <div ref="target" :style="{ height: '190px' }"></div>
@@ -54,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, onUnmounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
 import { useIndextore } from "@/store/index";
@@ -63,137 +59,98 @@ import Skeletons from '@/components/SkeletonComponent/Skeleton.vue'
 const store = useIndextore();
 
 
-// DOM引用
-const acer_data_scroll = ref<HTMLDivElement | null>(null);
-const target = ref<HTMLDivElement | null>(null);
-const itemlistH = ref<HTMLDivElement | any>(null) // 卡片高度
-
-
-// 状态管理
+const acer_data_scroll = ref(null);
+const loodingacer = ref<boolean>(false)
 const pageindex = ref<number>(1)
-const startI = ref<number>(0)// 开始下标  
-const itemH = ref<number>(0)// 动态计算每个卡片的高度
-
-
-// 计算属性
-const isLoading = computed(() => store.GetisLoading);
-const allPosts = computed(() => store.GetPosts);  // 所有数据
-
-
-// 虚拟占位高度
-const xuniHeight = computed(() => allPosts.value.length * itemH.value)
 
 
 
 
 
 
-// 结束下标=>即显示数据数量
-const endI = computed<number | any>(() => {
 
-  if (!acer_data_scroll.value) return 10;
-
-  if (acer_data_scroll.value.clientWidth >= 949) {
-    return 20;
-  }
-
-  return Math.ceil(acer_data_scroll.value.clientHeight / itemH.value);
-})
-
-
-
-// 处理后的数据=> 5条
-const newdatas = computed<number | any>(() => allPosts.value.slice(startI.value, startI.value + endI.value+1))
-
-// topACER
-const topACER = computed<number | any>(() => startI.value * itemH.value)
-
-
-const scrollfun = (_: any) => {
-  const scrollTop = (_.target as HTMLDivElement).scrollTop;
-  startI.value = Math.floor(scrollTop / itemH.value);
-};
-
-
-const loadMorePosts = async () => {
-  // 增加加载状态判断，避免重复请求
-  if (store.GetisLoading) return;
-
-  store.setIsloading(true)
-
-  try {
-    setTimeout(async () => {
-      await store.setPosts(pageindex.value)
-      pageindex.value += 1
-      store.setIsloading(false)
-    }, 2000)
-  } catch (error) {
-    console.error('加载失败:', error)
-  } finally {
-    // store.setIsloading(false)
-  }
-
-}
-let observer: IntersectionObserver | null = null;
-
-
-
- 
-
+const target = ref(null)
+const targeta = ref<HTMLElement|null>(null)
+let observer
+let observerss
 onMounted(() => {
-  !allPosts.value.length && loadMorePosts();  // 初始加载数据
- 
 
-  // 设置无限滚动观察器
-  if (target.value) {
-    observer = new IntersectionObserver(async (entries) => {
-      if (entries[0].isIntersecting) {
-        loadMorePosts()
-      }
-    }, {
-      root: null, // 观察相对整个视口
-      threshold: 1, // 可见 100% 就算进入（0~1）
-    })
-    observer.observe(target.value)
-
-  }
+  !store.GetPosts.length && store.setPosts(pageindex.value);
+  // 页面加载时的逻辑   
 
 
 
 
 
-  // 清理
 
-  onUnmounted(() => { 
-    // 停止观察器
-    if (observer && target.value) {
-      observer.unobserve(target.value);
-      observer.disconnect();
+
+  observer = new IntersectionObserver(async (entries) => {
+    // 页面首次进来没数据就会触发该if
+    if (entries[0].isIntersecting) {
+      store.setIsloading(true)
+      setTimeout(async () => {
+        await store.setPosts(pageindex.value)
+        pageindex.value += 1
+        store.setIsloading(false)
+      }, 2000)
+
+    } else {
+      // console.log(entries[0], '元素离开可视区域 ❌')
+
+      // loodingacer.value = false
     }
+  }, {
+    root: null, // 观察相对整个视口
+    threshold: 1, // 可见 100% 就算进入（0~1）
+  })
 
-    // 移除滚动事件监听
-    if (acer_data_scroll.value) {
-      acer_data_scroll.value.removeEventListener('scroll', scrollfun);
+  if (target.value) observer.observe(target.value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  observerss = new IntersectionObserver(async (entries) => {
+    // 页面首次进来没数据就会触发该if
+    console.log(entries, '555');
+
+    if (entries[0].isIntersecting) {
+
+    } else {
+      // console.log(entries[0], '元素离开可视区域 ❌')
+
+      // loodingacer.value = false
     }
+  }, {
+    root: null, // 观察相对整个视口
+    threshold: 1 // 可见 100% 就算进入（0~1）
+  })
 
-  });
+
+
+  if (targeta.value) observerss.observe(targeta.value)
+
+
+
+
+
 
 
 });
-
-
-
-// 监听元素加载完成后获取高度
-watch(itemlistH, (el) => {
-  if (el) {
-    itemH.value = el.clientHeight || 190;
-  }
-}, { immediate: true })
-
-
-
-
-
 
 </script>
 
@@ -240,7 +197,7 @@ watch(itemlistH, (el) => {
 
 
 
-.xunigaodu {}
+
 
 
 .content-container {
@@ -248,8 +205,7 @@ watch(itemlistH, (el) => {
   max-width: 1200px;
   margin: 0.2rem auto 0;
   position: relative;
-  height: 100vh;
-  /* overflow-y: auto; */
+
   /* transition:
     all 0.3s ease-out,
     transform 0.5s ease-in-out,
@@ -257,14 +213,10 @@ watch(itemlistH, (el) => {
 }
 
 .card-grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  padding: 0 1rem;
+  padding: 0 0 5rem;
 
 
 }
@@ -305,7 +257,9 @@ watch(itemlistH, (el) => {
 /* 为每个卡片添加不同的色调效果 */
 .post-card::before {}
 
-.post-card:active {}
+.post-card:hover {
+  transform: translateY(-5px);
+}
 
 .post-card:hover::before {
   opacity: 0.8;
@@ -450,7 +404,7 @@ watch(itemlistH, (el) => {
 
 .reaction-btn:hover {
   color: #4361ee;
-  /* background: rgba(22, 22, 22, 0.7) !important; */
+  background: rgba(22, 22, 22, 0.7) !important;
 
 }
 

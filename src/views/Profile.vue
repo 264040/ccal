@@ -9,8 +9,8 @@
 
         <header class="header-hero">
             <div class="header-content">
-                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" size="xlarge"
-                    shape="circle" class="profile-avatar" />
+                <Image class="profile-avatar" src="https://primefaces.org/cdn/primevue/images/galleria/galleria10.jpg"
+                    alt="Image" preview />
                 <h2 class="username">Aalvina Fatehi Islam</h2>
                 <p class="user-role">Professor · San Francisco, CA</p>
             </div>
@@ -291,6 +291,8 @@ function onPointerUp(ev: PointerEvent): void {
 
 
 :deep(.p-button:not(:disabled):hover) {
+    background:#27272a;
+    color:#ffffff;
     border: none;
 }
 
@@ -338,8 +340,19 @@ function onPointerUp(ev: PointerEvent): void {
     width: 96px !important;
     height: 96px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 3rem;
+
+
 }
 
+.profile-avatar>:deep(img) {
+    width: 100%;
+    height: 100%; 
+    border-radius: 3rem;
+}
+:deep(.p-image-preview-mask){
+    border-radius: 3rem;
+}
 .username {
     margin: 12px 0 4px;
     font-size: 22px;

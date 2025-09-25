@@ -30,7 +30,7 @@ export const useIndextore = defineStore('navgate', {
         scrollTAPLIST: 0, // 设置x坐标
         posts: [] as TYPEposts[], //首屏数据加载
         pages: 0 as number, // 请求页数
-        HomeChildPathName: '' as any, // 记录Home页的最后一个子路由路径
+        HomeChildPathName: '' as any, // 记录Home页的最后一个子路由路径 
     }),
     getters: {
         Getindexkey: state => state.index,
@@ -42,7 +42,8 @@ export const useIndextore = defineStore('navgate', {
         GetscrollTAPLIST: stare => stare.scrollTAPLIST,
         GetPosts: stare => stare.posts,
         GetchildPath: stare => stare.HomeChildPathName,
-        GetPages: stare => stare.pages
+        GetPages: stare => stare.pages, 
+
 
     },
     actions: {
@@ -115,7 +116,7 @@ export const useIndextore = defineStore('navgate', {
         },
         setChildPath(i: string | unknown) {
             this.HomeChildPathName = i
-        }
+        } 
     },
     persist: true
 })
