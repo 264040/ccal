@@ -186,6 +186,7 @@ body {
     border-radius: 2rem 2rem 0 0;
     color: var(--acer-drawer-color-text) !important;
     background: var(--acer-drawer-bg) !important;
+    border: none!important;
 }
 
 .p-drawer-content {
