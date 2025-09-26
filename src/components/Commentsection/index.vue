@@ -121,4 +121,8 @@ const styleACER = computed(() => ({
 .acer_Drawer_cte {
   font-size: .82rem;
 }
+
+.p-button-text:not(:disabled):active,.p-button-text:not(:disabled):hover{
+  background: none;
+}
 </style>
