@@ -14,8 +14,12 @@ declare module 'vue' {
     BBSView: typeof import('./src/components/BBSView.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
+    Chip: typeof import('primevue/chip')['default']
+    Commentsection: typeof import('./src/components/Commentsection/index.vue')['default']
     ContentView: typeof import('./src/components/ContentView.vue')['default']
     copy: typeof import('./src/components/Homearea/Homecontent copy.vue')['default']
+    Divider: typeof import('primevue/divider')['default']
+    Drawer: typeof import('primevue/drawer')['default']
     Fieldset: typeof import('primevue/fieldset')['default']
     Homecontent: typeof import('./src/components/Homearea/Homecontent.vue')['default']
     'Homecontent copy': typeof import('./src/components/Homearea/Homecontent copy.vue')['default']
@@ -23,12 +27,15 @@ declare module 'vue' {
     Image: typeof import('primevue/image')['default']
     Navigation: typeof import('./src/components/Navigation.vue')['default']
     PaddleCard: typeof import('./src/components/Homearea/PaddleCard.vue')['default']
+    Panel: typeof import('primevue/panel')['default']
     ProductIntroduction: typeof import('./src/components/Homearea/ProductIntroduction.vue')['default']
     ProgressBar: typeof import('primevue/progressbar')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     RankingView: typeof import('./src/components/RankingView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScrollPanel: typeof import('primevue/scrollpanel')['default']
+    Sidebar: typeof import('primevue/sidebar')['default']
     Skeleton: typeof import('./src/components/SkeletonComponent/Skeleton.vue')['default']
     Tab: typeof import('primevue/tab')['default']
     TabList: typeof import('primevue/tablist')['default']
@@ -39,5 +46,6 @@ declare module 'vue' {
   }
   export interface GlobalDirectives {
     Ripple: typeof import('primevue/ripple')['default']
+    StyleClass: typeof import('primevue/styleclass')['default']
   }
 }

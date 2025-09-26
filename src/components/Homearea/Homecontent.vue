@@ -2,7 +2,7 @@
 
   <Transition name="slide-fade">
     <div class="content-container" ref="acer_data_scroll" @scroll="scrollfun"
-      :style="{ overflowY: store.GetScrollTopAcer <= 360 ? 'hidden' : 'auto' }">
+      :style="{ overflowY: GetScrollTopAcer <= 360 ? 'hidden' : 'auto' }">
       <!-- 内容区 -->
       <!-- 虚拟高度 -->
       <div class="xunigaodu" :style="{ height: `${xuniHeight}px` }"></div>
@@ -78,6 +78,7 @@ const itemH = ref<number>(0)// 动态计算每个卡片的高度
 // 计算属性
 const isLoading = computed(() => store.GetisLoading);
 const allPosts = computed(() => store.GetPosts);  // 所有数据
+const GetScrollTopAcer = computed(() => store.GetScrollTopAcer);  
 
 
 // 虚拟占位高度
@@ -110,8 +111,8 @@ const topACER = computed<number | any>(() => startI.value * itemH.value)
 
 
 const scrollfun = (_: any) => {
-  const scrollTop = (_.target as HTMLDivElement).scrollTop;
-  startI.value = Math.floor(scrollTop / itemH.value);
+  const scrollTop = (_.target as HTMLDivElement).scrollTop; 
+    startI.value = Math.floor(scrollTop / itemH.value); 
 };
 
 

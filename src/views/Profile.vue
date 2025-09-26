@@ -3,8 +3,8 @@
         <!-- Header 卡片 -->
 
         <div class="header-top">
-            <Button icon="pi pi-arrow-left" class="p-button-rounded p-button-text goacer" @click="goBack" />
-            <Button icon="pi pi-cog" class="p-button-rounded p-button-text goacer" />
+            <Button icon="pi pi-angle-left" class="p-button-rounded p-button-text goacer" @click="goBack" />
+            <Button icon="pi pi-sliders-h" class="p-button-rounded p-button-text goacer" />
         </div>
 
         <header class="header-hero">

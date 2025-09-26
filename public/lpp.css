@@ -164,7 +164,7 @@ body {
     overflow: hidden;
     background: var(--acer-ground);
 
-    
+
 
     &::after {
         content: '';
@@ -178,4 +178,28 @@ body {
         z-index: 1;
         filter: blur(20px);
     }
+}
+
+
+/* ScrollPanel样式 */
+.p-drawer {
+    border-radius: 2rem 2rem 0 0;
+    color: var(--acer-drawer-color-text) !important;
+    background: var(--acer-drawer-bg) !important;
+}
+
+.p-drawer-content {
+    padding: 0 1.25rem !important;
+}
+
+.p-drawer-header {
+    padding: 1rem !important;
+} 
+.p-drawer-title {
+    font-size: 1.4rem !important;
+}
+
+.p-scrollpanel-content {
+    padding: 0 1.2rem !important;
+    width: 100% !important;
 }
