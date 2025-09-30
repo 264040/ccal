@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Button icon="pi pi-arrow-up" @click="visibleBottom = true" />
+    <Button icon="pi pi-arrow-up" @click="data" />
 
     <Drawer v-model:visible="visibleBottom" header="评论" position="bottom" style="height: auto">
       <template #container="{ closeCallback }">
@@ -24,20 +24,29 @@
           <div class="overflow-y-auto">
             <ScrollPanel :style="styleACER">
 
-              <div class="acer_Drawer" v-for="value in 10" :key="value">
-                <!-- <Chip label="Amy Elsner" image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" />   -->
-                <img class="acer_Drawer_img" src="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-                  alt="">
-                <div class="acer_Drawer_name_cte_box">
-                  <div class="acer_Drawer_name">米子</div>
-                  <div class="acer_Drawer_cte">
-                    内容但是佛龛反馈给蝶恋蜂狂过啦a水电费递四方速阿打算打算打打大幅度发刚发等哈是都发啥打法是都发啥打法是都发啥打法是打发递防守打法四大分三大发啥打法是都发啥打法是打发打撒大发快过啦代发工卡老大房更大理发卡过啦打卡了考虑，了看到了发给看到了付过款老大饭卡跟老大饭卡过啦打卡发啦工卡代发老嘎
+              <template v-if="isLoding">
+                <comSkleto />
+              </template>
+              <template v-else-if="!isLoding && ACERData.length">
+                <div class="acer_Drawer" v-for="(value, inedx) in ACERData" :key="value.id">
+                  <img class="acer_Drawer_img" :src="value.avatar" alt="">
+                  <div class="acer_Drawer_name_cte_box">
+                    <div class="acer_Drawer_name">{{ value.name }}</div>
+                    <div class="acer_Drawer_cte">
+                      {{ value.c }}
+                    </div>
                   </div>
                 </div>
-              </div>
-
+              </template>
+              <template v-else>
+                <div class="neacer"> 
+                  <div class="pi pi-discord neacer_disc"></div>
+                  <div>期待你的评价</div> 
+                </div>
+              </template>
 
             </ScrollPanel>
+
           </div>
         </div>
       </template>
@@ -45,28 +54,73 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
+import comSkleto from "./comSkleto.vue";
+const dddd = ref([
+  {
+    name: 111,
+    c: '士大夫如果对方沟通的想法是对方输入方式饿哇撒旦发射点发射点',
+    avatar: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
+    id: 1
+  }, {
+    name: 222,
+    c: '士大夫如果对方沟',
+    avatar: 'https://primefaces.org/cdn/primevue/images/galleria/galleria10.jpg',
+    id: 2
+  }, {
+    name: 333,
+    c: '士大夫如果对方沟通的想法是对方输入方式饿',
+    avatar: 'https://primefaces.org/cdn/primevue/images/avatar/onyamalimba.png',
+    id: 3
+  },
+])
 const heightDVH = ref(true)
+const DVHheight = ref<number>(60)
 const visibleBottom = ref(false);
+const ACERData = ref<{ id: any, name: any, c: string, avatar: string }[]>([]);
+const isLoding = ref(false);
 const closeCallbacAll = () => {
   heightDVH.value = !heightDVH.value
-
+  DVHheight.value = heightDVH.value ? 60 : 100
 }
-const closeHeightDVH = (calback) => {
+const closeHeightDVH = (calback: any) => {
   calback()
   heightDVH.value = true
 }
 const styleACER = computed(() => ({
   transition: 'height 0.3s',
   width: '100%',
-  height: heightDVH.value ? '50dvh' : 'calc(100dvh - 74px)'
+  height: `calc(${DVHheight.value}dvh - 74px)`
 }))
+
+const data = () => {
+  visibleBottom.value = true
+  if (visibleBottom.value) {
+    isLoding.value = true
+    setTimeout(() => {
+      ACERData.value = []
+      isLoding.value = false
+    }, 1000);
+  }
+}
 
 
 </script>
 
 <style scoped>
+.topaceraaa {
+  width: 2rem;
+  height: .5rem;
+  background-color: #3f3e3e6b;
+  border-radius: 1rem;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+}
+
 .page {
   padding: 20px;
   height: 100vh;
@@ -75,7 +129,8 @@ const styleACER = computed(() => ({
 }
 
 .acer_Drawer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3.8dvh auto;
   align-items: flex-start;
   gap: .5rem;
   margin: 0 0 2rem 0;
@@ -93,12 +148,14 @@ const styleACER = computed(() => ({
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .acer_Drawer_img {
   width: 3.8dvh;
   height: 3.8dvh;
+  border-radius: 3rem;
+  background: var(--acer-comSkleto-bag);
 }
 
 .acer_btn_bgvgvg {
@@ -107,12 +164,26 @@ const styleACER = computed(() => ({
   color: var(--acer-drawer-color-text);
 }
 
+.neacer {
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.neacer_disc {
+  font-size: 6rem;
+  color: #4a4a4a5e;
+  margin-top: -160px;
+}
+
 .acer_Drawer_name_cte_box {
   display: flex;
   gap: .3rem;
   flex-direction: column;
 }
-
+ 
 .acer_Drawer_name {
   font-size: .7rem;
   color: #8d8d8d;
@@ -122,7 +193,8 @@ const styleACER = computed(() => ({
   font-size: .82rem;
 }
 
-.p-button-text:not(:disabled):active,.p-button-text:not(:disabled):hover{
+.p-button-text:not(:disabled):active,
+.p-button-text:not(:disabled):hover {
   background: none;
 }
 </style>
