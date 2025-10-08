@@ -1,35 +1,22 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router';
-// 导入 PrimeVue 和样式
-import PrimeVue from 'primevue/config'
-import Aura from '@primevue/themes/aura' // 引入 Aura 主题 
-import 'primeicons/primeicons.css' // 图标样式仍然需要单独引入
+import { NestFactory } from "@nestjs/core";
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { AppModule } from "./app.module";
+import { ValidationPipe } from "@nestjs/common";
+import { AllResponseInterceptor } from "./all-response/all-response.interceptor";
 
-// import '@public/lpp.css';
-// import './thenes_acer/drak_acer.css'
-
-import piniaPersist from 'pinia-plugin-persistedstate'
-// 创建 Pinia 实例
-const pinia = createPinia()
-// 创建应用
-const app = createApp(App)
-
-
-// 先安装 Pinia
-app.use(pinia)
-pinia.use(piniaPersist)
-app.use(router)
-
-// 使用 PrimeVue 并配置主题
-app.use(PrimeVue, {
-  theme: {
-    preset: Aura
-    // 可以直接定义覆盖的 CSS 变量
-    // rules: {...}
-  }
-})
-
-// 然后再挂载应用
-app.mount('#app')
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalInterceptors(new AllResponseInterceptor());
+    app.useGlobalPipes(new ValidationPipe());
+    
+    const config = new DocumentBuilder()
+        .setTitle("接口文档")
+        .setDescription("一键生成接口文档")
+        .setVersion("1.0")
+        .addTag("全部")
+        .build();
+    const documentFactory = () => SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup("api", app, documentFactory);
+    await app.listen(process.env.PORT ?? 3000);
+}
+bootstrap();
