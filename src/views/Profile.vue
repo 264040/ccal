@@ -3,7 +3,10 @@
         <!-- Header 卡片 -->
 
         <div class="header-top">
-            <Button icon="pi pi-angle-left" class="p-button-rounded p-button-text goacer" @click="goBack" />
+            <!-- <Button icon="pi pi-angle-left" class="p-button-rounded p-button-text goacer" @click="goBack" /> -->
+            <Button class="p-button-rounded p-button-text goacer" @click="goBack">
+              <i class="bxr bxs-arrow-out-up-left-stroke-circle bx-bounce " style='color:#fcf8f8'/>
+            </Button>
             <Button icon="pi pi-sliders-h" class="p-button-rounded p-button-text goacer" />
         </div>
 
@@ -253,6 +256,12 @@ function onPointerUp(ev: PointerEvent): void {
 
 
 <style scoped>
+.acer_icon_left_arrow {
+    background: url('@public/icons/ppp.png') no-repeat center;
+    width: 100%;
+    height: 100%;
+}
+
 :deep(.p-button-text) {}
 
 :deep(.p-button-text:not(:disabled):hover) {
@@ -291,14 +300,14 @@ function onPointerUp(ev: PointerEvent): void {
 
 
 :deep(.p-button:not(:disabled):hover) {
-    background:#27272a;
-    color:#ffffff;
+    background: #27272a;
+    color: #ffffff;
     border: none;
 }
 
 :deep(.p-button:not(:disabled).active) {
 
-    background: #10b981;
+    background: #a9fc4e;
     border: none;
 }
 
@@ -347,12 +356,14 @@ function onPointerUp(ev: PointerEvent): void {
 
 .profile-avatar>:deep(img) {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     border-radius: 3rem;
 }
-:deep(.p-image-preview-mask){
+
+:deep(.p-image-preview-mask) {
     border-radius: 3rem;
 }
+
 .username {
     margin: 12px 0 4px;
     font-size: 22px;
@@ -438,7 +449,7 @@ function onPointerUp(ev: PointerEvent): void {
 
 .tab-btn.active {
     background: #333030;
-    color: #fff !important;
+    color: #0d0c22 !important;
 }
 
 /* swipe container - ONLY this area moves */

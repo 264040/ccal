@@ -1,10 +1,10 @@
 :root {
     --acer-color: #ffffff;
     --acer-ground: #ffffff;
-    --acer-icon-ground: #27272a;
+    --acer-icon-ground: #0d0c22;
     --acer-box-ground: #27272a;
     --acer-fontszie: 14px;
-    --acer-btnground: #27272a;
+    --acer-btnground: #0d0c22;
     --acer-min-font: #f3f6fa;
     --acer-user-name-style: #27272a;
     --acer-nav-ground-style: #ffffff;
@@ -20,6 +20,9 @@
     --acer-drawer-color-text: #18181b;
     --acer-comSkleto-bag: #c7c7c7;
     --acer-comSkleto-bag-key: #e1e1e1;
+    --acer-bac-a-tp-text: #a9fc4e;
+    --acer-bac-a-tp: #0d0c22;
+    --acer-tap-bg-color-bg:#333030;
 
 }
 
@@ -47,6 +50,10 @@ body.acerDark {
     --acer-drawer-color-text: #fff;
     --acer-comSkleto-bag: #3e3e40;
     --acer-comSkleto-bag-key: #29292a;
+
+    --acer-bac-a-tp-text: #0d0c22;
+    --acer-bac-a-tp: #a9fc4e;
+    --acer-tap-bg-color-bg:#27272a;
 }
 
 body {

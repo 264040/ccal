@@ -13,7 +13,7 @@ import { useIndextore } from '@/store/index'
 
 const router = useRouter();
 const route = useRoute()
- 
+
 const store = useIndextore()
 
 interface itemsTYPE {
@@ -24,9 +24,9 @@ interface itemsTYPE {
     activeIndex?: number | unknown;
 }
 
-watch(() => route.meta.index, (n) => { 
+watch(() => route.meta.index, (n) => {
     // 监听路由meta.index变化来修改导航栏选定状态
-    store.setindexkey(n) 
+    store.setindexkey(n)
 })
 
 
@@ -54,7 +54,7 @@ const items = ref<itemsTYPE[]>([
         route: 'collect',
         // label: "收藏",
         icon: "pi pi-bookmark",
-        command: (e) => { 
+        command: (e) => {
             router.replace('/collect');
             // store.setindexkey(2)
         }
@@ -63,7 +63,7 @@ const items = ref<itemsTYPE[]>([
         route: 'profile',
         // label: "我的",
         icon: "pi pi-user",
-        command: (e) => { 
+        command: (e) => {
             router.replace('/profile');
             // store.setindexkey(3)
         }
@@ -88,6 +88,9 @@ const items = ref<itemsTYPE[]>([
     left: 0;
     right: 0;
     width: 100%;
+    overflow: hidden;
+    height: 76px;
+    margin: 0 auto;
     z-index: 1000;
     /* 确保导航栏在最上层 */
     border-radius: 50px;
@@ -124,6 +127,10 @@ const items = ref<itemsTYPE[]>([
     transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
 }
 
+:deep(.p-tabmenu-item-active .p-tabmenu-item-icon) {
+    color: #a9fc4e;
+}
+
 :deep(.p-tabmenu-item-link:active) {
     transform: scale(.9);
 }
@@ -135,16 +142,17 @@ const items = ref<itemsTYPE[]>([
 }
 
 :deep(.p-tabmenu) {
-    /* background-color: #fff;
-    border: 0px solid #e5e7eb; */
     border-radius: 50px;
-    min-width: 280px;
+    max-width: 280px;
+    width: 280px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    transition:
-        width 0.3s ease-out,
-        transform 0.5s ease-in-out,
-        padding 0.3s;
+    transition: width 0.3s ease-out, transform 0.5s ease-in-out, padding 0.3s;
     display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* top: 0; */
+    margin: 0 auto;
     justify-content: space-around;
 }
 

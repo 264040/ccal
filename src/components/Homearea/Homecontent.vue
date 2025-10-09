@@ -21,10 +21,8 @@
 
           <div class="card-footer">
             <div class="card-btns">
-              <Button icon="pi pi-heart" class="p-button-text p-button-plain reaction-btn"
-                :label="post.likes?.toString()" />
-              <Button icon="pi pi-comment" class="p-button-text p-button-plain reaction-btn"
-                :label="post.comments?.toString()" />
+              <Button icon="pi pi-heart" class="p-button-text p-button-plain reaction-btn" />
+              <Button icon="pi pi-comment" class="p-button-text p-button-plain reaction-btn" />
             </div>
             <div class="card-www">
               <div class="card flex justify-center card-txl">
@@ -78,7 +76,7 @@ const itemH = ref<number>(0)// 动态计算每个卡片的高度
 // 计算属性
 const isLoading = computed(() => store.GetisLoading);
 const allPosts = computed(() => store.GetPosts);  // 所有数据
-const GetScrollTopAcer = computed(() => store.GetScrollTopAcer);  
+const GetScrollTopAcer = computed(() => store.GetScrollTopAcer);
 
 
 // 虚拟占位高度
@@ -104,15 +102,15 @@ const endI = computed<number | any>(() => {
 
 
 // 处理后的数据=> 5条
-const newdatas = computed<number | any>(() => allPosts.value.slice(startI.value, startI.value + endI.value+1))
+const newdatas = computed<number | any>(() => allPosts.value.slice(startI.value, startI.value + endI.value + 1))
 
 // topACER
 const topACER = computed<number | any>(() => startI.value * itemH.value)
 
 
 const scrollfun = (_: any) => {
-  const scrollTop = (_.target as HTMLDivElement).scrollTop; 
-    startI.value = Math.floor(scrollTop / itemH.value); 
+  const scrollTop = (_.target as HTMLDivElement).scrollTop;
+  startI.value = Math.floor(scrollTop / itemH.value);
 };
 
 
@@ -139,11 +137,11 @@ let observer: IntersectionObserver | null = null;
 
 
 
- 
+
 
 onMounted(() => {
   !allPosts.value.length && loadMorePosts();  // 初始加载数据
- 
+
 
   // 设置无限滚动观察器
   if (target.value) {
@@ -165,7 +163,7 @@ onMounted(() => {
 
   // 清理
 
-  onUnmounted(() => { 
+  onUnmounted(() => {
     // 停止观察器
     if (observer && target.value) {
       observer.unobserve(target.value);
@@ -187,7 +185,7 @@ onMounted(() => {
 // 监听元素加载完成后获取高度
 watch(itemlistH, (el) => {
   if (el) {
-    itemH.value = el.clientHeight || 190;
+    itemH.value = el.clientHeight + 10 || 200;
   }
 }, { immediate: true })
 
@@ -273,7 +271,7 @@ watch(itemlistH, (el) => {
 .post-card {
   position: relative;
   border-radius: 2rem;
-  padding: 1.5rem;
+  padding: 1.4rem;
   overflow: hidden;
   box-shadow: 2px 3px 5px rgba(33, 23, 2, 0.5);
   transition:
@@ -282,6 +280,7 @@ watch(itemlistH, (el) => {
   z-index: 1;
   background: var(--acer-crad-back);
   backdrop-filter: blur(10px);
+  height: 200px;
 }
 
 .card-txl {
@@ -314,7 +313,7 @@ watch(itemlistH, (el) => {
 
 /* 添加边框效果增强毛玻璃质感 */
 .post-card::after {
-  content: "";
+  /* content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -323,7 +322,7 @@ watch(itemlistH, (el) => {
   border-radius: 32px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   pointer-events: none;
-  z-index: 2;
+  z-index: 2; */
 }
 
 .card-header {
@@ -420,25 +419,29 @@ watch(itemlistH, (el) => {
 
 .reaction-btn {
   color: rgb(255, 255, 255) !important;
-  background: rgb(51 199 145) !important;
+  background: #0d0c22 !important;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 1.5rem;
   padding: 0.7rem 1.5rem;
-  transition: all 0.2s ease;
-  transform: scale(0.9);
+  transition: all 0.5s ease;
+  /* transform: scale(0.9); */
   transform-origin: center;
-  min-width: 80px;
+  width: 50px;
+  height: 50px;
 
 }
 
 .card-btns {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
+  background-color: #a9fc4e;
   align-items: center;
-  height: 60px;
+  border-radius: 2rem;
+  width: 115px;
+  padding: .2rem;
 }
 
 .avateraxer {
@@ -456,7 +459,7 @@ watch(itemlistH, (el) => {
 }
 
 .reaction-btn:active {
-  transform: scale(0.8);
+  transform: scale(0.87);
 }
 
 .card-www {
@@ -479,7 +482,7 @@ watch(itemlistH, (el) => {
   }
 
   .post-card {
-    height: 190px;
+    /* height: 190px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -488,8 +491,8 @@ watch(itemlistH, (el) => {
   .card-footer {
     display: grid;
     grid-template-columns: auto auto;
-    height: 40px;
-    transform: translateY(-5px);
+    /* height: 40px;
+    transform: translateY(-5px); */
   }
 }
 

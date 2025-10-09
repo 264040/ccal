@@ -77,7 +77,7 @@ function routeBack(e: any) {
 
 :deep(.p-tab) {
     border-radius: 2rem;
-    background: #fff;
+    background: var(--acer-tap-bg-color-bg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-size: 1.2rem;
     min-width: 118px;
@@ -85,34 +85,40 @@ function routeBack(e: any) {
     font-family: MyFontAcer;
     font-weight: 500;
     letter-spacing: 1.5px;
-
+    color: rgb(255, 255, 255);
     border-style: none;
+    transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
 }
 
 :deep(.p-tab-active) {
-    background: #333030;
+    background: var(--acer-bac-a-tp);
     /* background: #080808; */
     border-bottom-width: 2px;
-    transition: transform 0.1s ease-in-out;
-    border-style: solid;
+    transition: all 0.5s ease-in-out;
+    border-style: none;
 
-    :deep(.text-inherit) {
-        color: rgb(255, 255, 255);
-    }
+    color: var(--acer-bac-a-tp-text);
+    border-color: #a9fc4e;
+
+
+
 }
 
 :deep(.p-tab:not(.p-tab-active):not(.p-disabled):hover) {
-    background-color: #fff;
+    background-color: #a9fc4e;
     box-shadow: 0 0 10px rgb(255 255 255);
-    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 1, 1);
+    color: black;
 }
 
 :deep(.p-tab-active:active) {
-    transform: scale(0.93);
+    transform: scale(0.9);
 }
 
-:deep(.text-inherit) {
-    color: black;
+
+:deep(.p-tab-active >.text-inherit) {
+
+    color: var(--acer-bac-a-tp-text) !important;
+    font-weight: 800;
 }
 
 :deep(.p-icon),

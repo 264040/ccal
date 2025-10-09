@@ -64,8 +64,10 @@ onUnmounted(() => { });
 .page {
     /* 确保页面有高度 */
     box-sizing: border-box;
-    overflow: auto;
+    position: fixed;
+    width: 100dvw;
     height: 100vh;
+    overflow: auto;
     /* background: var(--acer-ground); */
 }
 </style>
