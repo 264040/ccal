@@ -24,7 +24,7 @@ export class AppController {
     }
     @Post("add")
     async createOne(@Body() obj: dtoapp) {
-        return 2;
+        return 3;
     }
 
     @Get("one/:id")
