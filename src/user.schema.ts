@@ -1,14 +1,22 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
-@Schema()
-export class User extends Document {
-    @Prop()
-    
-    name: string;
+@Schema({ collection: 'comments' })
+export class Comment extends Document {
+  @Prop({ required: true })
+  name: string;
 
-    @Prop({ type: Number })
-    age: number;
+  @Prop({ required: true })
+  email: string;
+
+  @Prop({ type: Types.ObjectId })
+  movie_id?: Types.ObjectId;
+
+  @Prop({ required: true })
+  text: string;
+
+  @Prop()
+  date?: Date;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const CommentSchema = SchemaFactory.createForClass(Comment);
