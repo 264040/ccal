@@ -27,8 +27,7 @@ onMounted(() => {
                 <!-- 主要内容区域，使用 router-view -->
                 <router-view v-slot="{ Component, route }">
                     <component :is="Component" :key="route.name" />
-                </router-view>
-
+                </router-view> 
                 <!-- 底部导航栏组件 -->
                 <AppBottomNavigation />
             </div>
